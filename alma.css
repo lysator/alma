@@ -1,0 +1,68 @@
+TABLE.VTABLE {
+  border-spacing: 0;
+}
+
+TR.v TD {
+  vertical-align: top;
+  padding-bottom: 3 px;
+  padding-top: 3 px;
+}
+
+TD.vweek_present {
+  text-align: right;
+  font-size: 120%;
+  border-top: solid black 1px;
+  border-left: solid black 1px;
+  padding-left: 5 px;
+  padding-right: 10 px;
+}
+
+TD.vweek_empty {
+  border-left: solid black 1px;
+}
+
+TD.vday_red {
+  text-align: right;
+  color: red;
+  border-top: solid black 1px;
+  padding-right: 10 px
+}
+
+TD.vday_black {
+  text-align: right;
+  border-top: solid black 1px;
+  padding-right: 10 px
+}
+
+TD.vwday_red {
+  color: red;
+  border-top: solid black 1px;
+}
+
+TD.vwday_black {
+  border-top: solid black 1px;
+}
+
+TD.vflag {
+  border-top: solid black 1px;
+}
+
+TD.vnames {
+  padding-left: 10 px;
+  padding-right: 10 px;
+  border-top: solid black 1px;
+  border-right: solid black 1px;
+}
+
+TD.vlast {
+  border-top: solid black 1px;
+}
+
+SPAN.vname_red {
+  color: red;
+  font-weight: bold;
+}
+
+SPAN.vname_black {
+  font-weight: bold;
+}
