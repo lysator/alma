@@ -1,10 +1,11 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.2 2004/12/07 22:02:10 kent Exp $
+# $Id: alma.py,v 1.3 2004/12/08 19:14:50 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
 import time
+import math
 from cStringIO import StringIO
 
 import jddate; JD=jddate.FromYMD
@@ -25,11 +26,12 @@ month_names =   [None,
 wday_names = [None, "Måndag", "Tisdag", "Onsdag",
 	      "Torsdag", "Fredag", "Lördag", "Söndag"]
 
+# Tidszon (positivt åt öster)
+TIMEZONE = 1
 
 #
-# Functions
+# Funktioner
 #
-
 
 # Beräkna vilken dag som är påsksöndag ett visst år 
 # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 31
@@ -48,16 +50,108 @@ def easter_sunday(year):
 
     return JD(year, n, p+1)
 
-# First weekday wd on or after y-m-d
-def firstday(y, m, d, wd):
+# Beräkna JD då en viss månfas inträffar i en viss cykel
+# Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
+
+
+def moonphase(cycle, phase):
+    # Beräkna parametrar
+    # phase: 0 är nymåne, 1 är växande halvmåne, 2 är fullmåne, 3 är avtagande halvmåne
+    assert phase in [0,1,2,3]
+    k = cycle + phase/4.0
+    t  = k / 1236.85
+
+    # Beräkna ursprunglig "gissning"
+
+    jd = 2415020.75933 \
+	+ 29.53058868 * k \
+	+ 0.0001178 * t*t \
+	- 0.000000155 * t*t*t \
+	+ 0.00033 * math.sin(2.90702 + 2.31902 * t + 0.0001601 * t*t)
+
+    # Beräkna positioner vid denna tidpunkt
+
+    m  = 359.2242 +  29.10535608 * k - 0.0000333 * t*t - 0.00000347 * t*t*t
+    mp = 306.0253 + 385.81691806 * k + 0.0107306 * t*t + 0.00001236 * t*t*t
+    f  =  21.2964 + 390.67050646 * k - 0.0016528 * t*t - 0.00000239 * t*t*t
+    m  *=  math.pi/180.0
+    mp *=  math.pi/180.0
+    f  *=  math.pi/180.0
+
+    # Korrigera "gissningen" m a p dessa positioner
+
+    if phase in [0, 2]: 
+	# Nymåne och fullmåne
+	jd += (0.1734 - 0.000393*t) * math.sin(m) \
+	    + 0.0021 * math.sin(2*m) \
+	    - 0.4068 * math.sin(mp) \
+	    + 0.0161 * math.sin(2*mp) \
+	    - 0.0004 * math.sin(3*mp) \
+	    + 0.0104 * math.sin(2*f) \
+	    - 0.0051 * math.sin(m+mp) \
+	    - 0.0074 * math.sin(m-mp) \
+	    + 0.0004 * math.sin(2*f+m) \
+	    - 0.0004 * math.sin(2*f-m) \
+	    - 0.0006 * math.sin(2*f+mp) \
+	    + 0.0010 * math.sin(2*f-mp) \
+	    + 0.0005 * math.sin(m+2*mp)
+    else:
+	# Växande och avtagande halvmåne
+	  jd += (0.1721 - 0.0004*t) * math.sin(m) \
+	      + 0.0021 * math.sin(2*m) \
+	      - 0.6280 * math.sin(mp) \
+	      + 0.0089 * math.sin(2*mp) \
+	      - 0.0004 * math.sin(3*mp) \
+	      + 0.0079 * math.sin(2*f) \
+	      - 0.0119 * math.sin(m+mp) \
+	      - 0.0047 * math.sin(m-mp) \
+	      + 0.0003 * math.sin(2*f+m) \
+	      - 0.0004 * math.sin(2*f-m) \
+	      - 0.0006 * math.sin(2*f+mp) \
+	      + 0.0021 * math.sin(2*f-mp) \
+	      + 0.0003 * math.sin(m+2*mp) \
+	      + 0.0004 * math.sin(m-2*mp) \
+	      - 0.0003 * math.sin(2*m+mp)
+
+	  if phase == 1:
+	      jd += 0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp);
+	  else:
+	      jd -= (0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp));
+
+    # Korrigera för:
+    # 1) Resten av programmet har en lite annorlunda definition av JD.
+    #    JD här = JD i resten - 0.5 dygn
+    #  2) Tidszon
+
+    jd = jd + 0.5 + TIMEZONE/24.0
+
+    # Dela upp i dag, timme, minut
+
+    day  = int(jd)
+    rest = (jd - day) * 24
+    hour = int(rest)
+    min  = int((rest - hour) * 60);
+
+    # Återvänd med datumtyp, kasta tillsvidare h och m
+    return jddate.FromJD(day)
+
+
+# Första veckodagen av visst slag på eller efter ett visst datum
+def first_weekday(y, m, d, wd):
     jd = JD(y, m, d)
     (_, _, jdwd) = jd.GetYWD()
     diff = wd - jdwd
     if diff < 0: diff = diff + 7
     return jd + diff
 
+def first_sunday(y, m, d):
+    return first_weekday(y, m, d, 7)
+
+def first_saturday(y, m, d):
+    return first_weekday(y, m, d, 6)
+
 #
-# Classes
+# Klasser
 #
 
 class DayCal:
@@ -84,6 +178,8 @@ class DayCal:
 	    self.red = True    # Alla söndagar är röda
 	else:
 	    self.red = False   # Alla andra dagar är svarta tillsvidare
+
+	self.moonphase = None  # Månfas (0 = nymåne, 1, 2 = fullmåne, 3)
  
     def add_info(self, red, flag, name):
 	if red:
@@ -97,6 +193,9 @@ class DayCal:
     
     def set_names(self, names):
 	self.names = names
+
+    def set_moonphase(self, moonphase):
+	self.moonphase = moonphase
 
     def __repr__(self):
 	return "<Day %s>"  % self.jd.GetString_YYYY_MM_DD()
@@ -121,11 +220,21 @@ class DayCal:
 	# Dagens nummer
 	f.write('<TD CLASS="vday_%s">%d</TD>' % (colour, self.d))
 
-	# Flaggdag?
+	# Flaggdagar och månfaser
+	f.write('<TD CLASS="vflag">')
+	empty = True
+
 	if self.flag_day:
-	    f.write('<TD CLASS="vflag"><IMG SRC="flag.gif"></TD>')
-	else:
-	    f.write('<TD CLASS="vflag">&nbsp;</TD>')
+	    f.write('<IMG SRC="flag.gif">')
+	    empty = False
+
+	if self.moonphase is not None:
+	    f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
+	    empty = False
+
+	if empty:
+	    f.write('&nbsp;')
+	f.write('</TD>')
 
 	# Dagens namn. Överst röda, svarta. Under namnsdagar
 	redblack = []
@@ -162,15 +271,14 @@ class YearCal:
     def __init__(self, year):
 	self.year = year       # År (exv. 2004)
 	self.jd_jan1 = JD(year, 1, 1)
-	
+	self.jd_dec31 = JD(year, 12, 31)
+
 	# Skapa alla dagar för året
 	self.days = []
 	jd = self.jd_jan1
-	while True:
+	while jd <= self.jd_dec31:
 	    self.days.append(DayCal(jd))
 	    jd = jd + 1
-	    (y, _, _) = jd.GetYMD()
-	    if y <> year: break
 
 	# Skottår?
 	if len(self.days) == 365:
@@ -191,14 +299,28 @@ class YearCal:
 	elif year >= 1986:
 	    self.place_name_day_names("namnsdagar-1986.txt")
 
+	# Månfaser
+	self.place_moonphases()
+
+    # Hämta dag givet m, d
+    def get_md(self, m, d):
+	jd = JD(self.year, m, d)
+	return self.days[jd - self.jd_jan1]
+
+    # Hämta dag givet jd
+    def get_jd(self, jd):
+	(y, m, d) = jd.GetYMD()
+	assert y == self.year
+	return self.days[jd - self.jd_jan1]
+
+    # Lägg till information för m, d
     def add_info_md(self, m, d, red, flag, name):
 	dc = self.get_md(m, d)
 	dc.add_info(red, flag, name)
 
+    # Lägg till information för jd
     def add_info_jd(self, jd, red, flag, name):
-	(y, m, d) = jd.GetYMD()
-	assert y == self.year
-	dc = self.get_md(m, d)
+	dc = self.get_jd(jd)
 	dc.add_info(red, flag, name)
 
     def place_names(self):
@@ -240,52 +362,58 @@ class YearCal:
 	    else:
 		self.add_info_md(2, 24, False, False, "Skottdagen")
 
-	# Påsksöndagen ligger till grund för det mesta
+	# Påsksöndagen ligger till grund för de flesta kyrkliga helgdagarna
+	# under året, så den behöver vi räkna ut redan här
 	pd = easter_sunday(self.year)
 
 	# Söndagen efter nyår
-	sen = firstday(self.year, 1, 2, 7) # Första söndagen 2/1-
+	sen = first_sunday(self.year, 1, 2) # Första söndagen 2/1-
 	if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
 	    self.add_info_jd(sen, True, False, "Söndagen e nyår")
 
 	# Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
-	jmk = firstday(self.year, 2, 2 , 7)
+	jmk = first_sunday(self.year, 2, 2)
 	if jmk == pd - 49:
 	    # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
 	    jmk = jmk -7
 	self.add_info_jd(jmk, True, False, "Kyndelsmässodagen")
 
 	# Söndagar efter Trettondedagen
-
-	set = firstday(self.year, 1,7, 7)
+	set = first_sunday(self.year, 1, 7)
 	for i in range(1,7):
-	    if set != jmk and set < pd -63:
-		# Slås ut av Kyndelsmässodagen och allt påskaktigt
+	    # Slås ut av Kyndelsmässodagen och allt påskaktigt
+	    if set != jmk and set < pd-63:
 		self.add_info_jd(set, True, False, "%d e trettondedagen" % i)
 	    set = set + 7
 
 	# Jungfru Marie Bebådelsedag
 	if self.year < 2003: # FIXME: rätt år för byte av regel?
 	    # FIXME: Är detta äldre regel eller bara fel?
-	    jmb = firstday(self.year, 3, 25, 7)
+	    jmb = first_sunday(self.year, 3, 25)
 	else:
-	    jmb = firstday(self.year, 3, 22, 7)
+	    jmb = first_sunday(self.year, 3, 22)
 
+	# Om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
+	# palmsöndagen, så flyttas den till söndagen innan
+	# palmsöndagen (5 i fastan).
 	if jmb >= pd - 7 and jmb <= pd:
-	    # Ej på påskdagen/palmsöndagen
 	    jmb = pd - 14
 	self.add_info_jd(jmb, True, False, "Jungfru Marie bebådelsedag")
 
 	# Fasta, Påsk, Kristi Himmelsfärd, Pingst
 
-	if pd-63 != jmk:
-	    self.add_info_jd(pd-63, True, False, "Septuagesima")
-	if pd-56 != jmk:
-	    self.add_info_jd(pd-56, True, False, "Sexagesima")
+	# Dessa dagar slås ut av Kyndelsmässodagen
+	for (jd, name) in [(pd-63, "Septuagesima"),
+			   (pd-56, "Sexagesima")]:
+	    if jd != jmk:
+		self.add_info_jd(jd, True, False, name)
+
+	# Fastlagssöndagen och icke-helgdagar efter den
 	self.add_info_jd(pd-49, True, False, "Fastlagssöndagen")
 	self.add_info_jd(pd-47, False,False, "Fettisdagen")
 	self.add_info_jd(pd-46, False,False, "Askonsdagen")
 
+	# Dessa dagar slås ut av Jungfru Marie bebådelsedag
 	for (jd, name) in [(pd-42, "1 i fastan"),
 			   (pd-35, "2 i fastan"),
 			   (pd-28, "3 i fastan"),
@@ -325,13 +453,12 @@ class YearCal:
 	    self.add_info_jd(pd+50, False,False, "Annandag pingst")
 	self.add_info_jd(pd+56, True,False, "Heliga trefaldighets dag")
 
-	# Vissa dagar ska "slå ut" vanliga "<n> efter trefaldighet"
-	# Håll reda på dem!
+	# Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
+	# Håll reda på dem i en lista i den takt de räknas fram
 	se3_stoppers = []
 
 	# Midsommardagen
-
-	msd = firstday(self.year, 6, 20, 6)
+	msd = first_saturday(self.year, 6, 20)
 	self.add_info_jd(msd-1, False, False, "Midsommarafton")
 	self.add_info_jd(msd+0, True,  True,  "Midsommardagen")
 	if self.year >= 2004:
@@ -339,15 +466,13 @@ class YearCal:
 	    se3_stoppers.append(msd+1)
 
 	# Alla Helgons dag
-
-	ahd = firstday(self.year, 10, 31, 6)
+	ahd = first_saturday(self.year, 10, 31)
 	self.add_info_jd(ahd+0, True, False, "Alla helgons dag")
 	self.add_info_jd(ahd+1, True, False, "Söndagen e alla helgons dag")
 	se3_stoppers.append(ahd+1)
 
 	# Advent (samt Domsöndagen och Söndagen före domsöndagen)
-	
-	adv1=firstday(self.year, 11, 27 , 7)
+	adv1=first_sunday(self.year, 11, 27 )
 	self.add_info_jd(adv1-14, True, False, "Söndagen f domsöndagen")
 	self.add_info_jd(adv1- 7, True, False, "Domsöndagen")
 	self.add_info_jd(adv1+ 0, True, False, "1 i Advent")
@@ -355,20 +480,17 @@ class YearCal:
 	self.add_info_jd(adv1+14, True, False, "3 i Advent")
 	self.add_info_jd(adv1+21, True, False, "4 i Advent")
 
-	# Den helige Mikaels dag
-	# söndag i tiden 29/9 till 5/10
-	hmd = firstday(self.year, 9, 29, 7)
+	# Den helige Mikaels dag, söndag i tiden 29/9 till 5/10
+	hmd = first_sunday(self.year, 9, 29)
 	self.add_info_jd(hmd, True, False, "Den helige Mikaels dag")
 	se3_stoppers.append(hmd)
 
-	# Tacksägelsedagen
-	# andra söndagen i oktober
-	tsd = firstday(self.year, 10, 8, 7)
+	# Tacksägelsedagen, andra söndagen i oktober
+	tsd = first_sunday(self.year, 10, 8)
 	self.add_info_jd(tsd, True, False, "Tacksägelsedagen")
 	se3_stoppers.append(tsd)
 
 	# Söndagarna efter Trefaldighet
-
 	se3 = pd+63
 	for i in range(1,28):
 	    # Ska dagen vara en S e Tr?
@@ -378,7 +500,6 @@ class YearCal:
 	    
 	    # Har dagen redan ett annat namn som har prioritet?
 	    if se3 in se3_stoppers:
-		# if (se3==ahd+1 || se3==hmd) continue; /* Slås ut av S e AHD, HMD */
 		se3 += 7
 		continue
 
@@ -406,9 +527,54 @@ class YearCal:
 	    dc = self.get_md(m, d)
 	    dc.set_names(names)
 
-    def get_md(self, m, d):
-	jd = JD(self.year, m, d)
-	return self.days[jd - self.jd_jan1]
+    # Placera ut månfaserna i almanackan.
+    # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
+    def place_moonphases(self):
+	# FIXME:
+	# int midcycle,cycle;
+	# moon_t phase;
+	# int h,m;
+	# day_cal *dcal;
+	# jd_t jd1jan,jd31dec,jd;
+
+	# Ta reda på en måncykel i mitten av året (ungefär)
+	midcycle = int((self.year - 1900) * 12.3685) + 6
+
+	# Arbeta bakåt mot början av året och placera ut månfaserna
+
+	cycle = midcycle
+	phase = 0 # Nymåne
+
+	while True:
+	    jd = moonphase(cycle, phase)
+	    if jd < self.jd_jan1: break
+	    
+	    dc = self.get_jd(jd)
+	    dc.set_moonphase(phase)
+
+	    if phase == 0:
+		phase = 3
+		cycle = cycle - 1
+	    else:
+		phase = phase -1 
+
+	# Arbeta framåt mot slutet av året och placera ut månfaserna
+
+	cycle = midcycle
+	phase = 0 # Nymåne
+
+	while True:
+	    jd = moonphase(cycle, phase)
+	    if  jd > self.jd_dec31: break
+
+	    dc = self.get_jd(jd)
+	    dc.set_moonphase(phase)
+
+	    if phase == 3:
+		phase = 0
+		cycle = cycle + 1
+	    else:
+		phase = phase + 1 
 
     def dump(self):
 	"""Show in text format for debugging."""
