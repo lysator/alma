@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.15 2004/12/13 21:49:20 kent Exp $
+# $Id: alma.py,v 1.16 2004/12/13 21:55:38 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -425,7 +425,6 @@ class YearCal:
 	     (None, None, 12, 24, False, False, "Julafton"),
 	     (None, None, 12, 25, True,  True,  "Juldagen"),
 	     (None, None, 12, 26, True,  False, "Annandag jul"),
-	     (None, None, 12, 28, False, False, "Menlösa barns dag"),
 	     (None, None, 12, 31, False, False, "Nyårsafton"),
 	     ]:
 	    if from_year is not None and self.year < from_year: continue
