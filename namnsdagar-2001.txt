@@ -1,359 +1,363 @@
  1  2 Svea
- 1  3 Alfred Alfrida
+ 1  3 Alfred,Alfrida
  1  4 Rut
- 1  5 Hanna Hannele
- 1  6 Kasper Melker Baltsar
- 1  7 August Augusta
+ 1  5 Hanna,Hannele
+ 1  6 Kasper,Melker,Baltsar
+ 1  7 August,Augusta
  1  8 Erland
- 1  9 Gunnar Gunder
- 1 10 Sigurd Sigbritt
- 1 11 Jan Jannike
- 1 12 Frideborg Fridolf
+ 1  9 Gunnar,Gunder
+ 1 10 Sigurd,Sigbritt
+ 1 11 Jan,Jannike
+ 1 12 Frideborg,Fridolf
  1 13 Knut
- 1 14 Felix Felicia
- 1 15 Laura Lorentz
- 1 16 Hjalmar Helmer
- 1 17 Anton Tony
- 1 18 Hilda Hildur
+ 1 14 Felix,Felicia
+ 1 15 Laura,Lorentz
+ 1 16 Hjalmar,Helmer
+ 1 17 Anton,Tony
+ 1 18 Hilda,Hildur
  1 19 Henrik
- 1 20 Fabian Sebastian
- 1 21 Agnes Agneta
- 1 22 Vincent Viktor
- 1 23 Frej Freja
+ 1 20 Fabian,Sebastian
+ 1 21 Agnes,Agneta
+ 1 22 Vincent,Viktor
+ 1 23 Frej,Freja
  1 24 Erika
- 1 25 Paul Pål
- 1 26 Bodil Boel
- 1 27 Göte Göta
- 1 28 Karl Karla
+ 1 25 Paul,Pål
+ 1 26 Bodil,Boel
+ 1 27 Göte,Göta
+ 1 28 Karl,Karla
  1 29 Diana
- 1 30 Gunilla Gunhild
- 1 31 Ivar Joar
- 2  1 Max Maximilian
- 2  3 Disa Hjördis
- 2  4 Ansgar Anselm
- 2  5 Agata Agda
- 2  6 Dorotea Doris
- 2  7 Rikard Dick
- 2  8 Berta Bert
- 2  9 Fanny Franciska
+ 1 30 Gunilla,Gunhild
+ 1 31 Ivar,Joar
+ 2  1 Max,Maximilian
+ 2  2 Kyndelsmässodagen
+ 2  3 Disa,Hjördis
+ 2  4 Ansgar,Anselm
+ 2  5 Agata,Agda
+ 2  6 Dorotea,Doris
+ 2  7 Rikard,Dick
+ 2  8 Berta,Bert
+ 2  9 Fanny,Franciska
  2 10 Iris
- 2 11 Yngve Inge
- 2 12 Evelina Evy
- 2 13 Agne Ove
+ 2 11 Yngve,Inge
+ 2 12 Evelina,Evy
+ 2 13 Agne,Ove
  2 14 Valentin
  2 15 Sigfrid
- 2 16 Julia Julius
- 2 17 Alexandra Sandra
- 2 18 Frida Fritiof
- 2 19 Gabriella Ella
+ 2 16 Julia,Julius
+ 2 17 Alexandra,Sandra
+ 2 18 Frida,Fritiof
+ 2 19 Gabriella,Ella
  2 20 Vivianne
  2 21 Hilding
  2 22 Pia
- 2 23 Torsten Torun
- 2 24 Mattias Mats
- 2 25 Sigvard Sivert
- 2 26 Torgny Torkel
+ 2 23 Torsten,Torun
+ 2 24 Mattias,Mats
+ 2 25 Sigvard,Sivert
+ 2 26 Torgny,Torkel
  2 27 Lage
  2 28 Maria
- 3  1 Albin Elvira
- 3  2 Ernst Erna
- 3  3 Gunborg Gunvor
- 3  4 Adrian Adriana
- 3  5 Tora Tove
- 3  6 Ebba Ebbe
+ 3  1 Albin,Elvira
+ 3  2 Ernst,Erna
+ 3  3 Gunborg,Gunvor
+ 3  4 Adrian,Adriana
+ 3  5 Tora,Tove
+ 3  6 Ebba,Ebbe
  3  7 Camilla
  3  8 Siv
- 3  9 Torbjörn Torleif
- 3 10 Edla Ada
- 3 11 Edvin Egon
+ 3  9 Torbjörn,Torleif
+ 3 10 Edla,Ada
+ 3 11 Edvin,Egon
  3 12 Viktoria
  3 13 Greger
- 3 14 Matilda Maud
- 3 15 Kristoffer Christel
- 3 16 Herbert Gilbert
+ 3 14 Matilda,Maud
+ 3 15 Kristoffer,Christel
+ 3 16 Herbert,Gilbert
  3 17 Gertrud
- 3 18 Edvard Edmund
- 3 19 Josef Josefina
- 3 20 Joakim Kim
+ 3 18 Edvard,Edmund
+ 3 19 Josef,Josefina
+ 3 20 Joakim,Kim
  3 21 Bengt
- 3 22 Kennet Kent
- 3 23 Gerda Gerd
- 3 24 Gabriel Rafael
+ 3 22 Kennet,Kent
+ 3 23 Gerda,Gerd
+ 3 24 Gabriel,Rafael
+ 3 25 Marie bebådelsedag
  3 26 Emanuel
- 3 27 Rudolf Ralf
- 3 28 Malkolm Morgan
- 3 29 Jonas Jens
- 3 30 Holger Holmfrid
+ 3 27 Rudolf,Ralf
+ 3 28 Malkolm,Morgan
+ 3 29 Jonas,Jens
+ 3 30 Holger,Holmfrid
  3 31 Ester
- 4  1 Harald Hervor
- 4  2 Gudmund Ingemund
- 4  3 Ferdinand Nanna
- 4  4 Marianne Marlene
- 4  5 Irene Irja
- 4  6 Vilhelm Helmi
- 4  7 Irma Irmelin
- 4  8 Nadja Tanja
- 4  9 Otto Ottilia
- 4 10 Ingvar Ingvor
- 4 11 Ulf Ylva
+ 4  1 Harald,Hervor
+ 4  2 Gudmund,Ingemund
+ 4  3 Ferdinand,Nanna
+ 4  4 Marianne,Marlene
+ 4  5 Irene,Irja
+ 4  6 Vilhelm,Helmi
+ 4  7 Irma,Irmelin
+ 4  8 Nadja,Tanja
+ 4  9 Otto,Ottilia
+ 4 10 Ingvar,Ingvor
+ 4 11 Ulf,Ylva
  4 12 Liv
- 4 13 Artur Douglas
+ 4 13 Artur,Douglas
  4 14 Tiburtius
- 4 15 Olivia Oliver
- 4 16 Patrik Patricia
- 4 17 Elias Elis
- 4 18 Valdemar Volmar
- 4 19 Olaus Ola
- 4 20 Amalia Amelie
- 4 21 Anneli Annika
- 4 22 Allan Glenn
- 4 23 Georg Göran
+ 4 15 Olivia,Oliver
+ 4 16 Patrik,Patricia
+ 4 17 Elias,Elis
+ 4 18 Valdemar,Volmar
+ 4 19 Olaus,Ola
+ 4 20 Amalia,Amelie
+ 4 21 Anneli,Annika
+ 4 22 Allan,Glenn
+ 4 23 Georg,Göran
  4 24 Vega
  4 25 Markus
- 4 26 Teresia Terese
+ 4 26 Teresia,Terese
  4 27 Engelbrekt
- 4 28 Ture Tyra
+ 4 28 Ture,Tyra
  4 29 Tyko
  4 30 Mariana
  5  1 Valborg
- 5  2 Filip Filippa
- 5  3 John Jane
- 5  4 Monika Mona
- 5  5 Gotthard Erhard
- 5  6 Marit Rita
- 5  7 Carina Carita
+ 5  2 Filip,Filippa
+ 5  3 John,Jane
+ 5  4 Monika,Mona
+ 5  5 Gotthard,Erhard
+ 5  6 Marit,Rita
+ 5  7 Carina,Carita
  5  8 Åke
- 5  9 Reidar Reidun
- 5 10 Esbjörn Styrbjörn
- 5 11 Märta Märit
- 5 12 Charlotta Lotta
- 5 13 Linnea Linn
- 5 14 Halvard Halvar
- 5 15 Sofia Sonja
- 5 16 Ronald Ronny
- 5 17 Rebecka Ruben
+ 5  9 Reidar,Reidun
+ 5 10 Esbjörn,Styrbjörn
+ 5 11 Märta,Märit
+ 5 12 Charlotta,Lotta
+ 5 13 Linnea,Linn
+ 5 14 Halvard,Halvar
+ 5 15 Sofia,Sonja
+ 5 16 Ronald,Ronny
+ 5 17 Rebecka,Ruben
  5 18 Erik
- 5 19 Maj Majken
- 5 20 Karolina Carola
- 5 21 Konstantin Conny
- 5 22 Hemming Henning
- 5 23 Desideria Desirée
- 5 24 Ivan Vanja
+ 5 19 Maj,Majken
+ 5 20 Karolina,Carola
+ 5 21 Konstantin,Conny
+ 5 22 Hemming,Henning
+ 5 23 Desideria,Desirée
+ 5 24 Ivan,Vanja
  5 25 Urban
- 5 26 Vilhelmina Vilma
- 5 27 Beda Blenda
- 5 28 Ingeborg Borghild
- 5 29 Yvonne Jeanette
- 5 30 Vera Veronika
- 5 31 Petronella Pernilla
- 6  1 Gun Gunnel
- 6  2 Rutger Roger
- 6  3 Ingemar Gudmar
- 6  4 Solbritt Solveig
+ 5 26 Vilhelmina,Vilma
+ 5 27 Beda,Blenda
+ 5 28 Ingeborg,Borghild
+ 5 29 Yvonne,Jeanette
+ 5 30 Vera,Veronika
+ 5 31 Petronella,Pernilla
+ 6  1 Gun,Gunnel
+ 6  2 Rutger,Roger
+ 6  3 Ingemar,Gudmar
+ 6  4 Solbritt,Solveig
  6  5 Bo
- 6  6 Gustav Gösta
- 6  7 Robert Robin
- 6  8 Eivor Majvor
- 6  9 Börje Birger
- 6 10 Svante Boris
- 6 11 Bertil Berthold
+ 6  6 Gustav,Gösta
+ 6  7 Robert,Robin
+ 6  8 Eivor,Majvor
+ 6  9 Börje,Birger
+ 6 10 Svante,Boris
+ 6 11 Bertil,Berthold
  6 12 Eskil
- 6 13 Aina Aino
- 6 14 Håkan Hakon
- 6 15 Margit Margot
- 6 16 Axel Axelina
- 6 17 Torborg Torvald
- 6 18 Björn Bjarne
- 6 19 Germund Görel
+ 6 13 Aina,Aino
+ 6 14 Håkan,Hakon
+ 6 15 Margit,Margot
+ 6 16 Axel,Axelina
+ 6 17 Torborg,Torvald
+ 6 18 Björn,Bjarne
+ 6 19 Germund,Görel
  6 20 Linda
- 6 21 Alf Alvar
- 6 22 Paulina Paula
- 6 23 Adolf Alice
- 6 25 David Salomon
- 6 26 Rakel Lea
- 6 27 Selma Fingal
+ 6 21 Alf,Alvar
+ 6 22 Paulina,Paula
+ 6 23 Adolf,Alice
+ 6 24 Johannes Döparens dag
+ 6 25 David,Salomon
+ 6 26 Rakel,Lea
+ 6 27 Selma,Fingal
  6 28 Leo
- 6 29 Peter Petra
- 6 30 Elof Leif
- 7  1 Aron Mirjam
- 7  2 Rosa Rosita
+ 6 29 Peter,Petra
+ 6 30 Elof,Leif
+ 7  1 Aron,Mirjam
+ 7  2 Rosa,Rosita
  7  3 Aurora
- 7  4 Ulrika Ulla
- 7  5 Laila Ritva
- 7  6 Esaias Jessika
+ 7  4 Ulrika,Ulla
+ 7  5 Laila,Ritva
+ 7  6 Esaias,Jessika
  7  7 Klas
  7  8 Kjell
- 7  9 Jörgen Örjan
- 7 10 André Andrea
- 7 11 Eleonora Ellinor
- 7 12 Herman Hermine
- 7 13 Joel Judit
+ 7  9 Jörgen,Örjan
+ 7 10 André,Andrea
+ 7 11 Eleonora,Ellinor
+ 7 12 Herman,Hermine
+ 7 13 Joel,Judit
  7 14 Folke
- 7 15 Ragnhild Ragnvald
- 7 16 Reinhold Reine
+ 7 15 Ragnhild,Ragnvald
+ 7 16 Reinhold,Reine
  7 17 Bruno
- 7 18 Fredrik Fritz
+ 7 18 Fredrik,Fritz
  7 19 Sara
- 7 20 Margareta Greta
+ 7 20 Margareta,Greta
  7 21 Johanna
- 7 22 Magdalena Madeleine
+ 7 22 Magdalena,Madeleine
  7 23 Emma
- 7 24 Kristina Kerstin
+ 7 24 Kristina,Kerstin
  7 25 Jakob
  7 26 Jesper
  7 27 Marta
- 7 28 Botvid Seved
+ 7 28 Botvid,Seved
  7 29 Olof
  7 30 Algot
- 7 31 Helena Elin
+ 7 31 Helena,Elin
  8  1 Per
- 8  2 Karin Kajsa
+ 8  2 Karin,Kajsa
  8  3 Tage
- 8  4 Arne Arnold
- 8  5 Ulrik Alrik
- 8  6 Alfons Inez
- 8  7 Dennis Denise
- 8  8 Silvia Sylvia
+ 8  4 Arne,Arnold
+ 8  5 Ulrik,Alrik
+ 8  6 Alfons,Inez
+ 8  7 Dennis,Denise
+ 8  8 Silvia,Sylvia
  8  9 Roland
  8 10 Lars
  8 11 Susanna
  8 12 Klara
  8 13 Kaj
  8 14 Uno
- 8 15 Stella Estelle
+ 8 15 Stella,Estelle
  8 16 Brynolf
- 8 17 Verner Valter
- 8 18 Ellen Lena
- 8 19 Magnus Måns
- 8 20 Bernhard Bernt
- 8 21 Jon Jonna
- 8 22 Henrietta Henrika
- 8 23 Signe Signhild
+ 8 17 Verner,Valter
+ 8 18 Ellen,Lena
+ 8 19 Magnus,Måns
+ 8 20 Bernhard,Bernt
+ 8 21 Jon,Jonna
+ 8 22 Henrietta,Henrika
+ 8 23 Signe,Signhild
  8 24 Bartolomeus
- 8 25 Lovisa Louise
+ 8 25 Lovisa,Louise
  8 26 Östen
- 8 27 Rolf Raoul
- 8 28 Gurli Leila
- 8 29 Hans Hampus
- 8 30 Albert Albertina
- 8 31 Arvid Vidar
+ 8 27 Rolf,Raoul
+ 8 28 Gurli,Leila
+ 8 29 Hans,Hampus
+ 8 30 Albert,Albertina
+ 8 31 Arvid,Vidar
  9  1 Samuel
- 9  2 Justus Justina
- 9  3 Alfhild Alva
+ 9  2 Justus,Justina
+ 9  3 Alfhild,Alva
  9  4 Gisela
- 9  5 Adela Heidi
- 9  6 Lilian Lilly
- 9  7 Regina Roy
- 9  8 Alma Hulda
- 9  9 Anita Annette
- 9 10 Tord Turid
- 9 11 Dagny Helny
- 9 12 Åsa Åslög
+ 9  5 Adela,Heidi
+ 9  6 Lilian,Lilly
+ 9  7 Regina,Roy
+ 9  8 Alma,Hulda
+ 9  9 Anita,Annette
+ 9 10 Tord,Turid
+ 9 11 Dagny,Helny
+ 9 12 Åsa,Åslög
  9 13 Sture
  9 14 Ida
- 9 15 Sigrid Siri
- 9 16 Dag Daga
- 9 17 Hildegard Magnhild
+ 9 15 Sigrid,Siri
+ 9 16 Dag,Daga
+ 9 17 Hildegard,Magnhild
  9 18 Orvar
  9 19 Fredrika
- 9 20 Elise Lisa
+ 9 20 Elise,Lisa
  9 21 Matteus
- 9 22 Maurits Moritz
- 9 23 Tekla Tea
- 9 24 Gerhard Gert
+ 9 22 Maurits,Moritz
+ 9 23 Tekla,Tea
+ 9 24 Gerhard,Gert
  9 25 Tryggve
- 9 26 Enar Einar
- 9 27 Dagmar Rigmor
- 9 28 Lennart Leonard
- 9 29 Mikael Mikaela
+ 9 26 Enar,Einar
+ 9 27 Dagmar,Rigmor
+ 9 28 Lennart,Leonard
+ 9 29 Mikael,Mikaela
  9 30 Helge
-10  1 Ragnar Ragna
-10  2 Ludvig Love
-10  3 Evald Osvald
-10  4 Frans Frank
+10  1 Ragnar,Ragna
+10  2 Ludvig,Love
+10  3 Evald,Osvald
+10  4 Frans,Frank
 10  5 Bror
-10  6 Jenny Jennifer
-10  7 Birgitta Britta
+10  6 Jenny,Jennifer
+10  7 Birgitta,Britta
 10  8 Nils
-10  9 Ingrid Inger
-10 10 Harry Harriet
-10 11 Erling Jarl
-10 12 Valfrid Manfred
-10 13 Berit Birgit
+10  9 Ingrid,Inger
+10 10 Harry,Harriet
+10 11 Erling,Jarl
+10 12 Valfrid,Manfred
+10 13 Berit,Birgit
 10 14 Stellan
-10 15 Hedvig Hillevi
+10 15 Hedvig,Hillevi
 10 16 Finn
-10 17 Antonia Toini
+10 17 Antonia,Toini
 10 18 Lukas
-10 19 Tore Tor
+10 19 Tore,Tor
 10 20 Sibylla
-10 21 Ursula Yrsa
-10 22 Marika Marita
-10 23 Severin Sören
-10 24 Evert Eilert
-10 25 Inga Ingalill
-10 26 Amanda Rasmus
+10 21 Ursula,Yrsa
+10 22 Marika,Marita
+10 23 Severin,Sören
+10 24 Evert,Eilert
+10 25 Inga,Ingalill
+10 26 Amanda,Rasmus
 10 27 Sabina
-10 28 Simon Simone
+10 28 Simon,Simone
 10 29 Viola
-10 30 Elsa Isabella
-10 31 Edit Edgar
+10 30 Elsa,Isabella
+10 31 Edit,Edgar
+11  1 Allhelgonadagen
 11  2 Tobias
-11  3 Hubert Hugo
+11  3 Hubert,Hugo
 11  4 Sverker
-11  5 Eugen Eugenia
+11  5 Eugen,Eugenia
 11  6 Gustav Adolf
-11  7 Ingegerd Ingela
+11  7 Ingegerd,Ingela
 11  8 Vendela
-11  9 Teodor Teodora
-11 10 Martin Martina
+11  9 Teodor,Teodora
+11 10 Martin,Martina
 11 11 Mårten
-11 12 Konrad Kurt
-11 13 Kristian Krister
-11 14 Emil Emilia
+11 12 Konrad,Kurt
+11 13 Kristian,Krister
+11 14 Emil,Emilia
 11 15 Leopold
-11 16 Vibeke Viveka
-11 17 Naemi Naima
-11 18 Lillemor Moa
-11 19 Elisabet Lisbet
-11 20 Pontus Marina
-11 21 Helga Olga
-11 22 Cecilia Sissela
+11 16 Vibeke,Viveka
+11 17 Naemi,Naima
+11 18 Lillemor,Moa
+11 19 Elisabet,Lisbet
+11 20 Pontus,Marina
+11 21 Helga,Olga
+11 22 Cecilia,Sissela
 11 23 Klemens
-11 24 Gudrun Rune
-11 25 Katarina Katja
+11 24 Gudrun,Rune
+11 25 Katarina,Katja
 11 26 Linus
-11 27 Astrid Asta
+11 27 Astrid,Asta
 11 28 Malte
 11 29 Sune
-11 30 Andreas Anders
-12  1 Oskar Ossian
-12  2 Beata Beatrice
+11 30 Andreas,Anders
+12  1 Oskar,Ossian
+12  2 Beata,Beatrice
 12  3 Lydia
-12  4 Barbara Barbro
+12  4 Barbara,Barbro
 12  5 Sven
-12  6 Nikolaus Niklas
-12  7 Angela Angelika
+12  6 Nikolaus,Niklas
+12  7 Angela,Angelika
 12  8 Virginia
 12  9 Anna
-12 10 Malin Malena
-12 11 Daniel Daniela
-12 12 Alexander Alexis
+12 10 Malin,Malena
+12 11 Daniel,Daniela
+12 12 Alexander,Alexis
 12 13 Lucia
-12 14 Sten Sixten
+12 14 Sten,Sixten
 12 15 Gottfrid
 12 16 Assar
 12 17 Stig
 12 18 Abraham
 12 19 Isak
-12 20 Israel Moses
+12 20 Israel,Moses
 12 21 Tomas
-12 22 Natanael Jonatan
+12 22 Natanael,Jonatan
 12 23 Adam
 12 24 Eva
-12 26 Stefan Staffan
-12 27 Johannes Johan
+12 26 Stefan,Staffan
+12 27 Johannes,Johan
 12 28 Benjamin
-12 29 Natalia Natalie
-12 30 Abel Set
+12 29 Natalia,Natalie
+12 30 Abel,Set
 12 31 Sylvester
