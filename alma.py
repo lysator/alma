@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.4 2004/12/08 19:44:51 kent Exp $
+# $Id: alma.py,v 1.5 2004/12/08 20:15:42 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -9,7 +9,6 @@ import math
 from cStringIO import StringIO
 
 import jddate; JD=jddate.FromYMD
-
 
 #
 # Data
@@ -208,9 +207,16 @@ class DayCal:
 
 	f.write('<TR CLASS="v">')
 
-	# Veckonr överst och varje måndag
-	if self.d == 1 or self.wday == 1:
-	    f.write('<TD CLASS="vweek_present">%d</TD>' % (self.week))
+	# Veckan börjar på måndag fr o m 1973, innan på måndag
+	# Dessutom "börjar" ju en vecka i början av varje månad.
+	if self.d == 1 or (self.y < 1973 and self.wday == 7) or \
+	    (self.y >= 1973 and self.wday == 1):
+	    # Veckonummer relevant fr o m 1973
+	    if self.y >= 1973:
+		wtext = str(self.week)
+	    else:
+		wtext = "&nbsp;"
+	    f.write('<TD CLASS="vweek_present">%s</TD>' % wtext)
 	else:
 	    f.write('<TD CLASS="vweek_empty">&nbsp;</TD>')
 
