@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.5 2004/12/08 20:15:42 kent Exp $
+# $Id: alma.py,v 1.6 2004/12/08 20:38:06 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -348,7 +348,8 @@ class YearCal:
 	     (None, None,  3, 12, False, True,  None), # Kronprinsessans namnsdag
 	     (None, None,  4, 30, False, True,  "Valborgsmässoafton"), # + Konungens födelsedag
 	     (None, None,  5,  1, True,  True,  "Första maj"),
-	     (None, 2004,  6,  6, False, True,  "Sveriges nationaldag"),
+	     (1916, 1982,  6,  6, False, True,  "Svenska flaggans dag"),
+	     (1983, 2004,  6,  6, False, True,  "Sveriges nationaldag"),
 	     (2005, None,  6,  6, True, True,  "Sveriges nationaldag"),
 	     (None, None,  7, 14, False, True,  None), # Kronprinsessans födelsedag
 	     (None, None,  8,  8, False, True,  None), # Drottningens namnsdag
