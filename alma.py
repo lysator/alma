@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.7 2004/12/08 20:49:19 kent Exp $
+# $Id: alma.py,v 1.8 2004/12/08 21:18:28 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -148,6 +148,20 @@ def first_sunday(y, m, d):
 
 def first_saturday(y, m, d):
     return first_weekday(y, m, d, 6)
+
+# Föregående månad
+def previous_month(y, m):
+    if m == 1:
+	return (y-1, 12)
+    else:
+	return (y, m-1)
+
+# Nästa månad
+def next_month(y, m):
+    if m == 12:
+	return (y+1, 1)
+    else:
+	return (y, m+1)
 
 #
 # Klasser
@@ -634,22 +648,10 @@ class MonthCal:
 	f.write('</HEAD>\n')
 
 	f.write('<BODY>')
-	f.write('<H1>%s</H1>\n' % head)
 
 	# Länkar bakåt och framåt
-	if self.month == 1:
-	    pm = 12
-	    py = self.yc.year - 1
-	else:
-	    pm = self.month - 1
-	    py = self.yc.year
-
-	if self.month == 12:
-	    nm = 1
-	    ny = self.yc.year +1
-	else:
-	    nm = self.month + 1
-	    ny = self.yc.year
+	py, pm = previous_month(self.yc.year, self.month)
+	ny, nm = next_month(self.yc.year, self.month)
 
 	f.write('<P>')
 	f.write('<A HREF="?year=%d&month=%d">[%s %d]</A>' % (py, pm,
@@ -658,6 +660,9 @@ class MonthCal:
 	f.write('<A HREF="?year=%d&month=%d">[%s %d]</A>' % (ny, nm,
 							   month_names[nm], ny))
 	f.write('</P>')
+
+	# Rubrik
+	f.write('<H1>%s</H1>\n' % head)
 
 	# Tabellen med dagarna
 	f.write('<TABLE CLASS="vtable">')
