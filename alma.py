@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.20 2004/12/14 20:15:41 kent Exp $
+# $Id: alma.py,v 1.21 2004/12/14 21:24:05 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -474,17 +474,43 @@ class YearCal:
 
 	    # Flaggdagar för regerande kungahuset
 	    
-	    # Carl XVI Gustaf Folke Hubertus, kung
-	    (None, None,  4, 30, False, True,  None), # födelsedag
-	    (None, None,  1, 28, False, True,  None), # namnsdag "Karl"
-	    
-	    # Silvia Renate Sommerlath, drottning
-	    (None, None, 12, 23, False, True,  None), # födelsedag
-	    (None, None,  8,  8, False, True,  None), # namnsdag "Silvia"
-	    
 	    # Victoria Ingrid Alice Désirée, kronprinsessa
-	    (None, None,  7, 14, False, True,  None), # födelsedag
-	    (None, None,  3, 12, False, True,  None), # namnsdag "Viktoria"
+	    # född 1977-07-14
+	    # FIXME: Hon lär inte ha varit kronprinsessa innan successionsordningen
+	    # ändrades, väl? SFS 1979:935
+	    (1980, None,  7, 14, False, True,  None), # födelsedag
+	    (1980, None,  3, 12, False, True,  None), # namnsdag "Viktoria"
+
+	    # Silvia Renate Sommerlath
+	    # född 1943-12-23, drottning 1976-06-19
+	    (1976, None, 12, 23, False, True,  None), # födelsedag
+	    (1976, None,  8,  8, False, True,  None), # namnsdag "Silvia"
+	    
+	    # Carl XVI Gustaf Folke Hubertus
+	    # född 1946-04-30, kronprins 1950-10-29, kung 1973-09-15
+	    (1951, None,  4, 30, False, True,  None), # födelsedag
+	    (1951, None,  1, 28, False, True,  None), # namnsdag "Karl"
+	    
+	    # Louise Alexandra Maria Irène
+	    # född 1889-07-13, gift 1923-11-03, drottning 1950-10-29, död 1965-03-07
+	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+	    # det som start. Flaggdag som kronprinsessa innan hon blev drottning.
+	    (1939, 1964,  7, 13, False, True,  None), # födelsedag
+	    (1939, 1964,  8, 25, False, True,  None), # namnsdag "Lovisa"
+
+	    # Oscar Fredrik Wilhelm Olaf Gustav VI Adolf
+	    # född 1882-11-11, kung 1950-10-29, död 1973-09-15
+	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+	    # det som start. Flaggdag som kronprins innan han blev kung.
+	    (1939, 1972, 11, 11, False, True,  None), # födelsedag
+	    (1939, 1973,  6,  6, False, True,  None), # namnsdag "Gustav"
+	    
+	    # Oscar Gustaf V Adolf
+	    # född 1858-06-16, kung 1907-12-08, död 1950-10-29
+	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+	    # det som start. Flaggdag som kronprins innan han blev kung?
+	    (1939, 1950,  6, 16, False, True,  None), # födelsedag
+	    (1939, 1950,  6,  6, False, True,  None), # namnsdag "Gustav"
 	    
 	     ]:
 	    if from_year is not None and self.year < from_year: continue
