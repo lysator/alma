@@ -79,3 +79,41 @@ Svenska flaggans dag
 Fars och mors dag
 
 Övergång till och från sommartid
+
+SYNPUNKTER SOM EJ SORTERATS IN ÄN
+---------------------------------
+
+13018379 idag 11:42 /28 rader/ David Byers (dogmatiker)
+Mottagare: Kent Engström <26680>
+Mottagare: David Byers (dogmatiker) <14820>
+Ärende: alma.cgi
+------------------------------------------------------------
+Jag tänke använda alma.cgi för att generera kalendrar till
+ordblandardokument och har stött på några smärre problem.
+
+Önskelista (i prioritetsordning):
+
+* Eliminera klasserna black och red för bugkompatibilitet med program
+  som inte grokkar två klasser i samma class-attribut.
+
+* Möjlighet att välja bort namnsdagarna (men behålla utrymmet).
+
+* Möjlighet att få upp flera månader på en gång (jag vill ha ett helt
+  år i taget).
+
+* Möjlighet att välja bort esoteriska dagnamn som inte har någon
+  praktisk påverkan på verkligheten för oss icke-religiösa typer (jag
+  är intresserad av skärtorsdagen och påskdagen, men inte
+  dymmelonsdagen elle midfastsöndagen).
+
+* Möjlighet att ange fast bredd på kalendern (i mm).
+
+* Stoppa inte in &nbsp; i slutet av alla tabellceller om det inte
+  verkligen behövs.
+
+Jag kan tänka mig implementera delar själv om så behövs.
+
+Undrar också hur det skulle funka om man kunde välja högupplösta
+mån-ikoner nedskalade 1:16 genom size-attribut i HTML. Det skulle
+kanske ge prydligare utskrifter.
+(13018379) /David Byers (dogmatiker)/---------------
