@@ -1,11 +1,7 @@
 WEBBGRÄNSSNITT
 --------------
 
-Utskriftsvy (utan knappar och liknande)
-
 Bildfil i tabellvisningsläge
-
-Knappar för månad-, månad+ (som nu)
 
 Val av år på något smart sätt (SELECT + fält?)
 
@@ -17,6 +13,7 @@ Försök få tabellläget att se OK ut med avseende på kolumnbredd.
 
 Idé från Anders L: länkar från helgdagarna till en förklaring.
 
+Cookies för att spara val (t.ex. tabell vs vertikal).
 
 ANDRA GRÄNSSNITT
 ----------------
