@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.11 2004/12/09 20:32:42 kent Exp $
+# $Id: alma.py,v 1.12 2004/12/09 21:04:10 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -683,6 +683,14 @@ class MonthCal:
 	    dc = self.yc.get_md(self.month, d)
 	    yield dc
 
+    def html_disclaimer(self, f):
+	f.write('''<DIV CLASS="disclaimer">Vi kan inte lämna några garantier
+för att almanackan är fullständig och korrekt. Från och med 1983 bör det
+emellertid inte finnas några större felaktigheter.
+Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
+<A HREF="mailto:kent@lysator.liu.se">kent@lysator.liu.se</A>.
+</DIV>''')
+	
     def html_vertical(self, f):
 	head = '%s %s' % (self.month_name, self.yc.year)
 
@@ -717,6 +725,7 @@ class MonthCal:
 	    dc.html_vertical(f)
 	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
 	f.write('</TABLE>')
+	self.html_disclaimer(f)
 	f.write('</BODY>')
 
     def html_tabular(self, f):
@@ -789,6 +798,7 @@ class MonthCal:
 		f.write('</TR>')
 
 	f.write('</TABLE>')
+	self.html_disclaimer(f)
 	f.write('</BODY>')
 
     def dump(self):
