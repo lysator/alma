@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.2 2004/12/27 20:21:37 kent Exp $
+# $Id: alma.cgi,v 1.3 2004/12/28 20:43:19 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -96,7 +96,7 @@ def handle_cgi():
         # Typ
         so.write('<SELECT NAME="type">')
         for (value, label) in (("vertical", "Vertikal"),
-    			   ("tabular",  "Tabell")):
+			       ("tabular",  "Tabell")):
 	    so.write('<OPTION VALUE="%s" %s>%s</OPTION>' % (value, selected(calendar_type == value), label))
         so.write('</SELECT>\n')
 
@@ -119,12 +119,15 @@ def handle_cgi():
         so.write('</FORM>')
     
     # Rubrik
-    so.write('<H1>%s</H1>\n' % head)
+    if calendar_type == "vertical":
+	so.write('<H1>%s</H1>\n' % head)
+    else:
+	so.write('<H1 CLASS="centered">%s</H1>\n' % head)
 
     # Visa almanackan
     if calendar_type == "vertical":
 	mc.html_vertical(sys.stdout)
-    else:
+    elif calendar_type == "tabular":
 	mc.html_tabular(sys.stdout)
 
     # Disclaimer
