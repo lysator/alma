@@ -66,3 +66,38 @@ SPAN.vname_red {
 SPAN.vname_black {
   font-weight: bold;
 }
+
+
+TD.twday {
+  text-align: center;
+  font-weight: bold;
+  border: solid black 1px;
+}
+
+TD.twno {
+  text-align: right;
+  border: solid black 1px;
+}
+
+TD.tday {
+  vertical-align: top;
+  border: solid black 1px;
+}
+
+TD.tdday_red {
+  font-size: 150%;
+  text-align: right;
+  color: red;
+  padding-right: 3 px;
+}
+
+TD.tdday_black {
+  font-size: 150%;
+  text-align: right;
+  color: black;
+  padding-right: 3 px;
+}
+
+TD.tdnames {
+  vertical-align: top;
+}

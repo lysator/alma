@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.9 2004/12/08 21:34:41 kent Exp $
+# $Id: alma.py,v 1.10 2004/12/08 22:17:45 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -223,6 +223,14 @@ class DayCal:
     def __repr__(self):
 	return "<Day %s>"  % self.jd.GetString_YYYY_MM_DD()
 
+    def html_redblack(self, sep = ", "):
+	redblack = []
+	for name in self.red_names:
+	    redblack.append('<SPAN CLASS="vname_red">%s</SPAN>' % name)
+	for name in self.black_names:
+	    redblack.append('<SPAN CLASS="vname_black">%s</SPAN>' % name)
+	return sep.join(redblack)
+
     def html_vertical(self, f):
 	if self.red:
 	    colour = "red"
@@ -266,12 +274,7 @@ class DayCal:
 	f.write('</TD>')
 
 	# Dagens namn. Överst röda, svarta. Under namnsdagar
-	redblack = []
-	for name in self.red_names:
-	    redblack.append('<SPAN CLASS="vname_red">%s</SPAN>' % name)
-	for name in self.black_names:
-	    redblack.append('<SPAN CLASS="vname_black">%s</SPAN>' % name)
-	redblack_string = ", ".join(redblack)
+	redblack_string = self.html_redblack()
 	name_string = ", ".join(self.names)
 	
 	f.write('<TD CLASS="vnames">')
@@ -281,6 +284,38 @@ class DayCal:
 	f.write('&nbsp;</TD>')
 
 	f.write('</TR>\n')
+
+    def html_tabular(self, f):
+	if self.red:
+	    colour = "red"
+	else:
+	    colour = "black"
+	
+	f.write('<TD CLASS="tday">')
+	f.write('<TABLE>')
+
+	# Dagens nummer
+	f.write('<TR><TD CLASS="tdday_%s">%d</TD>' % (colour, self.d))
+
+	# Dagens namn
+	f.write('<TD ROWSPAN="2" CLASS="tdnames">')
+	redblack_string = self.html_redblack(sep="<BR>")
+	name_string = ", ".join(self.names)
+	f.write(redblack_string)
+	if redblack_string and name_string: f.write('<BR>')
+	f.write(name_string)
+	f.write('&nbsp;</TD></TR>')
+
+	# Flaggdagar
+	f.write('<TR><TD CLASS="tdflag">')
+	if self.flag_day:
+	    f.write('<IMG SRC="flag.gif">')
+	if self.moonphase is not None:
+	    f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
+	f.write('</TD></TR>')
+
+	f.write('</TABLE>')
+	f.write('</TD>')
 
     def dump(self):
 	"""Show in text format for debugging."""
@@ -658,7 +693,7 @@ class MonthCal:
 
 	f.write('<BODY>')
 
-	# Länkar bakåt och framåt
+	# Länkar bakåt, framåt och till tabell-variant
 	py, pm = previous_month(self.yc.year, self.month)
 	ny, nm = next_month(self.yc.year, self.month)
 
@@ -668,6 +703,9 @@ class MonthCal:
 	f.write(' ~ ')
 	f.write('<A HREF="?year=%d&month=%d">[%s %d]</A>' % (ny, nm,
 							   month_names[nm], ny))
+	f.write(' ~ ')
+	f.write('<A HREF="?year=%d&month=%d&tabular=1">Tabell</A>' % (self.yc.year, self.month))
+
 	f.write('</P>')
 
 	# Rubrik
@@ -678,6 +716,78 @@ class MonthCal:
 	for dc in self.generate():
 	    dc.html_vertical(f)
 	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
+	f.write('</TABLE>')
+	f.write('</BODY>')
+
+    def html_tabular(self, f):
+	head = '%s %s' % (self.month_name, self.yc.year)
+
+	f.write('<HEAD>')
+	f.write('<TITLE>%s</TITLE>' % head)
+	f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="alma.css">')
+	f.write('</HEAD>\n')
+
+	f.write('<BODY>')
+
+	# Länkar bakåt, framåt och till vertikaltyp
+	py, pm = previous_month(self.yc.year, self.month)
+	ny, nm = next_month(self.yc.year, self.month)
+
+	f.write('<P>')
+	f.write('<A HREF="?year=%d&month=%d&tabular=1">[%s %d]</A>' % (py, pm,
+							   month_names[pm], py))
+	f.write(' ~ ')
+	f.write('<A HREF="?year=%d&month=%d&tabular=1">[%s %d]</A>' % (ny, nm,
+							   month_names[nm], ny))
+	f.write(' ~ ')
+	f.write('<A HREF="?year=%d&month=%d">Vertikal</A>' % (self.yc.year, self.month))
+	f.write('</P>')
+
+	# Rubrik
+	f.write('<H1>%s</H1>\n' % head)
+
+	# Tabellen
+	f.write('<TABLE CLASS="ttable">')
+
+	# Rubrikrad med veckodagarna
+	f.write('<TR CLASS="twd">')
+	if self.yc.year >= 1973:
+	    days = wday_names[1:]
+	else:
+	    days = wday_names[7:] + wday_names[1:7]
+	f.write('<TD CLASS="twno_empty">&nbsp;</TD>')
+	for day in days:
+	    f.write('<TD CLASS="twday">%s</TD>' % day)
+	f.write('</TR>')
+	
+	for dc in self.generate():
+	    # Börja ny rad på första dagen i månaden eller veckan
+	    if dc.d == 1 or dc.wpos == 1:
+		f.write('<TR CLASS="tw">')
+		# Veckonummer relevant fr o m 1973
+		if dc.y >= 1973:
+		    wtext = str(dc.week)
+		else:
+		    wtext = "&nbsp;"
+		f.write('<TD CLASS="twno">%s</TD>' %wtext)
+
+	    # Fyll ut med tomdagar om det behövs i början
+	    if dc.d == 1:
+		for i in range(1, dc.wpos):
+		    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
+
+	    # Själva dagen
+	    dc.html_tabular(f)
+
+	    # Fyll ut med tomdagar om det behövs på slutet
+	    if dc.d == self.num_days:
+		for i in range(dc.wpos, 7):
+		    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
+
+	    # Avsluta sist i veckan och månaden
+	    if dc.d == self.num_days or dc.wpos == 7:
+		f.write('</TR>')
+
 	f.write('</TABLE>')
 	f.write('</BODY>')
 
@@ -700,6 +810,7 @@ def handle_cgi():
     import cgitb; cgitb.enable()
     form = cgi.FieldStorage()
 
+    # Ta reda på år och månad
     year_string = form.getfirst("year")
     month_string = form.getfirst("month")
     if year_string is None and month_string is None:
@@ -718,10 +829,17 @@ def handle_cgi():
     except TypeError:
 	month = None
 
+    # Ta reda på kalendertyp
+    tabular_string = form.getfirst("tabular")
+    tabular = (tabular_string == "1")
+
     if year is not None and month is not None:
 	yc = YearCal(year)
 	mc = MonthCal(yc, month)
-	mc.html_vertical(sys.stdout)
+	if tabular:
+	    mc.html_tabular(sys.stdout)
+	else:
+	    mc.html_vertical(sys.stdout)
     else:
 	print "<P>Fel"
 
