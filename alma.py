@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.21 2004/12/14 21:24:05 kent Exp $
+# $Id: alma.py,v 1.22 2004/12/20 21:03:24 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -681,10 +681,16 @@ class YearCal:
 	adv1=first_sunday(self.year, 11, 27 )
 	self.add_info_jd(adv1-14, True, False, "Söndagen f domssöndagen")
 	self.add_info_jd(adv1- 7, True, False, "Domssöndagen")
-	self.add_info_jd(adv1+ 0, True, False, "1 i Advent")
-	self.add_info_jd(adv1+ 7, True, False, "2 i Advent")
-	self.add_info_jd(adv1+14, True, False, "3 i Advent")
-	self.add_info_jd(adv1+21, True, False, "4 i Advent")
+	self.add_info_jd(adv1+ 0, True, False, "1 i advent")
+	self.add_info_jd(adv1+ 7, True, False, "2 i advent")
+	self.add_info_jd(adv1+14, True, False, "3 i advent")
+	self.add_info_jd(adv1+21, True, False, "4 i advent")
+
+
+	# Söndagen e Jul
+	sej=first_sunday(self.year, 12, 27)
+	if sej <= self.jd_dec31:
+	    self.add_info_jd(sej, True, False, "Söndagen e jul")
 
 	# Den helige Mikaels dag, söndag i tiden 29/9 till 5/10
 	hmd = first_sunday(self.year, 9, 29)
