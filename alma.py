@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.19 2004/12/14 19:40:03 kent Exp $
+# $Id: alma.py,v 1.20 2004/12/14 20:15:41 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -468,7 +468,7 @@ class YearCal:
 	    (2005, None,  6,  6, True, True,   "Sveriges nationaldag"),
 	    
 	    # Andra flaggdagar
-	    (None, None, 10, 24, False, True,  "FN-dagen"),
+	    (1983, None, 10, 24, False, True,  "FN-dagen"), # Infördes i SFS1982:270
 	    (None, None, 11,  6, False, True,  None), # Gustav Adolfsdagen
 	    (None, None, 12, 10, False, True,  "Nobeldagen"),
 
@@ -490,6 +490,17 @@ class YearCal:
 	    if from_year is not None and self.year < from_year: continue
 	    if to_year is not None and self.year > to_year: continue
 	    self.add_info_md(m, d, red, flag, name)
+
+	# Dag för val till riksdagen är flaggdag (3 söndagen i september)
+	# från och med år 1985.
+	# Vart tredje år -1994
+	if 1985 <= self.year <= 1991 and self.year % 3 == 2:
+	    vd = first_sunday(self.year, 9, 15)
+	    self.add_info_jd(vd, False, True, None)
+	# Vart fjärde år 1994-
+	elif 1994 <= self.year and self.year % 4 == 2:
+	    vd = first_sunday(self.year, 9, 15)
+	    self.add_info_jd(vd, False, True, None)
 
 	# Skottdagen inföll den 24/2 -1996, infaller den 29/2 2000-
 	if self.leap_year:
