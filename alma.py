@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.22 2004/12/20 21:03:24 kent Exp $
+# $Id: alma.py,v 1.23 2004/12/27 20:22:03 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -822,78 +822,15 @@ class MonthCal:
 	    dc = self.yc.get_md(self.month, d)
 	    yield dc
 
-    def html_disclaimer(self, f):
-	f.write('''<DIV CLASS="disclaimer">Vi kan inte lämna några garantier
-för att almanackan är fullständig och korrekt. Från och med 1983 bör det
-emellertid inte finnas några större felaktigheter.
-Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
-<A HREF="mailto:kent@lysator.liu.se">kent@lysator.liu.se</A>.
-</DIV>''')
-	
     def html_vertical(self, f):
-	head = '%s %s' % (self.month_name, self.yc.year)
-
-	f.write('<HEAD>')
-	f.write('<TITLE>%s</TITLE>' % head)
-	f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="alma.css">')
-	f.write('</HEAD>\n')
-
-	f.write('<BODY>')
-
-	# Länkar bakåt, framåt och till tabell-variant
-	py, pm = previous_month(self.yc.year, self.month)
-	ny, nm = next_month(self.yc.year, self.month)
-
-	f.write('<P>')
-	f.write('<A HREF="?year=%d&month=%d">[%s %d]</A>' % (py, pm,
-							   month_names[pm], py))
-	f.write(' ~ ')
-	f.write('<A HREF="?year=%d&month=%d">[%s %d]</A>' % (ny, nm,
-							   month_names[nm], ny))
-	f.write(' ~ ')
-	f.write('<A HREF="?year=%d&month=%d&tabular=1">Tabell</A>' % (self.yc.year, self.month))
-
-	f.write('</P>')
-
-	# Rubrik
-	f.write('<H1>%s</H1>\n' % head)
-
 	# Tabellen med dagarna
 	f.write('<TABLE CLASS="vtable">')
 	for dc in self.generate():
 	    dc.html_vertical(f)
 	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
 	f.write('</TABLE>')
-	self.html_disclaimer(f)
-	f.write('</BODY>')
 
     def html_tabular(self, f):
-	head = '%s %s' % (self.month_name, self.yc.year)
-
-	f.write('<HEAD>')
-	f.write('<TITLE>%s</TITLE>' % head)
-	f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="alma.css">')
-	f.write('</HEAD>\n')
-
-	f.write('<BODY>')
-
-	# Länkar bakåt, framåt och till vertikaltyp
-	py, pm = previous_month(self.yc.year, self.month)
-	ny, nm = next_month(self.yc.year, self.month)
-
-	f.write('<P>')
-	f.write('<A HREF="?year=%d&month=%d&tabular=1">[%s %d]</A>' % (py, pm,
-							   month_names[pm], py))
-	f.write(' ~ ')
-	f.write('<A HREF="?year=%d&month=%d&tabular=1">[%s %d]</A>' % (ny, nm,
-							   month_names[nm], ny))
-	f.write(' ~ ')
-	f.write('<A HREF="?year=%d&month=%d">Vertikal</A>' % (self.yc.year, self.month))
-	f.write('</P>')
-
-	# Rubrik
-	f.write('<H1 CLASS="centered">%s</H1>\n' % head)
-
 	# Tabellen
 	f.write('<TABLE CLASS="ttable">')
 
@@ -937,8 +874,6 @@ Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
 		f.write('</TR>')
 
 	f.write('</TABLE>')
-	self.html_disclaimer(f)
-	f.write('</BODY>')
 
 #
 # Invocation
