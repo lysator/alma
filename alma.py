@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.16 2004/12/13 21:55:38 kent Exp $
+# $Id: alma.py,v 1.17 2004/12/13 22:01:19 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -457,8 +457,8 @@ class YearCal:
 	# Söndagar efter Trettondedagen
 	set = first_sunday(self.year, 1, 7)
 	for i in range(1,7):
-	    # Slås ut av Kyndelsmässodagen (efter 1982?) och allt påskaktigt
-	    if (set != jmk or self.year <= 1982) and set < pd-63:
+	    # Slås ut av Kyndelsmässodagen (efter 1983) och allt påskaktigt
+	    if (set != jmk or self.year <= 1983) and set < pd-63:
 		self.add_info_jd(set, True, False, "%d e trettondedagen" % i)
 	    set = set + 7
 
@@ -480,11 +480,11 @@ class YearCal:
 	# Fasta, Påsk, Kristi Himmelsfärd, Pingst
 
 	# Dessa dagar slås ut av Kyndelsmässodagen
-	# fast bara efter 1982 (1983?)
+	# fast bara efter 1983
 	# Tidigare så står båda namnen!
 	for (jd, name) in [(pd-63, "Septuagesima"),
 			   (pd-56, "Sexagesima")]:
-	    if jd != jmk or self.year <= 1982:
+	    if jd != jmk or self.year <= 1983:
 		self.add_info_jd(jd, True, False, name)
 
 	# Lägg så dit Kyndelsmässodagen
@@ -501,15 +501,15 @@ class YearCal:
 	self.add_info_jd(pd-46, False,False, "Askonsdagen")
 
 	# Dessa dagar slås ut av Jungfru Marie bebådelsedag,
-	# fast bara efter 1982 (1983?)
-	# 1952-1982 (1983?) så står båda namnen!
+	# fast bara efter 1983
+	# 1952-1983 så står båda namnen!
 
 	for (jd, name) in [(pd-42, "1 i fastan"),
 			   (pd-35, "2 i fastan"),
 			   (pd-28, "3 i fastan"),
 			   (pd-21, "Midfastosöndagen"),
 			   (pd-14, "5 i fastan")]:
-	    if jd != jmb or self.year <= 1982:
+	    if jd != jmb or self.year <= 1983:
 		self.add_info_jd(jd, True, False, name)
 
 	# Lägg så dit Jungfru Marie bebådelsedag
@@ -576,8 +576,7 @@ class YearCal:
 	    # den lördag som infaller 31 oktober till 6 november.
 	    ahd = first_saturday(self.year, 10, 31)
 	    # Vänta med att sätta ut namnet (för fallet ovan, egentligen)
-	    # Efter 1982?
-	    if self.year > 1982:
+	    if self.year > 1983:
 		self.add_info_jd(ahd+1, True, False, "Söndagen e alla helgons dag")
 		se3_stoppers.append(ahd+1)
 
