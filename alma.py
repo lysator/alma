@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.13 2004/12/13 19:32:40 kent Exp $
+# $Id: alma.py,v 1.14 2004/12/13 19:55:51 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -318,15 +318,14 @@ class DayCal:
 
     def dump(self):
 	"""Show in text format for debugging."""
-	print "%s %3s %2d %s%s %s %s %s" % (self.jd.GetString_YYYY_MM_DD(),
-					    self.wday_name_short,
-					    self.week,
-					    " *"[self.red],
-					    " F"[self.flag_day],
-					    self.red_names,
-					    self.black_names,
-					    self.names,
-					    )
+	print "%s %4d-%02d-%1d %s%s <%s> <%s> <%s>" % (self.jd.GetString_YYYY_MM_DD(),
+						       self.wyear, self.week, self.wday,
+						       " R"[self.red],
+						       " F"[self.flag_day],
+						       ",".join(self.red_names),
+						       ",".join(self.black_names),
+						       ",".join(self.names),
+						       )
 
 class YearCal:
     """Class to represent a whole year."""
@@ -390,6 +389,11 @@ class YearCal:
     def add_info_jd(self, jd, red, flag, name):
 	dc = self.get_jd(jd)
 	dc.add_info(red, flag, name)
+
+    # Generator för årets alla dagar
+    def generate(self):
+	for dc in self.days:
+	    yield dc
 
     def place_names(self):
 	"""Place holidays etc. in the calendar."""
@@ -456,13 +460,16 @@ class YearCal:
 	    set = set + 7
 
 	# Jungfru Marie Bebådelsedag
-	if self.year < 2003: # FIXME: rätt år för byte av regel?
-	    # FIXME: Är detta äldre regel eller bara fel?
-	    jmb = first_sunday(self.year, 3, 25)
+	if self.year < 1953:
+	    # Före reformen 25 mars
+	    jmb = JD(self.year, 3, 25)
+	    print "PRE53", jmb
 	else:
+	    # Efter reformen den närmaste söndagen (vilket är 22-28 mars)
 	    jmb = first_sunday(self.year, 3, 22)
+	    print "POST53", jmb
 
-	# Om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
+	# Men: om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
 	# palmsöndagen, så flyttas den till söndagen innan
 	# palmsöndagen (5 i fastan).
 	if jmb >= pd - 7 and jmb <= pd:
@@ -659,9 +666,8 @@ class YearCal:
     def dump(self):
 	"""Show in text format for debugging."""
 
-	for m in range(1,13):
-	    mc = MonthCal(self, m)
-	    mc.dump()
+	for dc in self.generate():
+	    dc.dump()
 	
 class MonthCal:
     """Class to represent a month of a year."""
@@ -800,11 +806,18 @@ Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
 	self.html_disclaimer(f)
 	f.write('</BODY>')
 
-    def dump(self):
-	"""Show in text format for debugging."""
-	print self.month_name
-	print
-	for dc in self.generate():
-	    dc.dump()
-	print
+#
+# Invocation
+#
 
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) > 1:
+	year = int(sys.argv[1])
+	yc = YearCal(year)
+	yc.dump()
+    else:
+	for year in range(1901,2006):
+	    yc = YearCal(year)
+	    yc.dump()
