@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.14 2004/12/13 19:55:51 kent Exp $
+# $Id: alma.py,v 1.15 2004/12/13 21:49:20 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -358,12 +358,14 @@ class YearCal:
 	    self.place_name_day_names("namnsdagar-2001.txt")
 	elif year >= 1993:
 	    self.place_name_day_names("namnsdagar-1993.txt")
-	elif year >= 1986:
-	    self.place_name_day_names("namnsdagar-1986.txt")
+	#elif year >= 1986:
+	#    self.place_name_day_names("namnsdagar-1986.txt")
 	elif year >= 1901:
 	    self.place_name_day_names("namnsdagar-1901.txt",
 				      [(1905, 11,  4, ["Sverker"]),
 				       (1907, 11, 27, ["Astrid"]),
+				       (1953,  3, 25 ,["Marie Bebådelsedag"]),
+				       (1953,  6, 24 ,["Johannes Döparens dag"]),
 				       (1934, 10, 20, ["Sibylla"])])
 
 	# Månfaser
@@ -405,8 +407,9 @@ class YearCal:
 	     (None, None,  1, 28, False, True,  None), # Konungens namnsdag
 	     (None, None,  1,  5, False, False, "Trettondedagsafton"),
 	     (None, None,  1,  6, True,  False, "Trettondedag jul"),
-	     (None, None,  1, 13, False, False, "Tjugondedag Knut"),
+	     (1993, 2000,  2,  2, False, False, "Kyndelsmässodagen"), # Saknas som namnsdag dessa år
 	     (None, None,  3, 12, False, True,  None), # Kronprinsessans namnsdag
+	     (1993, 2000,  3, 25, False, False, "Marie Bebådelsedag"), # Saknas som namnsdag dessa år
 	     (None, None,  4, 30, False, True,  "Valborgsmässoafton"), # + Konungens födelsedag
 	     (None, None,  5,  1, True,  True,  "Första maj"),
 	     (1916, 1982,  6,  6, False, True,  "Svenska flaggans dag"),
@@ -415,6 +418,7 @@ class YearCal:
 	     (None, None,  7, 14, False, True,  None), # Kronprinsessans födelsedag
 	     (None, None,  8,  8, False, True,  None), # Drottningens namnsdag
 	     (None, None, 10, 24, False, True,  "FN-dagen"),
+	     (1993, 2000, 11,  1, False, False, "Allhelgonadagen"),# Saknas som namnsdag dessa år
 	     (None, None, 11,  6, False, True,  None), # Gustav Adolfsdagen
 	     (None, None, 12, 10, False, True,  "Nobeldagen"),
 	     (None, None, 12, 23, False, True,  None), # Drottningens födelsedag
@@ -449,13 +453,13 @@ class YearCal:
 	if jmk == pd - 49:
 	    # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
 	    jmk = jmk -7
-	self.add_info_jd(jmk, True, False, "Kyndelsmässodagen")
+	# Vänta med att lägga dit namnet...
 
 	# Söndagar efter Trettondedagen
 	set = first_sunday(self.year, 1, 7)
 	for i in range(1,7):
-	    # Slås ut av Kyndelsmässodagen och allt påskaktigt
-	    if set != jmk and set < pd-63:
+	    # Slås ut av Kyndelsmässodagen (efter 1982?) och allt påskaktigt
+	    if (set != jmk or self.year <= 1982) and set < pd-63:
 		self.add_info_jd(set, True, False, "%d e trettondedagen" % i)
 	    set = set + 7
 
@@ -463,40 +467,54 @@ class YearCal:
 	if self.year < 1953:
 	    # Före reformen 25 mars
 	    jmb = JD(self.year, 3, 25)
-	    print "PRE53", jmb
 	else:
 	    # Efter reformen den närmaste söndagen (vilket är 22-28 mars)
 	    jmb = first_sunday(self.year, 3, 22)
-	    print "POST53", jmb
 
 	# Men: om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
 	# palmsöndagen, så flyttas den till söndagen innan
 	# palmsöndagen (5 i fastan).
 	if jmb >= pd - 7 and jmb <= pd:
 	    jmb = pd - 14
-	self.add_info_jd(jmb, True, False, "Jungfru Marie bebådelsedag")
+	# Vänta med att lägga dit namnet...
 
 	# Fasta, Påsk, Kristi Himmelsfärd, Pingst
 
 	# Dessa dagar slås ut av Kyndelsmässodagen
+	# fast bara efter 1982 (1983?)
+	# Tidigare så står båda namnen!
 	for (jd, name) in [(pd-63, "Septuagesima"),
 			   (pd-56, "Sexagesima")]:
-	    if jd != jmk:
+	    if jd != jmk or self.year <= 1982:
 		self.add_info_jd(jd, True, False, name)
+
+	# Lägg så dit Kyndelsmässodagen
+	if self.year < 1924:
+	    self.add_info_jd(jmk, True, False, "Kyndelsmässosöndagen")
+	elif self.year < 1943:
+	    self.add_info_jd(jmk, True, False, "Marie kyrkogångsdag eller Kyndelsmässodagen")
+	else:
+	    self.add_info_jd(jmk, True, False, "Jungfru Marie Kyrkogångsdag eller Kyndelsmässodagen")
 
 	# Fastlagssöndagen och icke-helgdagar efter den
 	self.add_info_jd(pd-49, True, False, "Fastlagssöndagen")
 	self.add_info_jd(pd-47, False,False, "Fettisdagen")
 	self.add_info_jd(pd-46, False,False, "Askonsdagen")
 
-	# Dessa dagar slås ut av Jungfru Marie bebådelsedag
+	# Dessa dagar slås ut av Jungfru Marie bebådelsedag,
+	# fast bara efter 1982 (1983?)
+	# 1952-1982 (1983?) så står båda namnen!
+
 	for (jd, name) in [(pd-42, "1 i fastan"),
 			   (pd-35, "2 i fastan"),
 			   (pd-28, "3 i fastan"),
 			   (pd-21, "Midfastosöndagen"),
 			   (pd-14, "5 i fastan")]:
-	    if jd != jmb:
+	    if jd != jmb or self.year <= 1982:
 		self.add_info_jd(jd, True, False, name)
+
+	# Lägg så dit Jungfru Marie bebådelsedag
+	self.add_info_jd(jmb, True, False, "Jungfru Marie bebådelsedag")
 
 	self.add_info_jd(pd- 7, True, False, "Palmsöndagen")
 	self.add_info_jd(pd- 4, False,False, "Dymmelonsdagen")
@@ -541,21 +559,33 @@ class YearCal:
 	    # Från och med 1953 rörlig helgdag, lördag 20-26/6
 	    msd = first_saturday(self.year, 6, 20)
 	self.add_info_jd(msd-1, False, False, "Midsommarafton")
-	self.add_info_jd(msd+0, True,  True,  "Midsommardagen")
-	if self.year >= 2004:
+	if self.year <2004:
+	    self.add_info_jd(msd+0, True,  True,  "Den helige Johannes Döparens dag eller Midsommardagen")
+        else:
+	    self.add_info_jd(msd+0, True,  True,  "Midsommardagen")
 	    self.add_info_jd(msd+1, True,  False,  "Den helige Johannes Döparens dag")
 	    se3_stoppers.append(msd+1)
 
 	# Alla Helgons dag
-	ahd = first_saturday(self.year, 10, 31)
-	self.add_info_jd(ahd+0, True, False, "Alla helgons dag")
-	self.add_info_jd(ahd+1, True, False, "Söndagen e alla helgons dag")
-	se3_stoppers.append(ahd+1)
+	if self.year < 1953:
+	    # NE: "Genom helgdagsreformen 1772 förlades firandet till
+	    # första söndagen i november"
+	    ahd = first_sunday(self.year, 11, 1)
+	    # Vänta med att sätta ut namnet, som inte ska slå ut någon Söndag e Tref.
+	else:
+	    # NE: "År 1953 flyttades dagen i den svenska almanackan till
+	    # den lördag som infaller 31 oktober till 6 november.
+	    ahd = first_saturday(self.year, 10, 31)
+	    # Vänta med att sätta ut namnet (för fallet ovan, egentligen)
+	    # Efter 1982?
+	    if self.year > 1982:
+		self.add_info_jd(ahd+1, True, False, "Söndagen e alla helgons dag")
+		se3_stoppers.append(ahd+1)
 
-	# Advent (samt Domsöndagen och Söndagen före domsöndagen)
+	# Advent (samt Domssöndagen och Söndagen före domssöndagen)
 	adv1=first_sunday(self.year, 11, 27 )
-	self.add_info_jd(adv1-14, True, False, "Söndagen f domsöndagen")
-	self.add_info_jd(adv1- 7, True, False, "Domsöndagen")
+	self.add_info_jd(adv1-14, True, False, "Söndagen f domssöndagen")
+	self.add_info_jd(adv1- 7, True, False, "Domssöndagen")
 	self.add_info_jd(adv1+ 0, True, False, "1 i Advent")
 	self.add_info_jd(adv1+ 7, True, False, "2 i Advent")
 	self.add_info_jd(adv1+14, True, False, "3 i Advent")
@@ -594,6 +624,9 @@ class YearCal:
 	    
 	    self.add_info_jd(se3, True, False, name)
 	    se3 += 7
+
+	# Sätt ut A H D
+	self.add_info_jd(ahd, True, False, "Alla helgons dag")
 
     def place_name_day_names(self, filename, patches = None):
 	for line in open(filename):
