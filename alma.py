@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.3 2004/12/08 19:14:50 kent Exp $
+# $Id: alma.py,v 1.4 2004/12/08 19:44:51 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -298,6 +298,11 @@ class YearCal:
 	    self.place_name_day_names("namnsdagar-1993.txt")
 	elif year >= 1986:
 	    self.place_name_day_names("namnsdagar-1986.txt")
+	elif year >= 1901:
+	    self.place_name_day_names("namnsdagar-1901.txt",
+				      [(1905, 11,  4, ["Sverker"]),
+				       (1907, 11, 27, ["Astrid"]),
+				       (1934, 10, 20, ["Sibylla"])])
 
 	# Månfaser
 	self.place_moonphases()
@@ -514,7 +519,7 @@ class YearCal:
 	    self.add_info_jd(se3, True, False, name)
 	    se3 += 7
 
-    def place_name_day_names(self, filename):
+    def place_name_day_names(self, filename, patches = None):
 	for line in open(filename):
 	    (ms, ds, ns) = line.strip().split(None,2)
 	    m = int(ms)
@@ -526,6 +531,12 @@ class YearCal:
 	    names = ns.split(",")
 	    dc = self.get_md(m, d)
 	    dc.set_names(names)
+	if patches is not None:
+	    for (from_year, m, d, names) in patches:
+		if self.year >= from_year:
+		    dc = self.get_md(m, d)
+		    dc.set_names(names)
+		    
 
     # Placera ut månfaserna i almanackan.
     # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
