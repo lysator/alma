@@ -1,0 +1,358 @@
+ 1  2 Svea
+ 1  3 Alfred
+ 1  4 Rut
+ 1  5 Hanna
+ 1  7 August
+ 1  8 Erland
+ 1  9 Gunnar
+ 1 10 Sigurd
+ 1 11 Hugo
+ 1 12 Frideborg
+ 1 13 Knut
+ 1 14 Felix
+ 1 15 Laura
+ 1 16 Hjalmar
+ 1 17 Anton
+ 1 18 Hilda
+ 1 19 Henrik
+ 1 20 Fabian
+ 1 21 Agnes
+ 1 22 Vincent
+ 1 23 Emilia
+ 1 24 Erika
+ 1 25 Paulus
+ 1 26 Botilda
+ 1 27 Göte
+ 1 28 Karl
+ 1 29 Valter
+ 1 30 Gunhild
+ 1 31 Ivar
+ 2  1 Max
+ 2  3 Disa
+ 2  4 Ansgar
+ 2  5 Agata
+ 2  6 Dorotea
+ 2  7 Rikard
+ 2  8 Berta
+ 2  9 Fanny
+ 2 10 Eugenia
+ 2 11 Yngve
+ 2 12 Evelina
+ 2 13 Agne
+ 2 14 Valentin
+ 2 15 Sigfrid
+ 2 16 Julia
+ 2 17 Alexandra
+ 2 18 Frida
+ 2 19 Gabriella
+ 2 20 Hulda
+ 2 21 Hilding
+ 2 22 Martina
+ 2 23 Torsten
+ 2 24 Mattias
+ 2 25 Sigvard
+ 2 26 Torgny
+ 2 27 Lage
+ 2 28 Maria
+ 3  1 Albin
+ 3  2 Ernst
+ 3  3 Gunborg
+ 3  4 Adrian
+ 3  5 Tora
+ 3  6 Ebba
+ 3  7 Ottilia
+ 3  8 Filippa
+ 3  9 Torbjörn
+ 3 10 Edla
+ 3 11 Edvin
+ 3 12 Viktoria
+ 3 13 Greger
+ 3 14 Matilda
+ 3 15 Kristofer
+ 3 16 Herbert
+ 3 17 Gertrud
+ 3 18 Edvard
+ 3 19 Josef
+ 3 20 Joakim 
+ 3 21 Bengt
+ 3 22 Viktor
+ 3 23 Gerda
+ 3 24 Gabriel
+ 3 26 Emanuel
+ 3 27 Rudolf
+ 3 28 Malkolm
+ 3 29 Jonas
+ 3 30 Holger
+ 3 31 Ester
+ 4  1 Harald
+ 4  2 Gudmund
+ 4  3 Ferdinand 
+ 4  4 Ambrosius
+ 4  5 Nanna
+ 4  6 Vilhelm
+ 4  7 Ingemund
+ 4  8 Hemming
+ 4  9 Otto
+ 4 10 Ingvar
+ 4 11 Ulf
+ 4 12 Julius
+ 4 13 Artur
+ 4 14 Tiburtius
+ 4 15 Olivia
+ 4 16 Patrik
+ 4 17 Elias
+ 4 18 Valdemar
+ 4 19 Olavus Petri
+ 4 20 Amalia
+ 4 21 Anselm
+ 4 22 Albertina
+ 4 23 Georg
+ 4 24 Vega
+ 4 25 Markus
+ 4 26 Teresia
+ 4 27 Engelbrekt
+ 4 28 Ture
+ 4 29 Tyko
+ 4 30 Mariana
+ 5  1 Valborg
+ 5  2 Filip
+ 5  3 Göta
+ 5  4 Monika
+ 5  5 Gotthard
+ 5  6 Sigmund
+ 5  7 Gustava
+ 5  8 Åke
+ 5  9 Jonatan
+ 5 10 Esbjörn
+ 5 11 Märta
+ 5 12 Charlotta
+ 5 13 Linnea
+ 5 14 Halvard
+ 5 15 Sofia
+ 5 16 Hilma
+ 5 17 Rebecka
+ 5 18 Erik
+ 5 19 Alrik
+ 5 20 Karolina
+ 5 21 Konstantin
+ 5 22 Henning
+ 5 23 Desideria
+ 5 24 Ragnvald
+ 5 25 Urban
+ 5 26 Vilhelmina
+ 5 27 Blenda
+ 5 28 Ingeborg
+ 5 29 Baltsar
+ 5 30 Fritjof
+ 5 31 Isabella
+ 6  1 Nikodemus
+ 6  2 Rutger
+ 6  3 Ingemar
+ 6  4 Holmfrid
+ 6  5 Bo
+ 6  6 Gustav
+ 6  7 Robert
+ 6  8 Salomon
+ 6  9 Börje
+ 6 10 Svante
+ 6 11 Bertil
+ 6 12 Eskil
+ 6 13 Aina
+ 6 14 Håkan
+ 6 15 Justina
+ 6 16 Axel
+ 6 17 Torborg
+ 6 18 Björn
+ 6 19 Germund
+ 6 20 Flora
+ 6 21 Alf
+ 6 22 Paulina
+ 6 23 Adolf
+ 6 24 Johannes Döparens dag
+ 6 25 David
+ 6 26 Rakel
+ 6 27 Selma
+ 6 28 Leo
+ 6 29 Petrus
+ 6 30 Elof
+ 7  1 Aron
+ 7  2 Rosa
+ 7  3 Aurora
+ 7  4 Ulrika
+ 7  5 Melker
+ 7  6 Esaias
+ 7  7 Klas
+ 7  8 Kjell
+ 7  9 Götilda
+ 7 10 Anund
+ 7 11 Eleonora
+ 7 12 Herman
+ 7 13 Joel
+ 7 14 Folke
+ 7 15 Ragnhild
+ 7 16 Reinhold
+ 7 17 Alexis
+ 7 18 Fredrik
+ 7 19 Sara
+ 7 20 Margareta
+ 7 21 Johanna
+ 7 22 Magdalena
+ 7 23 Emma
+ 7 24 Kristina
+ 7 25 Jakob
+ 7 26 Jesper
+ 7 27 Marta
+ 7 28 Botvid
+ 7 29 Olof
+ 7 30 Algot
+ 7 31 Elin
+ 8  1 Per
+ 8  2 Karin
+ 8  3 Tage
+ 8  4 Arne
+ 8  5 Ulrik
+ 8  6 Sixten
+ 8  7 Arnold
+ 8  8 Sylvia
+ 8  9 Roland
+ 8 10 Lars
+ 8 11 Susanna
+ 8 12 Klara
+ 8 13 Hillevi
+ 8 14 Ebbe
+ 8 15 Stella
+ 8 16 Brynolf
+ 8 17 Verner
+ 8 18 Helena
+ 8 19 Magnus
+ 8 20 Bernhard
+ 8 21 Josefina
+ 8 22 Henrietta
+ 8 23 Signe
+ 8 24 Bartolomeus
+ 8 25 Lovisa
+ 8 26 Östen
+ 8 27 Rolf
+ 8 28 Augustin
+ 8 29 Hans
+ 8 30 Albert
+ 8 31 Arvid
+ 9  1 Samuel
+ 9  2 Justus
+ 9  3 Alfhild
+ 9  4 Moses
+ 9  5 Adela
+ 9  6 Sakarias
+ 9  7 Regina
+ 9  8 Alma
+ 9  9 Augusta
+ 9 10 Tord
+ 9 11 Dagny
+ 9 12 Tyra
+ 9 13 Ambjörn
+ 9 14 Ida
+ 9 15 Sigrid
+ 9 16 Eufemia
+ 9 17 Hildegard
+ 9 18 Alvar
+ 9 19 Fredrika
+ 9 20 Agda 
+ 9 21 Matteus
+ 9 22 Maurits
+ 9 23 Tekla
+ 9 24 Gerhard
+ 9 25 Signild
+ 9 26 Enar
+ 9 27 Dagmar
+ 9 28 Lennart
+ 9 29 Mikael
+ 9 30 Helge
+10  1 Ragnar
+10  2 Ludvig
+10  3 Evald
+10  4 Frans
+10  5 Bror
+10  6 Jenny
+10  7 Birgitta
+10  8 Nils
+10  9 Ingrid
+10 10 Helmer
+10 11 Erling
+10 12 Valfrid
+10 13 Teofil
+10 14 Manfred
+10 15 Hedvig
+10 16 Fingal
+10 17 Antoinetta
+10 18 Lukas
+10 19 Tore
+10 20 Kasper
+10 21 Birger
+10 22 Seved
+10 23 Sören
+10 24 Evert
+10 25 Inga
+10 26 Amanda
+10 27 Sabina
+10 28 Simon
+10 29 Viola
+10 30 Elsa
+10 31 Edit
+11  2 Tobias
+11  3 Hubert
+11  4 Nore
+11  5 Eugen
+11  6 Gustav Adolf
+11  7 Ingegerd
+11  8 Vendela
+11  9 Teodor
+11 10 Martin Luther
+11 11 Mårten
+11 12 Konrad
+11 13 Kristian
+11 14 Emil
+11 15 Leopold
+11 16 Edmund
+11 17 Napoleon
+11 18 Magnhild
+11 19 Elisabet
+11 20 Pontus
+11 21 Helga
+11 22 Cecilia
+11 23 Klemens
+11 24 Gudrun
+11 25 Katarina
+11 26 Torkel
+11 27 Estrid
+11 28 Malte
+11 29 Sune
+11 30 Anders
+12  1 Oskar
+12  2 Beata
+12  3 Lydia
+12  4 Barbro
+12  5 Sven
+12  6 Nikolaus
+12  7 Agaton
+12  8 Virginia
+12  9 Anna
+12 10 Malin
+12 11 Daniel
+12 12 Alexander
+12 13 Lucia
+12 14 Sten
+12 15 Gottfrid
+12 16 Assar
+12 17 Inge
+12 18 Abraham
+12 19 Isak
+12 20 Israel
+12 21 Tomas
+12 22 Natanael
+12 23 Adam
+12 24 Eva
+12 26 Stefan
+12 27 Johannes
+12 29 Abel
+12 30 Set
+12 31 Sylvester
