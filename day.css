@@ -1,0 +1,32 @@
+DIV.douter {
+  width: 10em;
+  padding: 0.5em;
+  border: solid black 1px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+DIV.dmonth{
+  font-size: 100%;
+}
+
+DIV.dday {
+  font-size: 200%;
+}
+
+DIV.dwday {
+  font-size: 120%;
+}
+
+DIV.dflag {
+  margin-top: 3px;
+}
+
+*.red {
+  color: red;
+}
+
+*.black {
+  color: black;
+}
+

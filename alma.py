@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.18 2004/12/13 22:23:13 kent Exp $
+# $Id: alma.py,v 1.19 2004/12/14 19:40:03 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -315,6 +315,46 @@ class DayCal:
 
 	f.write('</TABLE>')
 	f.write('</TD>')
+
+    # Dagblocksliknande
+    def html_day(self, f):
+	if self.red:
+	    colour = "red"
+	else:
+	    colour = "black"
+	
+	f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="day.css">')
+	f.write('<DIV CLASS="douter">')
+
+	# Månad
+	f.write('<DIV CLASS="dmonth">%s</DIV>' % month_names[self.m])
+
+	# Dag
+	f.write('<DIV CLASS="dday %s">%d</DIV>' % (colour, self.d))
+
+	# Veckodag
+	f.write('<DIV CLASS="dwday %s">%s v%d</DIV>' % (colour,
+							self.wday_name,
+							self.week))
+	# Flaggdagar och månfaser
+	f.write('<DIV CLASS="dflag">')
+	if self.flag_day:
+	    f.write('<IMG SRC="flag.gif">')
+	if self.moonphase is not None:
+	    f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
+	f.write('</DIV>')
+
+	# Dagens namn
+	f.write('<DIV CLASS="dnames">')
+	redblack_string = self.html_redblack(sep="<BR>")
+	name_string = ", ".join(self.names)
+	f.write(redblack_string)
+	if redblack_string and name_string: f.write('<BR>')
+	f.write(name_string)
+	f.write('&nbsp;</DIV>')
+
+	f.write('</DIV>')
+
 
     def dump(self):
 	"""Show in text format for debugging."""

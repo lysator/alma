@@ -1,6 +1,9 @@
 WEBBGRÄNSSNITT
 --------------
 
+Endagars{dokument,bild} som man kan ha som "banner" för att
+länka till almanackan. Via IFRAME eller OBJECT?
+
 Utskriftsvy (utan knappar och liknande)
 
 Bildfil i tabellvisningsläge
@@ -10,6 +13,10 @@ Knappar för månad-, månad+ (som nu)
 Val av år på något smart sätt (SELECT + fält?)
 
 Varning för saker som är fel eller otestat
+
+Markera dagens datum
+
+Försök få tabellläget att se OK ut med avseende på kolumnbredd.
 
 
 ANDRA GRÄNSSNITT
@@ -25,6 +32,9 @@ Någon gång efter 1991 verkar man ha ändrat stil från t.ex. "Annandag Påsk"
 till "Annandag påsk", "3 e. Påsk" till "3 e påsk" osv. När exakt?
 Eller ska jag själv bestämma att jag kör med gamla stilen, som verkar
 snyggare?
+
+Långa och korta namn, så att man kan ha de senare i tabellformen eller
+i dagsalmanacka.
 
 Midsommardagen före 1953
   Alltid på 24/6, fixat.
