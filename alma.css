@@ -1,11 +1,27 @@
-TABLE.VTABLE {
-  border-spacing: 0;
+BODY {
+  font-family: sans-serif;
+}
+
+*.red {
+  color: red;
+}
+
+*.black {
+  color: black;
+}
+
+H1.centered {
+  text-align: center;
+}
+  
+TABLE.vtable {
+  border-collapse: collapse;
 }
 
 TR.v TD {
   vertical-align: top;
-  padding-bottom: 3 px;
-  padding-top: 3 px;
+  padding-bottom: 3px;
+  padding-top: 3px;
 }
 
 TD.vweek_present {
@@ -13,33 +29,21 @@ TD.vweek_present {
   font-size: 120%;
   border-top: solid black 1px;
   border-left: solid black 1px;
-  padding-left: 5 px;
-  padding-right: 10 px;
+  padding-left: 5px;
+  padding-right: 10px;
 }
 
 TD.vweek_empty {
   border-left: solid black 1px;
 }
 
-TD.vday_red {
-  text-align: right;
-  color: red;
-  border-top: solid black 1px;
-  padding-right: 10 px
-}
-
-TD.vday_black {
+TD.vday {
   text-align: right;
   border-top: solid black 1px;
-  padding-right: 10 px
+  padding-right: 10px
 }
 
-TD.vwday_red {
-  color: red;
-  border-top: solid black 1px;
-}
-
-TD.vwday_black {
+TD.vwday{
   border-top: solid black 1px;
 }
 
@@ -48,8 +52,8 @@ TD.vflag {
 }
 
 TD.vnames {
-  padding-left: 10 px;
-  padding-right: 10 px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-top: solid black 1px;
   border-right: solid black 1px;
 }
@@ -58,25 +62,23 @@ TD.vlast {
   border-top: solid black 1px;
 }
 
-SPAN.vname_red {
-  color: red;
+SPAN.vname {
   font-weight: bold;
 }
 
-SPAN.vname_black {
-  font-weight: bold;
+TABLE.ttable {
+  border-collapse: collapse;
 }
-
 
 TD.twday {
   text-align: center;
   font-weight: bold;
-  border: solid black 1px;
+  padding-bottom: 1em;
 }
 
 TD.twno {
   text-align: right;
-  border: solid black 1px;
+  padding-right: 1em;
 }
 
 TD.tday {
@@ -84,20 +86,17 @@ TD.tday {
   border: solid black 1px;
 }
 
-TD.tdday_red {
+TD.tdday {
+  width: 1.5em;
   font-size: 150%;
   text-align: right;
-  color: red;
-  padding-right: 3 px;
-}
-
-TD.tdday_black {
-  font-size: 150%;
-  text-align: right;
-  color: black;
-  padding-right: 3 px;
+  padding-right: 3px;
 }
 
 TD.tdnames {
   vertical-align: top;
+}
+
+TD.tdflag {
+  text-align: right;
 }

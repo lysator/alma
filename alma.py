@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.10 2004/12/08 22:17:45 kent Exp $
+# $Id: alma.py,v 1.11 2004/12/09 20:32:42 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -226,9 +226,9 @@ class DayCal:
     def html_redblack(self, sep = ", "):
 	redblack = []
 	for name in self.red_names:
-	    redblack.append('<SPAN CLASS="vname_red">%s</SPAN>' % name)
+	    redblack.append('<SPAN CLASS="vname red">%s</SPAN>' % name)
 	for name in self.black_names:
-	    redblack.append('<SPAN CLASS="vname_black">%s</SPAN>' % name)
+	    redblack.append('<SPAN CLASS="vname black">%s</SPAN>' % name)
 	return sep.join(redblack)
 
     def html_vertical(self, f):
@@ -252,10 +252,10 @@ class DayCal:
 	    f.write('<TD CLASS="vweek_empty">&nbsp;</TD>')
 
 	# Veckodagens tre först tecken
-	f.write('<TD CLASS="vwday_%s">%s</TD>' % (colour, self.wday_name_short))
+	f.write('<TD CLASS="vwday %s">%s</TD>' % (colour, self.wday_name_short))
 
 	# Dagens nummer
-	f.write('<TD CLASS="vday_%s">%d</TD>' % (colour, self.d))
+	f.write('<TD CLASS="vday %s">%d</TD>' % (colour, self.d))
 
 	# Flaggdagar och månfaser
 	f.write('<TD CLASS="vflag">')
@@ -295,7 +295,7 @@ class DayCal:
 	f.write('<TABLE>')
 
 	# Dagens nummer
-	f.write('<TR><TD CLASS="tdday_%s">%d</TD>' % (colour, self.d))
+	f.write('<TR><TD CLASS="tdday %s">%d</TD>' % (colour, self.d))
 
 	# Dagens namn
 	f.write('<TD ROWSPAN="2" CLASS="tdnames">')
@@ -744,7 +744,7 @@ class MonthCal:
 	f.write('</P>')
 
 	# Rubrik
-	f.write('<H1>%s</H1>\n' % head)
+	f.write('<H1 CLASS="centered">%s</H1>\n' % head)
 
 	# Tabellen
 	f.write('<TABLE CLASS="ttable">')
