@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.8 2004/12/08 21:18:28 kent Exp $
+# $Id: alma.py,v 1.9 2004/12/08 21:34:41 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -180,6 +180,16 @@ class DayCal:
 	 self.week,
 	 self.wday) = self.jd.GetYWD()
 
+	# wday är alltid 1 för måndag ... 7 för söndag
+	# wpos talar om positionen i veckan
+	if self.y >= 1973:
+	    self.wpos = self.wday # måndag först i veckan
+	else:
+	    if self.wday == 7:
+		self.wpos = 1 # söndag först i veckan
+	    else:
+		self.wpos = self.wday + 1
+
 	self.flag_day = False  # flaggdag?
 	self.red_names = []    # heldagsnamn
 	self.black_names = []  # andra namn (som ej gör dagen röd)
@@ -223,8 +233,7 @@ class DayCal:
 
 	# Veckan börjar på måndag fr o m 1973, innan på måndag
 	# Dessutom "börjar" ju en vecka i början av varje månad.
-	if self.d == 1 or (self.y < 1973 and self.wday == 7) or \
-	    (self.y >= 1973 and self.wday == 1):
+	if self.d == 1 or self.wpos == 1:
 	    # Veckonummer relevant fr o m 1973
 	    if self.y >= 1973:
 		wtext = str(self.week)
