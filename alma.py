@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.17 2004/12/13 22:01:19 kent Exp $
+# $Id: alma.py,v 1.18 2004/12/13 22:23:13 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -403,29 +403,49 @@ class YearCal:
 	# Fasta helgdagar och flaggdagar
 
 	for (from_year, to_year, m, d, red, flag, name) in \
-	    [(None, None,  1,  1, True , True,  "Nyårsdagen"),
-	     (None, None,  1, 28, False, True,  None), # Konungens namnsdag
-	     (None, None,  1,  5, False, False, "Trettondedagsafton"),
-	     (None, None,  1,  6, True,  False, "Trettondedag jul"),
-	     (1993, 2000,  2,  2, False, False, "Kyndelsmässodagen"), # Saknas som namnsdag dessa år
-	     (None, None,  3, 12, False, True,  None), # Kronprinsessans namnsdag
-	     (1993, 2000,  3, 25, False, False, "Marie Bebådelsedag"), # Saknas som namnsdag dessa år
-	     (None, None,  4, 30, False, True,  "Valborgsmässoafton"), # + Konungens födelsedag
-	     (None, None,  5,  1, True,  True,  "Första maj"),
-	     (1916, 1982,  6,  6, False, True,  "Svenska flaggans dag"),
-	     (1983, 2004,  6,  6, False, True,  "Sveriges nationaldag"),
-	     (2005, None,  6,  6, True, True,  "Sveriges nationaldag"),
-	     (None, None,  7, 14, False, True,  None), # Kronprinsessans födelsedag
-	     (None, None,  8,  8, False, True,  None), # Drottningens namnsdag
-	     (None, None, 10, 24, False, True,  "FN-dagen"),
-	     (1993, 2000, 11,  1, False, False, "Allhelgonadagen"),# Saknas som namnsdag dessa år
-	     (None, None, 11,  6, False, True,  None), # Gustav Adolfsdagen
-	     (None, None, 12, 10, False, True,  "Nobeldagen"),
-	     (None, None, 12, 23, False, True,  None), # Drottningens födelsedag
-	     (None, None, 12, 24, False, False, "Julafton"),
-	     (None, None, 12, 25, True,  True,  "Juldagen"),
-	     (None, None, 12, 26, True,  False, "Annandag jul"),
-	     (None, None, 12, 31, False, False, "Nyårsafton"),
+		[
+	    # Fasta helgdagar
+	    (None, None,  1,  1, True , True,  "Nyårsdagen"),
+	    (None, None,  1,  6, True,  False, "Trettondedag jul"),
+	    (None, None,  5,  1, True,  True,  "Första maj"),
+	    (None, None, 12, 25, True,  True,  "Juldagen"),
+	    (None, None, 12, 26, True,  False, "Annandag jul"),
+	    
+	    # Fasta helgdagsaftnar
+	    (None, None,  1,  5, False, False, "Trettondedagsafton"),
+	    (None, None,  4, 30, False, False, "Valborgsmässoafton"),
+	    (None, None, 12, 24, False, False, "Julafton"),
+	    (None, None, 12, 31, False, False, "Nyårsafton"),
+	    
+	    # Dagar som vissa år varit "namnsdagar", andra inte
+	    (1993, 2000,  2,  2, False, False, "Kyndelsmässodagen"),  # Saknas som namnsdag dessa år
+	    (1993, 2000,  3, 25, False, False, "Marie Bebådelsedag"), # Saknas som namnsdag dessa år
+	    (1993, 2000, 11,  1, False, False, "Allhelgonadagen"),    # Saknas som namnsdag dessa år
+	    
+	    # Svenska flaggans dag och nationaldagen
+	    (1916, 1982,  6,  6, False, True,  "Svenska flaggans dag"),
+	    (1983, 2004,  6,  6, False, True,  "Sveriges nationaldag"),
+	    (2005, None,  6,  6, True, True,   "Sveriges nationaldag"),
+	    
+	    # Andra flaggdagar
+	    (None, None, 10, 24, False, True,  "FN-dagen"),
+	    (None, None, 11,  6, False, True,  None), # Gustav Adolfsdagen
+	    (None, None, 12, 10, False, True,  "Nobeldagen"),
+
+	    # Flaggdagar för regerande kungahuset
+	    
+	    # Carl XVI Gustaf Folke Hubertus, kung
+	    (None, None,  4, 30, False, True,  None), # födelsedag
+	    (None, None,  1, 28, False, True,  None), # namnsdag "Karl"
+	    
+	    # Silvia Renate Sommerlath, drottning
+	    (None, None, 12, 23, False, True,  None), # födelsedag
+	    (None, None,  8,  8, False, True,  None), # namnsdag "Silvia"
+	    
+	    # Victoria Ingrid Alice Désirée, kronprinsessa
+	    (None, None,  7, 14, False, True,  None), # födelsedag
+	    (None, None,  3, 12, False, True,  None), # namnsdag "Viktoria"
+	    
 	     ]:
 	    if from_year is not None and self.year < from_year: continue
 	    if to_year is not None and self.year > to_year: continue
