@@ -13,10 +13,6 @@ Val av år på något smart sätt (SELECT + fält?)
 
 Varning för saker som är fel eller otestat
 
-Inga veckonummer för 1973
-
-Veckostart på måndag före 1973
-
 
 ANDRA GRÄNSSNITT
 ----------------
@@ -26,6 +22,9 @@ Filformat för import i kalenderprogram?
 
 HELGDAGAR
 ---------
+
+Midsommardagen före 1953
+  Alltid på 24/6. Kollision med söndagar efter trefaldighet (exv 1917)?
 
 Felräkning på Jungfru Marie bebådelsedag:
 
@@ -108,3 +107,13 @@ Kalla Menlösa Barns Dag Värnlösa Barns Dag??? Namnsdagsplats?
 Fars och mors dag
 
 Övergång till och från sommartid
+
+
+VECKONUMRERING
+--------------
+
+Hade vi veckonummer innan 1973? Jag antar att de måste ha funnits
+i någon form, förmodligen med vecka 1 = den vecka som innehåller
+årets första dag, för 1972 säges ha haft en dag i vecka 54.
+
+Hur långt tillbaka då?

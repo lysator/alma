@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.6 2004/12/08 20:38:06 kent Exp $
+# $Id: alma.py,v 1.7 2004/12/08 20:49:19 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -470,7 +470,12 @@ class YearCal:
 	se3_stoppers = []
 
 	# Midsommardagen
-	msd = first_saturday(self.year, 6, 20)
+	if self.year < 1953:
+	    # Före 1953 inföll midsommardagen alltid på 24/6
+	    msd = JD(self.year, 6, 24)
+	else:
+	    # Från och med 1953 rörlig helgdag, lördag 20-26/6
+	    msd = first_saturday(self.year, 6, 20)
 	self.add_info_jd(msd-1, False, False, "Midsommarafton")
 	self.add_info_jd(msd+0, True,  True,  "Midsommardagen")
 	if self.year >= 2004:
