@@ -28,6 +28,7 @@
  1 30 Gunhild
  1 31 Ivar
  2  1 Max
+ 2  2 Kyndelsmässodagen
  2  3 Disa
  2  4 Ansgar
  2  5 Agata
@@ -168,7 +169,6 @@
  6 21 Alf
  6 22 Paulina
  6 23 Adolf
- 6 24 Johannes Döparens dag
  6 25 David
  6 26 Rakel
  6 27 Selma
@@ -298,6 +298,7 @@
 10 29 Viola
 10 30 Elsa
 10 31 Edit
+11  1 Allhelgonadagen
 11  2 Tobias
 11  3 Hubert
 11  4 Nore
@@ -353,6 +354,7 @@
 12 24 Eva
 12 26 Stefan
 12 27 Johannes
+12 28 Menlösa barns dag
 12 29 Abel
 12 30 Set
 12 31 Sylvester
