@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.1 2004/12/07 20:24:54 kent Exp $
+# $Id: alma.py,v 1.2 2004/12/07 22:02:10 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -210,24 +210,22 @@ class YearCal:
 	    [(None, None,  1,  1, True , True,  "Nyårsdagen"),
 	     (None, None,  1, 28, False, True,  None), # Konungens namnsdag
 	     (None, None,  1,  5, False, False, "Trettondedagsafton"),
-	     (None, None,  1,  6, True,  False, "Trettondedag Jul"),
+	     (None, None,  1,  6, True,  False, "Trettondedag jul"),
 	     (None, None,  1, 13, False, False, "Tjugondedag Knut"),
 	     (None, None,  3, 12, False, True,  None), # Kronprinsessans namnsdag
 	     (None, None,  4, 30, False, True,  "Valborgsmässoafton"), # + Konungens födelsedag
-	     (None, None,  5,  1, True,  True,  "Första Maj"),
-	     (None, 2004,  6,  6, False, True,  "Sveriges Nationaldag"),
-	     (2005, None,  6,  6, True, True,  "Sveriges Nationaldag"),
-	     (None, None,  6, 24, False, False, "Joh:s Döp:s dag"),
+	     (None, None,  5,  1, True,  True,  "Första maj"),
+	     (None, 2004,  6,  6, False, True,  "Sveriges nationaldag"),
+	     (2005, None,  6,  6, True, True,  "Sveriges nationaldag"),
 	     (None, None,  7, 14, False, True,  None), # Kronprinsessans födelsedag
 	     (None, None,  8,  8, False, True,  None), # Drottningens namnsdag
 	     (None, None, 10, 24, False, True,  "FN-dagen"),
-	     (None, None, 11,  1, False, False, "Allhelgonadagen"),
 	     (None, None, 11,  6, False, True,  None), # Gustav Adolfsdagen
 	     (None, None, 12, 10, False, True,  "Nobeldagen"),
 	     (None, None, 12, 23, False, True,  None), # Drottningens födelsedag
 	     (None, None, 12, 24, False, False, "Julafton"),
 	     (None, None, 12, 25, True,  True,  "Juldagen"),
-	     (None, None, 12, 26, True,  False, "Annandag Jul"),
+	     (None, None, 12, 26, True,  False, "Annandag jul"),
 	     (None, None, 12, 28, False, False, "Menlösa barns dag"),
 	     (None, None, 12, 31, False, False, "Nyårsafton"),
 	     ]:
@@ -248,7 +246,7 @@ class YearCal:
 	# Söndagen efter nyår
 	sen = firstday(self.year, 1, 2, 7) # Första söndagen 2/1-
 	if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
-	    self.add_info_jd(sen, True, False, "Söndagen e Nyår")
+	    self.add_info_jd(sen, True, False, "Söndagen e nyår")
 
 	# Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
 	jmk = firstday(self.year, 2, 2 , 7)
@@ -263,16 +261,20 @@ class YearCal:
 	for i in range(1,7):
 	    if set != jmk and set < pd -63:
 		# Slås ut av Kyndelsmässodagen och allt påskaktigt
-		self.add_info_jd(set, True, False, "%d e Trettondedagen" % i)
+		self.add_info_jd(set, True, False, "%d e trettondedagen" % i)
 	    set = set + 7
 
 	# Jungfru Marie Bebådelsedag
-	jmb = firstday(self.year, 3, 25, 7)
-	print jmb
+	if self.year < 2003: # FIXME: rätt år för byte av regel?
+	    # FIXME: Är detta äldre regel eller bara fel?
+	    jmb = firstday(self.year, 3, 25, 7)
+	else:
+	    jmb = firstday(self.year, 3, 22, 7)
+
 	if jmb >= pd - 7 and jmb <= pd:
 	    # Ej på påskdagen/palmsöndagen
 	    jmb = pd - 14
-	self.add_info_jd(jmb, True, False, "Jungfru Marie Bebådelsedag")
+	self.add_info_jd(jmb, True, False, "Jungfru Marie bebådelsedag")
 
 	# Fasta, Påsk, Kristi Himmelsfärd, Pingst
 
@@ -283,48 +285,113 @@ class YearCal:
 	self.add_info_jd(pd-49, True, False, "Fastlagssöndagen")
 	self.add_info_jd(pd-47, False,False, "Fettisdagen")
 	self.add_info_jd(pd-46, False,False, "Askonsdagen")
-	self.add_info_jd(pd-42, True, False, "1 i Fastan")
-	self.add_info_jd(pd-35, True, False, "2 i Fastan")
-	self.add_info_jd(pd-28, True, False, "3 i Fastan")
-	self.add_info_jd(pd-21, True, False, "Midfastosöndagen")
-	if pd-14 != jmb:
-	    self.add_info_jd(pd-14, True, False, "5 i Fastan")
+
+	for (jd, name) in [(pd-42, "1 i fastan"),
+			   (pd-35, "2 i fastan"),
+			   (pd-28, "3 i fastan"),
+			   (pd-21, "Midfastosöndagen"),
+			   (pd-14, "5 i fastan")]:
+	    if jd != jmb:
+		self.add_info_jd(jd, True, False, name)
+
 	self.add_info_jd(pd- 7, True, False, "Palmsöndagen")
 	self.add_info_jd(pd- 4, False,False, "Dymmelonsdagen")
 	self.add_info_jd(pd- 3, False,False, "Skärtorsdagen")
 	self.add_info_jd(pd- 2, True, False, "Långfredagen")
 	self.add_info_jd(pd- 1, False,False, "Påskafton")
 	self.add_info_jd(pd+ 0, True, True,  "Påskdagen")
-	self.add_info_jd(pd+ 1, True, False, "Annandag Påsk")
-	self.add_info_jd(pd+ 7, True, False, "1 e Påsk")
-	self.add_info_jd(pd+14, True, False, "2 e Påsk")
-	self.add_info_jd(pd+21, True, False, "3 e Påsk")
-	self.add_info_jd(pd+28, True, False, "4 e Påsk")
+	self.add_info_jd(pd+ 1, True, False, "Annandag påsk")
+	if self.year < 2004:
+	    self.add_info_jd(pd+ 7, True, False, "1 e påsk")
+	    self.add_info_jd(pd+14, True, False, "2 e påsk")
+	    self.add_info_jd(pd+21, True, False, "3 e påsk")
+	    self.add_info_jd(pd+28, True, False, "4 e påsk")
+	else:
+	    self.add_info_jd(pd+ 7, True, False, "2 i påsktiden")
+	    self.add_info_jd(pd+14, True, False, "3 i påsktiden")
+	    self.add_info_jd(pd+21, True, False, "4 i påsktiden")
+	    self.add_info_jd(pd+28, True, False, "5 i påsktiden")
 	self.add_info_jd(pd+35, True, False, "Bönsöndagen")
-	self.add_info_jd(pd+39, True, False, "Kristi Himmelsfärds dag")
-	self.add_info_jd(pd+42, True, False, "6 e Påsk")
+	self.add_info_jd(pd+39, True, False, "Kristi himmelsfärds dag")
+	if self.year < 2004:
+	    self.add_info_jd(pd+42, True, False, "6 e påsk")
+	else:
+	    self.add_info_jd(pd+42, True, False, "Söndagen f Pingst")
 	self.add_info_jd(pd+48, False,False, "Pingstafton")
 	self.add_info_jd(pd+49, True, True,  "Pingstdagen")
 	if self.year < 2005:
-	    self.add_info_jd(pd+50, True, False, "Annandag Pingst")
+	    self.add_info_jd(pd+50, True, False, "Annandag pingst")
 	else:
-	    self.add_info_jd(pd+50, False,False, "Annandag Pingst")
-	self.add_info_jd(pd+56, True,False, "Heliga Trefaldighets dag")
+	    self.add_info_jd(pd+50, False,False, "Annandag pingst")
+	self.add_info_jd(pd+56, True,False, "Heliga trefaldighets dag")
+
+	# Vissa dagar ska "slå ut" vanliga "<n> efter trefaldighet"
+	# Håll reda på dem!
+	se3_stoppers = []
 
 	# Midsommardagen
 
 	msd = firstday(self.year, 6, 20, 6)
 	self.add_info_jd(msd-1, False, False, "Midsommarafton")
 	self.add_info_jd(msd+0, True,  True,  "Midsommardagen")
-    
+	if self.year >= 2004:
+	    self.add_info_jd(msd+1, True,  False,  "Den helige Johannes Döparens dag")
+	    se3_stoppers.append(msd+1)
+
 	# Alla Helgons dag
 
 	ahd = firstday(self.year, 10, 31, 6)
-	self.add_info_jd(ahd+0, True, False, "Alla Helgons dag")
-	self.add_info_jd(ahd+1, True, False, "Söndagen e Alla Helgons dag")
+	self.add_info_jd(ahd+0, True, False, "Alla helgons dag")
+	self.add_info_jd(ahd+1, True, False, "Söndagen e alla helgons dag")
+	se3_stoppers.append(ahd+1)
 
+	# Advent (samt Domsöndagen och Söndagen före domsöndagen)
+	
+	adv1=firstday(self.year, 11, 27 , 7)
+	self.add_info_jd(adv1-14, True, False, "Söndagen f domsöndagen")
+	self.add_info_jd(adv1- 7, True, False, "Domsöndagen")
+	self.add_info_jd(adv1+ 0, True, False, "1 i Advent")
+	self.add_info_jd(adv1+ 7, True, False, "2 i Advent")
+	self.add_info_jd(adv1+14, True, False, "3 i Advent")
+	self.add_info_jd(adv1+21, True, False, "4 i Advent")
 
-    
+	# Den helige Mikaels dag
+	# söndag i tiden 29/9 till 5/10
+	hmd = firstday(self.year, 9, 29, 7)
+	self.add_info_jd(hmd, True, False, "Den helige Mikaels dag")
+	se3_stoppers.append(hmd)
+
+	# Tacksägelsedagen
+	# andra söndagen i oktober
+	tsd = firstday(self.year, 10, 8, 7)
+	self.add_info_jd(tsd, True, False, "Tacksägelsedagen")
+	se3_stoppers.append(tsd)
+
+	# Söndagarna efter Trefaldighet
+
+	se3 = pd+63
+	for i in range(1,28):
+	    # Ska dagen vara en S e Tr?
+	    if se3 >= adv1 - 14:
+		# Inte lönt längre efter S f ds
+		break
+	    
+	    # Har dagen redan ett annat namn som har prioritet?
+	    if se3 in se3_stoppers:
+		# if (se3==ahd+1 || se3==hmd) continue; /* Slås ut av S e AHD, HMD */
+		se3 += 7
+		continue
+
+	    # Särskilda namn för vissa av dagarna
+	    if i == 5:
+		name = "Apostladagen"
+	    elif i == 7:
+		name = "Kristi förklarings dag"
+	    else:
+		name = "%d e trefaldighet" % i
+	    
+	    self.add_info_jd(se3, True, False, name)
+	    se3 += 7
 
     def place_name_day_names(self, filename):
 	for line in open(filename):
@@ -335,7 +402,7 @@ class YearCal:
 	    # namnen till senare dagar i februari
 	    if self.leap_year and self.year < 2000 and m == 2 and d >= 24: 
 		d = d + 1
-	    names = ns.split()
+	    names = ns.split(",")
 	    dc = self.get_md(m, d)
 	    dc.set_names(names)
 
