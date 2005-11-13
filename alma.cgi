@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.7 2005/11/13 17:19:46 kent Exp $
+# $Id: alma.cgi,v 1.8 2005/11/13 21:25:44 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -166,7 +166,7 @@ def handle_vcal(form):
 	so.write('Content-Type: text/html\r\n')
     else:
 	so.write('Content-Type: text/x-vCalendar\r\n')
-	so.write('Content-disposition: attachment; filename=%d.ics\r\n' % year)
+	so.write('Content-disposition: attachment; filename=%d.vcs\r\n' % year)
 	
     so.write('\r\n')
 
@@ -182,7 +182,7 @@ def handle_vcal(form):
 	so.write('Begär sedan en ny förhandsvisning eller tryck direkt på knappen ')
 	so.write('för att ladda ner vCalendar-filen. ')
 
-	so.write('<FORM><UL>\n')
+	so.write('<FORM><TABLE>\n')
 
     # Val av vad som ska visas
     pdict = {}
@@ -213,11 +213,11 @@ def handle_vcal(form):
 	    else:
 		checked = ""
 		
-	    so.write('<LI><INPUT TYPE="CHECKBOX" NAME="vcal_%s" VALUE="yes" %s> %s\n' % (param, checked, text))
+	    so.write('<TR><TD><INPUT TYPE="CHECKBOX" NAME="vcal_%s" VALUE="yes" %s></TD><TD>%s</TD></TR>\n' % (param, checked, text))
 
     # Slut på huvud
     if preview:
-	so.write('</UL>\n')
+	so.write('</TABlE><P>\n')
 	so.write('<INPUT TYPE="HIDDEN" NAME="year" VALUE="%d">\n' % year)
 	so.write('<INPUT TYPE="HIDDEN" NAME="vcal_nodefaults" VALUE="yes">\n')
 	so.write('<INPUT TYPE="SUBMIT" NAME="vcal_preview" VALUE="Uppdatera förhandsvisning">\n')
