@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.6 2005/11/13 17:02:56 kent Exp $
+# $Id: alma.cgi,v 1.7 2005/11/13 17:19:46 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -90,16 +90,16 @@ def handle_cgi():
         so.write('<FORM METHOD=POST>')
 
         # Månad
-        so.write('<SELECT NAME="month">')
+        so.write('<SELECT NAME="month" onChange="this.form.submit();">')
         for m in range(1,13):
 	    so.write('<OPTION VALUE="%d" %s>%s</OPTION>' % (m, selected(m == month), alma.month_names[m]))
         so.write('</SELECT>\n')
 
         # År
-        so.write('<INPUT TYPE=INPUT NAME="year" VALUE="%d" SIZE="4">\n' % (year))
+        so.write('<INPUT TYPE=INPUT NAME="year" VALUE="%d" SIZE="4" onChange="this.form.submit();">\n' % (year))
 
         # Typ
-        so.write('<SELECT NAME="type">')
+        so.write('<SELECT NAME="type" onChange="this.form.submit();">')
         for (value, label) in (("vertical", "Vertikal"),
 			       ("tabular",  "Tabell")):
 	    so.write('<OPTION VALUE="%s" %s>%s</OPTION>' % (value, selected(calendar_type == value), label))
