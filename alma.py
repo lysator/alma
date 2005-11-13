@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.24 2005/11/13 14:30:12 kent Exp $
+# $Id: alma.py,v 1.25 2005/11/13 21:48:55 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -285,11 +285,11 @@ class DayCal:
 	empty = True
 
 	if self.flag_day:
-	    f.write('<IMG SRC="flag.gif">')
+	    f.write('<IMG SRC="flag.gif" ALT="flaggdag">')
 	    empty = False
 
 	if self.moonphase is not None:
-	    f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
+	    f.write('<IMG SRC="moonphase%d.gif" ALT="Månfas %s">' % (self.moonphase, self.moonphase_name()))
 	    empty = False
 
 	if empty:
@@ -332,9 +332,9 @@ class DayCal:
 	# Flaggdagar
 	f.write('<TR><TD CLASS="tdflag">')
 	if self.flag_day:
-	    f.write('<IMG SRC="flag.gif">')
+	    f.write('<IMG SRC="flag.gif" ALT="flaggdag">')
 	if self.moonphase is not None:
-	    f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
+	    f.write('<IMG SRC="moonphase%d.gif" ALT="Månfas %s">' % (self.moonphase, self.moonphase_name()))
 	f.write('</TD></TR>')
 
 	f.write('</TABLE>')

@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.9 2005/11/13 21:25:57 kent Exp $
+# $Id: alma.cgi,v 1.10 2005/11/13 21:48:53 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -38,7 +38,7 @@ def handle_cgi():
 
     # Nähä, då kan vi utgå från att det blir en vanlig webbsida...
     so = sys.stdout
-    so.write("Content-Type: text/html\r\n\r\n")
+    so.write("Content-Type: text/html; charset=iso-8859-1\r\n\r\n")
 
     # Ta reda på år och månad
     year_string = form.getfirst("year")
@@ -78,6 +78,7 @@ def handle_cgi():
 
     # Visa huvud
     head = '%s %s' % (mc.month_name, year)
+    so.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">')
     so.write('<HEAD>')
     so.write('<TITLE>%s</TITLE>' % head)
     so.write('<LINK TYPE="text/css" REL="stylesheet" HREF="alma.css">')
@@ -87,7 +88,7 @@ def handle_cgi():
 
     # Navigering
     if not print_format:
-        so.write('<FORM METHOD=POST>')
+        so.write('<FORM METHOD="POST" ACTION="">')
 
         # Månad
         so.write('<SELECT NAME="month" onChange="this.form.submit();">')
@@ -96,7 +97,7 @@ def handle_cgi():
         so.write('</SELECT>\n')
 
         # År
-        so.write('<INPUT TYPE=INPUT NAME="year" VALUE="%d" SIZE="4" onChange="this.form.submit();">\n' % (year))
+        so.write('<INPUT TYPE="TEXT" NAME="year" VALUE="%d" SIZE="4" onChange="this.form.submit();">\n' % (year))
 
         # Typ
         so.write('<SELECT NAME="type" onChange="this.form.submit();">')
@@ -106,7 +107,7 @@ def handle_cgi():
         so.write('</SELECT>\n')
 
         # Uppdatera
-        so.write('<INPUT TYPE=SUBMIT NAME="go" VALUE="Uppdatera">\n')
+        so.write('<INPUT TYPE="SUBMIT" NAME="go" VALUE="Uppdatera">\n')
 
         # Utskrift (= ingen navigering)
         so.write('<INPUT TYPE=SUBMIT NAME="print" VALUE="Visa för utskrift">\n')
@@ -163,7 +164,7 @@ def handle_vcal(form):
     preview = form.getfirst("vcal_preview")
 
     if preview:
-	so.write('Content-Type: text/html\r\n')
+	so.write('Content-Type: text/html; charset=iso-8859-1\r\n')
     else:
 	so.write('Content-Type: text/x-vCalendar\r\n')
 	so.write('Content-disposition: attachment; filename=%d.vcs\r\n' % year)
@@ -175,6 +176,7 @@ def handle_vcal(form):
 
     # Huvud med val av vad som ska visas
     if preview:
+	so.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">')
 	so.write('<HEAD><TITLE>%d</TITLE></HEAD>\n' % year)
 	so.write('<BODY><H1>vCalendar-fil för år %d</H1>\n' % year)
 
@@ -182,7 +184,7 @@ def handle_vcal(form):
 	so.write('Begär sedan en ny förhandsvisning eller tryck direkt på knappen ')
 	so.write('för att ladda ner vCalendar-filen. ')
 
-	so.write('<FORM><TABLE>\n')
+	so.write('<FORM METHOD="POST" ACTION=""><TABLE>\n')
 
     # Val av vad som ska visas
     pdict = {}
