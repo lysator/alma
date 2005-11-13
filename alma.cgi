@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.5 2005/11/13 14:35:11 kent Exp $
+# $Id: alma.cgi,v 1.6 2005/11/13 17:02:56 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -109,7 +109,7 @@ def handle_cgi():
         so.write('<INPUT TYPE=SUBMIT NAME="go" VALUE="Uppdatera">\n')
 
         # Utskrift (= ingen navigering)
-        so.write('<INPUT TYPE=SUBMIT NAME="print" VALUE="Utskriftsformat">\n')
+        so.write('<INPUT TYPE=SUBMIT NAME="print" VALUE="Visa för utskrift">\n')
 
         # vCalendar
         so.write('<INPUT TYPE=SUBMIT NAME="vcal_preview" VALUE="vCalendar">\n')
