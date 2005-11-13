@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.8 2005/11/13 21:25:44 kent Exp $
+# $Id: alma.cgi,v 1.9 2005/11/13 21:25:57 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -217,7 +217,7 @@ def handle_vcal(form):
 
     # Slut på huvud
     if preview:
-	so.write('</TABlE><P>\n')
+	so.write('</TABLE><P>\n')
 	so.write('<INPUT TYPE="HIDDEN" NAME="year" VALUE="%d">\n' % year)
 	so.write('<INPUT TYPE="HIDDEN" NAME="vcal_nodefaults" VALUE="yes">\n')
 	so.write('<INPUT TYPE="SUBMIT" NAME="vcal_preview" VALUE="Uppdatera förhandsvisning">\n')
