@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.4 2005/11/13 14:30:09 kent Exp $
+# $Id: alma.cgi,v 1.5 2005/11/13 14:35:11 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -153,19 +153,22 @@ Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
 def handle_vcal(form):
     so = sys.stdout
 
-    # Förhandsvisning eller generering?
-    preview = form.getfirst("vcal_preview")
-
-    if preview:
-	so.write("Content-Type: text/html\r\n\r\n")
-    else:
-	so.write("Content-Type: text/x-vCalendar\r\n\r\n") # FIXME
-
     # Ta reda på år
     year_string = form.getfirst("year")
     if year_string is None:
 	year_string = str(time.localtime().tm_year)
     year = guarded_int(year_string, min=1754)
+
+    # Förhandsvisning eller generering?
+    preview = form.getfirst("vcal_preview")
+
+    if preview:
+	so.write('Content-Type: text/html\r\n')
+    else:
+	so.write('Content-Type: text/x-vCalendar\r\n')
+	so.write('Content-disposition: attachment; filename=%d.ics\r\n' % year)
+	
+    so.write('\r\n')
 
     # Generera almanackan
     yc = alma.YearCal(year)
