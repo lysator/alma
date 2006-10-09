@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.10 2005/11/13 21:48:53 kent Exp $
+# $Id: alma.cgi,v 1.11 2006/10/09 17:44:09 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -197,6 +197,7 @@ def handle_vcal(form):
 				   ("names",          False, "Visa namnsdagsnamn"),
 				   ("moon",           False, "Visa månfaser"),
 				   ("flag",           False, "Visa flaggdagar"),
+				   ("end",            False, "Ta med DTEND-post 23:59:59"),
 				   ]:
 	# Ta hand om inskickat värde
 	if nodefaults:
@@ -238,6 +239,7 @@ def handle_vcal(form):
     for dc in yc.generate():
 	ymd = "%04d-%02d-%02d" % (dc.y, dc.m, dc.d)
 	dtstart = "%04d%02d%02dT000000" % (dc.y, dc.m, dc.d)
+	dtend   = "%04d%02d%02dT235959" % (dc.y, dc.m, dc.d)
 
 	show = False
 	parts = []
@@ -276,6 +278,8 @@ def handle_vcal(form):
 		so.write('BEGIN:VEVENT\n')
 		so.write('SUMMARY;CHARSET=ISO-8859-1:%s\n' % text)
 		so.write('DTSTART:%s\n' % dtstart)
+		if pdict["end"]:
+		    so.write('DTEND:%s\n' % dtend)
 		so.write('END:VEVENT\n')
 
 
