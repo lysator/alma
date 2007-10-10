@@ -1,3 +1,4 @@
+# -*- encoding: iso-8859-1 -*-
 # Date class for Python
 # Copyright 1997, 1998, 2000, 2004 Kent Engström.
 

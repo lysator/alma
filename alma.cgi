@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.11 2006/10/09 17:44:09 kent Exp $
+# $Id: alma.cgi,v 1.12 2007/10/10 19:35:19 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -40,11 +40,28 @@ def handle_cgi():
     so = sys.stdout
     so.write("Content-Type: text/html; charset=iso-8859-1\r\n\r\n")
 
-    # Ta reda på år och månad
+    # Kalendertyp
+    calendar_type = form.getfirst("type","vertical")
+    if calendar_type in ["vertical", "tabular"]:
+        month_based = True 
+        base_name = "månad"
+    elif calendar_type in ["week"]:
+        month_based = False
+        base_name = "vecka"
+    else:
+	so.write("<P>Fel kalendertyp!\n")
+	return
+
+    # Utskriftsformat?
+    print_format = form.getfirst("print") is not None
+
+    # Ta reda på år, månad och veckonummer
+    # (vi förväntar oss år + månad eller år + veckonummer)
     year_string = form.getfirst("year")
     month_string = form.getfirst("month")
+    week_string = form.getfirst("week")
 
-    # Om både år och månad saknas: låt det bli innevarande månad
+    # Om både år och månad saknas: låt dessa bli nuvarande värden
     if year_string is None and month_string is None:
 	year_string = str(time.localtime().tm_year)
 	month_string = str(time.localtime().tm_mon)
@@ -52,35 +69,60 @@ def handle_cgi():
     # Omvandla till heltal och kolla gränser
     year = guarded_int(year_string, min=1754)
     month = guarded_int(month_string, min=1, max=12)
+    week = guarded_int(week_string, min=1, max=53)
 
-    # Om användaren valt f.g. eller nästa månad: justera
-    if form.getfirst("prev") is not None:
-	year, month = alma.previous_month(year, month)
-    elif form.getfirst("next") is not None:
-	year, month = alma.next_month(year, month)
-
-    # Kalendertyp
-    calendar_type = form.getfirst("type","vertical")
-    if not calendar_type in ["vertical", "tabular"]:
-	calendar_type = None
-
-    # Utskriftsformat?
-    print_format = form.getfirst("print") is not None
-
-    # Ta hand om uppenbara fel
-    if year is None or month is None or calendar_type is None:
-	so.write("<P>Fel på anrop till almanacksprogrammet!\n")
+    # Vi kan inte vara utan år nu!
+    if year is None:
+	so.write("<P>År måste anges!\n")
 	return
 
+    # Vi måste ha minst en av månad och veckonummmer
+    if month is None and week is None:
+	so.write("<P>Månad eller vecka måste anges!\n")
+	return
+
+    # Vi kan inte ha månad och veckonummer samtidigt
+    if month is not None and week is not None:
+	so.write("<P>Månad och vecka får inte anges samtidigt!\n")
+	return
+
+    # Nu ska vi ta hand om ev övergångar mellan månadsbaserad
+    # och veckobaserat!
+    if month_based and month is None:
+        year, month = alma.yw_to_ym(year, week)
+    elif not month_based and week is None:
+        year, week = alma.ym_to_yw(year, month)
+
+    # Om användaren valt f.g. eller nästa: justera
+    if form.getfirst("prev") is not None:
+        if month_based:
+            year, month = alma.previous_month(year, month)
+        else:
+            year, week = alma.previous_week(year, week)
+    elif form.getfirst("next") is not None:
+        if month_based:
+            year, month = alma.next_month(year, month)
+        else:
+            year, week = alma.next_week(year, week)
+
+    # Ingen veckobaserad före 1973 så jag slipper klura på 
+    # layouten då :-)
+    if not month_based and year < 1973:
+	so.write("<P>Ingen veckokalender tidigare än 1973!\n")
+	return
+        
+
     # Generera almanackan
-    yc = alma.YearCal(year)
-    mc = alma.MonthCal(yc, month)
+    if month_based:
+        cal = alma.YearCal(year).month_cal(month)
+    else:
+        cal = alma.WeekCal(year, week)
 
     # Visa huvud
-    head = '%s %s' % (mc.month_name, year)
+    title = cal.title()
     so.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">')
     so.write('<HEAD>')
-    so.write('<TITLE>%s</TITLE>' % head)
+    so.write('<TITLE>%s</TITLE>' % title)
     so.write('<LINK TYPE="text/css" REL="stylesheet" HREF="alma.css">')
     so.write('</HEAD>\n')
     
@@ -90,11 +132,15 @@ def handle_cgi():
     if not print_format:
         so.write('<FORM METHOD="POST" ACTION="">')
 
-        # Månad
-        so.write('<SELECT NAME="month" onChange="this.form.submit();">')
-        for m in range(1,13):
-	    so.write('<OPTION VALUE="%d" %s>%s</OPTION>' % (m, selected(m == month), alma.month_names[m]))
-        so.write('</SELECT>\n')
+        if month_based:
+            # Månad
+            so.write('<SELECT NAME="month" onChange="this.form.submit();">')
+            for m in range(1,13):
+                so.write('<OPTION VALUE="%d" %s>%s</OPTION>' % (m, selected(m == month), alma.month_names[m]))
+            so.write('</SELECT>\n')
+        else:
+            # Vecka
+            so.write('Vecka <INPUT TYPE="TEXT" NAME="week" VALUE="%d" SIZE="2" onChange="this.form.submit();">\n' % (week))
 
         # År
         so.write('<INPUT TYPE="TEXT" NAME="year" VALUE="%d" SIZE="4" onChange="this.form.submit();">\n' % (year))
@@ -102,7 +148,8 @@ def handle_cgi():
         # Typ
         so.write('<SELECT NAME="type" onChange="this.form.submit();">')
         for (value, label) in (("vertical", "Vertikal"),
-			       ("tabular",  "Tabell")):
+			       ("tabular",  "Tabell"),
+                               ("week",  "Vecka")):
 	    so.write('<OPTION VALUE="%s" %s>%s</OPTION>' % (value, selected(calendar_type == value), label))
         so.write('</SELECT>\n')
 
@@ -117,26 +164,26 @@ def handle_cgi():
 
         so.write(" ~ ")
 
-        # Snabblänkar till föregående och nästa månad
-        py, pm = alma.previous_month(year, month)
-        ny, nm = alma.next_month(year, month)
-        so.write('<INPUT TYPE=SUBMIT NAME="prev" VALUE="Föregående månad">\n')
-        so.write('<INPUT TYPE=SUBMIT NAME="next" VALUE="Nästa månad">\n')
-
+        # Snabblänkar till föregående och nästa {månad, vecka}
+        so.write('<INPUT TYPE=SUBMIT NAME="prev" VALUE="Föregående %s">\n' % base_name)
+        so.write('<INPUT TYPE=SUBMIT NAME="next" VALUE="Nästa %s">\n' % base_name)
 
         so.write('</FORM>')
     
     # Rubrik
-    if calendar_type == "vertical":
-	so.write('<H1>%s</H1>\n' % head)
+    if calendar_type == "tabular":
+	so.write('<H1 CLASS="centered">%s</H1>\n' % title)
     else:
-	so.write('<H1 CLASS="centered">%s</H1>\n' % head)
+        # "vertical" eller "week"
+	so.write('<H1>%s</H1>\n' % title)
 
     # Visa almanackan
     if calendar_type == "vertical":
-	mc.html_vertical(sys.stdout)
+	cal.html_vertical(sys.stdout)
     elif calendar_type == "tabular":
-	mc.html_tabular(sys.stdout)
+	cal.html_tabular(sys.stdout)
+    elif calendar_type == "week":
+        cal.html_vertical(sys.stdout)
 
     # Disclaimer
     if not print_format:
