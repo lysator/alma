@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.12 2007/10/10 19:35:19 kent Exp $
+# $Id: alma.cgi,v 1.13 2007/10/11 17:43:25 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -178,12 +178,13 @@ def handle_cgi():
 	so.write('<H1>%s</H1>\n' % title)
 
     # Visa almanackan
-    if calendar_type == "vertical":
-	cal.html_vertical(sys.stdout)
-    elif calendar_type == "tabular":
-	cal.html_tabular(sys.stdout)
-    elif calendar_type == "week":
-        cal.html_vertical(sys.stdout)
+    if calendar_type in ["vertical", "week"]:
+        method = cal.html_vertical
+    elif calendar_type in ["tabular"]:
+        method = cal.html_tabular
+    else:
+        method = None
+    method(sys.stdout, for_printing = print_format)
 
     # Disclaimer
     if not print_format:

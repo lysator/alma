@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.28 2007/10/10 19:35:19 kent Exp $
+# $Id: alma.py,v 1.29 2007/10/11 17:43:25 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -212,8 +212,9 @@ class DayName:
 
 class DayCal:
     """Class to represent a single day."""
-    def __init__(self, jd):
+    def __init__(self, jd, mark_as_today = False):
 	self.jd = jd           # jddate
+        self.is_today = mark_as_today
 
 	(self.y,
 	 self.m,
@@ -281,25 +282,32 @@ class DayCal:
 		    redblack.append('<SPAN CLASS="vname %s">%s</SPAN>' % (colour, dayname.name))
 	return sep.join(redblack)
 
-    def html_vertical(self, f, in_week_cal = False):
+    def html_vertical(self, f, in_week_cal = False, for_printing = False):
 	if self.red:
 	    colour = "red"
 	else:
 	    colour = "black"
 
-	f.write('<TR CLASS="v">')
+        if self.is_today and not for_printing:
+            f.write('<TR CLASS="v today">')
+        else:
+            f.write('<TR CLASS="v">')
 
 	# Veckan börjar på måndag fr o m 1973, innan på måndag
 	# Dessutom "börjar" ju en vecka i början av varje månad.
 	if self.d == 1 or self.wpos == 1:
             if in_week_cal:
                 # I en veckokalender är det ju månaden som är intressant
-                wtext = month_names[self.m][:3]
+                wtext = '<A CLASS="hidelink" HREF="?year=%d&month=%d&type=vertical">%s</A>' % (self.y,
+                                                                                               self.m,
+                                                                                               month_names[self.m][:3])
             else:
                 # I månadskalender vill vi ha veckonumret
                 if self.y >= 1973:
                     # Veckonummer relevant fr o m 1973
-                    wtext = str(self.week)
+                    wtext = '<A CLASS="hidelink" HREF="?year=%d&week=%d&type=week">%s</A>' % (self.wyear,
+                                                                                              self.week,
+                                                                                              self.week)
                 else:
                     wtext = "&nbsp;"
 	    f.write('<TD CLASS="vweek_present leftmost">%s</TD>' % wtext)
@@ -348,13 +356,16 @@ class DayCal:
 
 	f.write('</TR>\n')
 
-    def html_tabular(self, f):
+    def html_tabular(self, f, for_printing = False):
 	if self.red:
 	    colour = "red"
 	else:
 	    colour = "black"
 	
-	f.write('<TD CLASS="tday">')
+        if self.is_today and not for_printing:
+            f.write('<TD CLASS="tday today">')
+        else:
+            f.write('<TD CLASS="tday">')
 	f.write('<TABLE>')
 
 	# Dagens nummer
@@ -440,9 +451,10 @@ class YearCal:
 
 	# Skapa alla dagar för året
 	self.days = []
+        jd_today = jddate.FromToday()
 	jd = self.jd_jan1
 	while jd <= self.jd_dec31:
-	    self.days.append(DayCal(jd))
+	    self.days.append(DayCal(jd, mark_as_today = (jd==jd_today)))
 	    jd = jd + 1
 
 	# Skottår?
@@ -892,15 +904,15 @@ class MonthCal:
     def title(self):
         return '%s %s' % (self.month_name, self.yc.year)
 
-    def html_vertical(self, f):
+    def html_vertical(self, f, for_printing = False):
 	# Tabellen med dagarna
 	f.write('<TABLE CLASS="vtable">')
 	for dc in self.generate():
-	    dc.html_vertical(f)
+	    dc.html_vertical(f, for_printing = for_printing)
 	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
 	f.write('</TABLE>')
 
-    def html_tabular(self, f):
+    def html_tabular(self, f, for_printing = False):
 	# Tabellen
 	f.write('<TABLE CLASS="ttable">')
 
@@ -921,7 +933,9 @@ class MonthCal:
 		f.write('<TR CLASS="tw">')
 		# Veckonummer relevant fr o m 1973
 		if dc.y >= 1973:
-		    wtext = str(dc.week)
+		    wtext = '<A CLASS="hidelink" HREF="?year=%d&week=%d&type=week">%d</A>' % (dc.wyear,
+                                                                                              dc.week,
+                                                                                              dc.week)
 		else:
 		    wtext = "&nbsp;"
 		f.write('<TD CLASS="twno">%s</TD>' %wtext)
@@ -932,7 +946,7 @@ class MonthCal:
 		    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
 
 	    # Själva dagen
-	    dc.html_tabular(f)
+	    dc.html_tabular(f, for_printing = for_printing)
 
 	    # Fyll ut med tomdagar om det behövs på slutet
 	    if dc.d == self.num_days:
@@ -963,13 +977,13 @@ class WeekCal:
             self.days.append(self.year_cals[y].get_md(m, d))
 
     def title(self):
-        return 'Vecka %d %s' % (self.week_no, self.week_year)
+        return 'Vecka %d, %s' % (self.week_no, self.week_year)
 
-    def html_vertical(self, f):
+    def html_vertical(self, f, for_printing = False):
 	# Tabellen med dagarna
 	f.write('<TABLE CLASS="vtable">')
 	for dc in self.days:
-	    dc.html_vertical(f, in_week_cal = True)
+	    dc.html_vertical(f, in_week_cal = True, for_printing = for_printing)
 	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="6">&nbsp;</TD></TR>')
 	f.write('</TABLE>')
 
