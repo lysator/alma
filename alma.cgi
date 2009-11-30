@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.cgi,v 1.13 2007/10/11 17:43:25 kent Exp $
+# $Id: alma.cgi,v 1.14 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -42,7 +42,7 @@ def handle_cgi():
 
     # Kalendertyp
     calendar_type = form.getfirst("type","vertical")
-    if calendar_type in ["vertical", "tabular"]:
+    if calendar_type in ["vertical", "tabular", "tabular_high"]:
         month_based = True 
         base_name = "månad"
     elif calendar_type in ["week"]:
@@ -149,6 +149,7 @@ def handle_cgi():
         so.write('<SELECT NAME="type" onChange="this.form.submit();">')
         for (value, label) in (("vertical", "Vertikal"),
 			       ("tabular",  "Tabell"),
+			       ("tabular_high",  "Tabell (hög)"),
                                ("week",  "Vecka")):
 	    so.write('<OPTION VALUE="%s" %s>%s</OPTION>' % (value, selected(calendar_type == value), label))
         so.write('</SELECT>\n')
@@ -171,7 +172,7 @@ def handle_cgi():
         so.write('</FORM>')
     
     # Rubrik
-    if calendar_type == "tabular":
+    if calendar_type.startswith("tabular"):
 	so.write('<H1 CLASS="centered">%s</H1>\n' % title)
     else:
         # "vertical" eller "week"
@@ -182,6 +183,8 @@ def handle_cgi():
         method = cal.html_vertical
     elif calendar_type in ["tabular"]:
         method = cal.html_tabular
+    elif calendar_type in ["tabular_high"]:
+        method = cal.html_tabular_high
     else:
         method = None
     method(sys.stdout, for_printing = print_format)

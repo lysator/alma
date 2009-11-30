@@ -1,6 +1,6 @@
 #!/opt/python/bin/python
 # -*- coding: iso-8859-1 -*-
-# $Id: alma.py,v 1.29 2007/10/11 17:43:25 kent Exp $
+# $Id: alma.py,v 1.30 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
@@ -356,7 +356,7 @@ class DayCal:
 
 	f.write('</TR>\n')
 
-    def html_tabular(self, f, for_printing = False):
+    def html_tabular(self, f, for_printing = False, high = False):
 	if self.red:
 	    colour = "red"
 	else:
@@ -387,6 +387,10 @@ class DayCal:
 	if self.moonphase is not None:
 	    f.write('<IMG SRC="moonphase%d.gif" ALT="%s" TITLE="%s">' % (self.moonphase, self.moonphase_name(), self.moonphase_name()))
 	f.write('</TD></TR>')
+
+        if high:
+            f.write('<TR><TD CLASS="tdspacer">&nbsp;</TD></TR>')
+            
 
 	f.write('</TABLE>')
 	f.write('</TD>')
@@ -912,7 +916,10 @@ class MonthCal:
 	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
 	f.write('</TABLE>')
 
-    def html_tabular(self, f, for_printing = False):
+    def html_tabular_high(self, f, for_printing = False):
+        self.html_tabular(f, for_printing = for_printing, high = True)
+
+    def html_tabular(self, f, for_printing = False, high = False):
 	# Tabellen
 	f.write('<TABLE CLASS="ttable">')
 
@@ -946,7 +953,7 @@ class MonthCal:
 		    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
 
 	    # Själva dagen
-	    dc.html_tabular(f, for_printing = for_printing)
+	    dc.html_tabular(f, for_printing = for_printing, high = high)
 
 	    # Fyll ut med tomdagar om det behövs på slutet
 	    if dc.d == self.num_days:
