@@ -479,8 +479,8 @@ class YearCal:
 	    self.place_name_day_names("namnsdagar-2001.txt")
 	elif year >= 1993:
 	    self.place_name_day_names("namnsdagar-1993.txt")
-	#elif year >= 1986:
-	#    self.place_name_day_names("namnsdagar-1986.txt")
+	elif year >= 1986:
+	    self.place_name_day_names("namnsdagar-1986.txt")
 	elif year >= 1901:
 	    self.place_name_day_names("namnsdagar-1901.txt",
 				      [(1905, 11,  4, ["Sverker"]),
