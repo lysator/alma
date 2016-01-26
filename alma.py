@@ -53,7 +53,19 @@ def easter_sunday(year):
     m = (a+11*h+22*l) / 451
     n, p = divmod(h+l-7*m+114, 31)
 
-    return JD(year, n, p+1)
+    # Formeln ovan är gjord för den gregorianska kalendern.
+    # Konverteringar görs för att omvandla ifall det är den
+    # svenska kalendern eller julianska kalendern:
+
+    # Plockar ut JD utifrån vårt gregorianska datum:
+    jd = jddate.ymd_to_jd_gregorian(year,n,p+1)
+
+    # Plockar fram datum för den kalender som råkar gälla vid jd:
+    # year ändras inte, då påsksöndagen aldrig är nära nyår:
+    
+    (year,month,day) = jddate.jd_to_ymd(jd)
+    
+    return JD(year, month, day)
 
 # Beräkna JD då en viss månfas inträffar i en viss cykel
 # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
@@ -462,9 +474,9 @@ class YearCal:
 	    jd = jd + 1
 
 	# Skottår?
-	if len(self.days) == 365:
+	if len(self.days) == 365 or len(self.days) == 354:
 	    self.leap_year = False
-	elif len(self.days) == 366:
+	elif len(self.days) == 366 or len(self.days) == 367:
 	    self.leap_year = True
 	else:
 	    assert ValueError, "bad number of days in a year"
@@ -616,6 +628,8 @@ class YearCal:
 		self.add_info_md(2, 29, BLACK, False, "Skottdagen")
 	    else:
 		self.add_info_md(2, 24, BLACK, False, "Skottdagen")
+            if self.year == 1712:
+                self.add_info_md(2, 30, BLACK, False, "Tillökad")
 
 	# Påsksöndagen ligger till grund för de flesta kyrkliga helgdagarna
 	# under året, så den behöver vi räkna ut redan här
@@ -901,6 +915,14 @@ class MonthCal:
 			 31, 31, 30, 31, 30, 31][self.month]
 	if self.yc.leap_year and self.month == 2:
 	     self.num_days = 29
+             
+        if self.yc.year == 1753 and self.month == 2:
+             self.num_days = 17
+
+        if self.yc.year == 1712 and self.month == 2:
+             self.num_days = 30
+
+                 
 
     def generate(self):
 	for d in range(1,self.num_days+1):
