@@ -8,6 +8,47 @@ import time
 import string
 import re
 
+
+# Convert JD -> YMD
+
+def jd_to_ymd(jd):
+    if jd >= 2361390: return jd_to_ymd_gregorian(jd)
+    elif jd>2342041 and jd<2346426: return jd_to_ymd_swedish(jd)
+    else: return jd_to_ymd_julian(jd)
+
+# Algorithm from:
+# https://en.wikipedia.org/wiki/Julian_day#Calculation
+def jd_to_ymd_julian(jd):
+    y=4716
+    j=1401
+    m=2
+    n=12
+    r=4
+    p=1461
+    v=3
+    u=5
+    s=153
+    w=2
+    B=274277
+    C=-38
+    # for gregorian, one can use:
+    # f=jd + j + (((4*jd + B) // 146097) * 3) // 4 + C
+    f = jd + j
+    e = r*f+v
+    g=e%p//r
+    h=u*g+w
+    D=(h%s)//u+1
+    M=(h//s+m)%n+1
+    Y=(e//p)-y+(n+m-M)//n
+    
+    return(Y,M,D)
+
+def jd_to_ymd_swedish(jd):
+    if jd == 2346425:
+      ymd=(1712,02,30)
+    else:
+      ymd = jd_to_ymd_julian(jd+1)
+    return ymd
 #
 # AUXILIARY ROUTINES
 #
@@ -15,9 +56,7 @@ import re
 # Meeus, Jean, Astronomical Formulae for Calculators, 2 ed
 #
 
-# Convert JD -> YMD
-
-def jd_to_ymd(jd):
+def jd_to_ymd_gregorian(jd):
     alpha = int((100*jd - 186721625L)/3652425L)
     a = jd + 1 + alpha - alpha/4
     b = a + 1524
@@ -39,6 +78,25 @@ def jd_to_ymd(jd):
 # Convert YMD -> JD 
 
 def ymd_to_jd(y,m,d):
+    if y>1753 or (y==1753 and m>2) or (y==1753 and m==2 and d>17):
+        return ymd_to_jd_gregorian(y,m,d)
+    elif (y>1700 or (y==1700 and m>2)) and (y<1712 or (y==1712 and m<3)):
+        return ymd_to_jd_swedish(y,m,d)
+    else:
+        return ymd_to_jd_julian(y,m,d)
+
+# Algorithm from:
+# https://en.wikipedia.org/wiki/Julian_day#Calculation
+def ymd_to_jd_julian(year,month,day):
+    a=(14-month)//12
+    y=year+4800-a
+    m=month+12*a-3
+    return day + (153*m+2)//5+365*y+y//4-32083
+
+def ymd_to_jd_swedish(year,month,day):
+    return ymd_to_jd_julian(year,month,day)-1
+
+def ymd_to_jd_gregorian(y,m,d):
     if m<3: y=y-1; m=m+12
     a = y/100;
     return 1720995 + d + 2 - a + (a/4) + (36525*y)/100 + (306001*(m+1))/10000;

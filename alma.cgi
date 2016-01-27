@@ -67,7 +67,7 @@ def handle_cgi():
 	month_string = str(time.localtime().tm_mon)
 
     # Omvandla till heltal och kolla gränser
-    year = guarded_int(year_string, min=1754)
+    year = guarded_int(year_string, min=1559)
     month = guarded_int(month_string, min=1, max=12)
     week = guarded_int(week_string, min=1, max=53)
 
@@ -197,7 +197,7 @@ emellertid inte finnas några större felaktigheter.
 Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
 <A HREF="mailto:kent@lysator.liu.se">kent@lysator.liu.se</A>.
 </DIV>''')
-	
+
     # Slut
     so.write('</BODY>')
 
@@ -209,7 +209,7 @@ def handle_vcal(form):
     year_string = form.getfirst("year")
     if year_string is None:
 	year_string = str(time.localtime().tm_year)
-    year = guarded_int(year_string, min=1754)
+    year = guarded_int(year_string, min=1559)
 
     # Förhandsvisning eller generering?
     preview = form.getfirst("vcal_preview")

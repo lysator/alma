@@ -28,6 +28,7 @@
  1 30 Gunhild,Gunilla,Gunnel
  1 31 Ivar,Iva,Ivan
  2  1 Max,Marielle,Marietta
+ 2  2 Kyndelsmässodagen
  2  3 Disa,Dick,Didrik
  2  4 Ansgar,Anneli,Ansa
  2  5 Agata,Aili,Alvi
@@ -78,6 +79,7 @@
  3 22 Viktor,Vimar,Våge
  3 23 Gerda,Anngerd,Gerd
  3 24 Gabriel,Gabrielle,Gunni
+ 3 25 Marie Bebådelsedag 
  3 26 Emanuel,Emanuella,Immanuel
  3 27 Rudolf,Rode,Rudi
  3 28 Malkolm,Elma,Elmer
@@ -168,6 +170,7 @@
  6 21 Alf,Alvin,Alvina
  6 22 Paulina,Pamela,Paulette
  6 23 Adolf,Adolfina,Ally
+ 6 24 Johannes Döparens dag
  6 25 David,Davida,Daisy
  6 26 Rakel,Rafael,Ralf
  6 27 Selma,Selim,Selmer
@@ -297,6 +300,7 @@
 10 29 Viola,Vivi,Vivianne
 10 30 Elsa,Elsie,Ilse
 10 31 Edit,Edgar,Edor
+11  1 Allhelgonadagen
 11  2 Tobias,Tova,Tove
 11  3 Hubert,Raymond,Roy
 11  4 Sverker,Nora,Nore
@@ -352,6 +356,7 @@
 12 24 Eva,Evita,Evy
 12 26 Stefan,Staffan,Stefanie
 12 27 Johannes,Hannes,Johan
+12 28 Menlösa barns dag 
 12 29 Abel,Abbe
 12 30 Set,Viva,Vivan
 12 31 Sylvester,Sylve,Sylvi
