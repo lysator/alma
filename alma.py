@@ -1,4 +1,4 @@
-#!/opt/python/bin/python
+#!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 # $Id: alma.py,v 1.30 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
