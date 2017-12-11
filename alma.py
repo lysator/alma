@@ -486,7 +486,11 @@ class YearCal:
 
 	# Namnsdagar
 	if year >= 2011:
-	    self.place_name_day_names("namnsdagar-2011.txt")
+		self.place_name_day_names("namnsdagar-2011.txt",
+				      [(2015,  7, 23, ["Emma","Emmy"]),
+				       (2015,  7, 26, ["Jesper","Jasmin"]),
+				       (2018,  3,  8, ["Siv","Saga"]),
+				       (2018,  9, 14, ["Ida","Ronja"])])
 	elif year >= 2001:
 	    self.place_name_day_names("namnsdagar-2001.txt")
 	elif year >= 1993:
