@@ -569,6 +569,7 @@ class YearCal:
 	    (1983, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270
 	    (None, None, 11,  6, BLACK, True,  None), # Gustav Adolfsdagen
 	    (None, None, 12, 10, BLACK, True,  "Nobeldagen"),
+	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
 
 	    # Flaggdagar för regerande kungahuset
 	    
