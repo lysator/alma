@@ -570,6 +570,7 @@ class YearCal:
 	    (None, None, 11,  6, BLACK, True,  None), # Gustav Adolfsdagen
 	    (None, None, 12, 10, BLACK, True,  "Nobeldagen"),
 	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
+	    (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
 
 	    # Flaggdagar för regerande kungahuset
 	    
