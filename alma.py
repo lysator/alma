@@ -1,4 +1,4 @@
-#!/opt/python/bin/python
+#!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 # $Id: alma.py,v 1.30 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
@@ -486,7 +486,11 @@ class YearCal:
 
 	# Namnsdagar
 	if year >= 2011:
-	    self.place_name_day_names("namnsdagar-2011.txt")
+		self.place_name_day_names("namnsdagar-2011.txt",
+				      [(2015,  7, 23, ["Emma","Emmy"]),
+				       (2015,  7, 26, ["Jesper","Jasmin"]),
+				       (2018,  3,  8, ["Siv","Saga"]),
+				       (2018,  9, 14, ["Ida","Ronja"])])
 	elif year >= 2001:
 	    self.place_name_day_names("namnsdagar-2001.txt")
 	elif year >= 1993:
@@ -565,6 +569,8 @@ class YearCal:
 	    (1983, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270
 	    (None, None, 11,  6, BLACK, True,  None), # Gustav Adolfsdagen
 	    (None, None, 12, 10, BLACK, True,  "Nobeldagen"),
+	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
+	    (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
 
 	    # Flaggdagar för regerande kungahuset
 	    

@@ -1,4 +1,4 @@
-#!/opt/python/bin/python
+#!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 # $Id: day.cgi,v 1.1 2004/12/14 19:40:03 kent Exp $
 # Svenska almanackan

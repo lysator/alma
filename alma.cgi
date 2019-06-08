@@ -1,4 +1,4 @@
-#!/opt/python/bin/python
+#!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 # $Id: alma.cgi,v 1.14 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
