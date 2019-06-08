@@ -543,10 +543,12 @@ class YearCal:
 	for (from_year, to_year, m, d, dayclass, flag, name) in \
 		[
 	    # Fasta helgdagar
-	    (None, None,  1,  1, MRED , True,  "Nyårsdagen"),
+	    (None, 1938,  1,  1, MRED , False,  "Nyårsdagen"),
+	    (1939, None,  1,  1, MRED , True,  "Nyårsdagen"),
 	    (None, None,  1,  6, MRED,  False, "Trettondedag jul"),
-	    (None, None,  5,  1, MRED,  True,  "Första maj"),
-	    (None, None, 12, 25, MRED,  True,  "Juldagen"),
+	    (1939, None,  5,  1, MRED,  True,  "Första maj"), # 1939 blev 1 maj allmän helgdag.
+	    (None, 1938, 12, 25, MRED,  False,  "Juldagen"),
+	    (1939, None, 12, 25, MRED,  True,  "Juldagen"),
 	    (None, None, 12, 26, MRED,  False, "Annandag jul"),
 	    
 	    # Fasta helgdagsaftnar
@@ -561,14 +563,14 @@ class YearCal:
 	    (1993, 2000, 11,  1, BLACK, False, "Allhelgonadagen"),    # Saknas som namnsdag dessa år
 	    
 	    # Svenska flaggans dag och nationaldagen
-	    (1916, 1982,  6,  6, MBLACK, True,  "Svenska flaggans dag"),
-	    (1983, 2004,  6,  6, MBLACK, True,  "Sveriges nationaldag"),
-	    (2005, None,  6,  6, MRED,   True,   "Sveriges nationaldag"),
+	    (1939, 1981,  6,  6, MBLACK, True,  "Svenska flaggans dag"),
+	    (1982, 2004,  6,  6, MBLACK, True,  "Sveriges nationaldag"),
+	    (2005, None,  6,  6, MRED,   True,  "Sveriges nationaldag"),
 	    
 	    # Andra flaggdagar
-	    (1983, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270
-	    (None, None, 11,  6, BLACK, True,  None), # Gustav Adolfsdagen
-	    (None, None, 12, 10, BLACK, True,  "Nobeldagen"),
+	    (1982, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270 den 29 april 1982.
+            (1939, None, 11,  6, BLACK, True,  "Gustav Adolfsdagen"), # Gustav Adolfsdagen
+	    (1939, None, 12, 10, BLACK, True,  "Nobeldagen"),
 	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
 	    (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
 
@@ -578,55 +580,63 @@ class YearCal:
 	    # född 1977-07-14
 	    # FIXME: Hon lär inte ha varit kronprinsessa innan successionsordningen
 	    # ändrades, väl? SFS 1979:935
-	    (1980, None,  7, 14, BLACK, True,  None), # födelsedag
-	    (1980, None,  3, 12, BLACK, True,  None), # namnsdag "Viktoria"
+	    (1980, None,  7, 14, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
+	    (1980, None,  3, 12, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Viktoria"
 
 	    # Silvia Renate Sommerlath
 	    # född 1943-12-23, drottning 1976-06-19
-	    (1976, None, 12, 23, BLACK, True,  None), # födelsedag
-	    (1976, None,  8,  8, BLACK, True,  None), # namnsdag "Silvia"
+	    (1976, None, 12, 23, BLACK, True,  "Drottningens födelsedag"), # födelsedag
+	    (1976, None,  8,  8, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Silvia"
 	    
 	    # Carl XVI Gustaf Folke Hubertus
 	    # född 1946-04-30, kronprins 1950-10-29, kung 1973-09-15
-	    (1951, None,  4, 30, BLACK, True,  None), # födelsedag
-	    (1951, None,  1, 28, BLACK, True,  None), # namnsdag "Karl"
+	    (1951, 1972,  4, 30, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+	    (1973, None,  4, 30, BLACK, True,  "Konungens födelsedag"), # födelsedag
+	    (1951, 1972,  1, 28, BLACK, True,  "Kronprinsens namnsdag"), # namnsdag "Karl"
+	    (1973, None,  1, 28, BLACK, True,  "Konungens namnsdag"), # namnsdag "Karl"
 	    
 	    # Louise Alexandra Maria Irène
 	    # född 1889-07-13, gift 1923-11-03, drottning 1950-10-29, död 1965-03-07
 	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
 	    # det som start. Flaggdag som kronprinsessa innan hon blev drottning.
-	    (1939, 1964,  7, 13, BLACK, True,  None), # födelsedag
-	    (1939, 1964,  8, 25, BLACK, True,  None), # namnsdag "Lovisa"
+	    (1939, 1950,  7, 13, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
+            (1951, 1964,  7, 13, BLACK, True,  "Drottningens födelsedag"), # födelsedag
+	    (1939, 1950,  8, 25, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Lovisa"
+            (1951, 1964,  8, 25, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Lovisa"
 
 	    # Oscar Fredrik Wilhelm Olaf Gustav VI Adolf
 	    # född 1882-11-11, kung 1950-10-29, död 1973-09-15
 	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
 	    # det som start. Flaggdag som kronprins innan han blev kung.
-	    (1939, 1972, 11, 11, BLACK, True,  None), # födelsedag
-	    (1939, 1973,  6,  6, BLACK, True,  None), # namnsdag "Gustav"
+	    (1939, 1949, 11, 11, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+            (1950, 1972, 11, 11, BLACK, True,  "Konungens födelsedag"), # födelsedag
+	    (1939, 1950,  6,  6, BLACK, True,  "Konungens och kronprinsens namnsdag"), # namnsdag "Gustav". Ser styltigt upp att ha dem separat.
+	    (1951, 1973,  6,  6, BLACK, True,  "Konungens namnsdag"), # namnsdag "Gustav"
 	    
 	    # Oscar Gustaf V Adolf
 	    # född 1858-06-16, kung 1907-12-08, död 1950-10-29
 	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
 	    # det som start. Flaggdag som kronprins innan han blev kung?
-	    (1939, 1950,  6, 16, BLACK, True,  None), # födelsedag
-	    (1939, 1950,  6,  6, BLACK, True,  None), # namnsdag "Gustav"
-	    
+	    (1939, 1950,  6, 16, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+
 	     ]:
 	    if from_year is not None and self.year < from_year: continue
 	    if to_year is not None and self.year > to_year: continue
 	    self.add_info_md(m, d, dayclass, flag, name)
 
-	# Dag för val till riksdagen är flaggdag (3 söndagen i september)
-	# från och med år 1985.
-	# Vart tredje år -1994
-	if 1985 <= self.year <= 1991 and self.year % 3 == 2:
+	# Dag för val till riksdagen är flaggdag från 29 april 1982.
+        # Tredje söndagen i september vart tredje år från och med 1982 till 1994.
+	if 1982 <= self.year <= 1991 and self.year % 3 == 2:
 	    vd = first_sunday(self.year, 9, 15)
-	    self.add_info_jd(vd, BLACK, True, None)
-	# Vart fjärde år 1994-
-	elif 1994 <= self.year and self.year % 4 == 2:
+	    self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
+	# Tredje söndagen i september, vart fjärde år 1994-2013
+	elif 1994 <= self.year < 2013 and self.year % 4 == 2:
 	    vd = first_sunday(self.year, 9, 15)
-	    self.add_info_jd(vd, BLACK, True, None)
+	    self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
+	# Andra söndagen i september, vart fjärde år 2013-
+	elif 2013 <= self.year and self.year % 4 == 2:
+	    vd = first_sunday(self.year, 9, 8)
+	    self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
 
 	# Skottdagen inföll den 24/2 -1996, infaller den 29/2 2000-
 	if self.leap_year:
