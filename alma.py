@@ -549,7 +549,8 @@ class YearCal:
 	    (1939, None,  5,  1, MRED,  True,  "Första maj"), # 1939 blev 1 maj allmän helgdag.
 	    (None, 1938, 12, 25, MRED,  False,  "Juldagen"),
 	    (1939, None, 12, 25, MRED,  True,  "Juldagen"),
-	    (None, None, 12, 26, MRED,  False, "Annandag jul"),
+	    (None, 1972, 12, 26, MRED,  False, "Den helige Stefanus dag eller Annandag jul"), # Lite godtyckligt valt, men verkar ha blivit allt mindre vanligt senare decennier. Mer forskning behövs.
+	    (1973, None, 12, 26, MRED,  False, "Annandag jul"),
 	    
 	    # Fasta helgdagsaftnar
 	    (None, None,  1,  5, MBLACK, False, "Trettondedagsafton"),
