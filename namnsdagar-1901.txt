@@ -110,8 +110,8 @@
  4 23 Georg
  4 24 Vega
  4 25 Markus
- 4 26 Teresia
- 4 27 Engelbrekt
+ 4 26 Engelbrekt
+ 4 27 Teresia
  4 28 Ture
  4 29 Tyko
  4 30 Mariana

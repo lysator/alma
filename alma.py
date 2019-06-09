@@ -501,6 +501,8 @@ class YearCal:
 	    self.place_name_day_names("namnsdagar-1901.txt",
 				      [(1905, 11,  4, ["Sverker"]),
 				       (1907, 11, 27, ["Astrid"]),
+                                       (1918,  4, 26, ["Teresia"]), # Teresia och Engelbrekt byter plats med varandra.
+                                       (1918,  4, 27, ["Engelbrekt"]),
 				       (1953,  3, 25 ,["Marie Bebådelsedag"]),
 				       (1953,  6, 24 ,["Johannes Döparens dag"]),
 				       (1934, 10, 20, ["Sibylla"])])
