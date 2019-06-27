@@ -19,6 +19,12 @@ month_names =   [None,
 		 "April", "Maj", "Juni",
 		 "Juli", "Augusti", "September",
 		 "Oktober", "November", "December"]
+# Fram till ungefär 1872 användes de latinska formerna i almanackan, ihop med de gamla hedniska månadsnamnen.
+month_old_names =   [None,
+		 "Januarius &ndash; Thors-månad", "Februarius &ndash; Göjemånad", "Martius &ndash; Wårmånad",
+		 "Aprilis &ndash; Gräsmånad", "Majus &ndash; Blomstermånad", "Junius &ndash; Sommarmånad",
+		 "Julius &ndash; Hömånad", "Augustus &ndash; Skördemånad", "September &ndash; Höstmånad",
+		 "October &ndash; Slagtmånad", "November &ndash; Wintermånad", "December &ndash; Julmånad"]
 
 # Veckodagar (index 1..7)
 wday_names = [None, "Måndag", "Tisdag", "Onsdag",
@@ -59,6 +65,9 @@ def easter_sunday(year):
 
     # Plockar ut JD utifrån vårt gregorianska datum:
     jd = jddate.ymd_to_jd_gregorian(year,n,p+1)
+
+    # Korrigerar för upptäckta fel mot verkliga kalendrar:
+    if year==1805: jd += 7
 
     # Plockar fram datum för den kalender som råkar gälla vid jd:
     # year ändras inte, då påsksöndagen aldrig är nära nyår:
@@ -418,7 +427,7 @@ class DayCal:
 	f.write('<DIV CLASS="douter">')
 
 	# Månad
-	f.write('<DIV CLASS="dmonth">%s</DIV>' % month_names[self.m])
+        f.write('<DIV CLASS="dmonth">%s</DIV>' % month_names[self.m])
 
 	# Dag
 	f.write('<DIV CLASS="dday %s">%d</DIV>' % (colour, self.d))
@@ -503,9 +512,112 @@ class YearCal:
 				       (1907, 11, 27, ["Astrid"]),
                                        (1918,  4, 26, ["Teresia"]), # Teresia och Engelbrekt byter plats med varandra.
                                        (1918,  4, 27, ["Engelbrekt"]),
-				       (1953,  3, 25 ,["Marie Bebådelsedag"]),
-				       (1953,  6, 24 ,["Johannes Döparens dag"]),
+				       (1953,  3, 25, ["Marie Bebådelsedag"]),
+				       (1953,  6, 24, ["Johannes Döparens dag"]),
 				       (1934, 10, 20, ["Sibylla"])])
+        elif year >=1800:
+            self.place_name_day_names("namnsdagar-1800.txt",
+                                      [(1883,  1,  2, ["Abel, Set"]), # Ändrades 1882 eller 1883.
+                                       (1811,  1,  7, ["August"]),
+                                       (1825,  1, 31, ["Vigilius"]),      # (2)
+                                       (1823,  2,  1, ["Maximiliana"]),
+                                       (1874,  2,  5, ["Agata"]), # (1)
+                                       (1874,  2,  6, ["Dorotea"]), # (1)
+                                       (1812,  2, 10, ["Eugenia"]),
+                                       (1874,  2, 14, ["Valentin"]), # (1)
+                                       (1851,  2, 17, ["Alexandra"]),
+                                       (1806,  2, 28, ["Maria"]),
+                                       (1830,  3,  1, ["Albin"]),
+                                       (1830,  3,  2, ["Ernst"]),
+                                       (1830,  3,  4, ["Adrian"]),
+                                       (1898,  3,  6, ["Ebba"]),
+                                       (1882,  3, 12, ["Viktoria"]),
+                                       (1831,  3, 13, ["Nicephorus"]),
+                                       (1882,  3, 13, ["Gregorius"]),
+                                       (1883,  3, 14, ["Matilda"]), # Ändrades 1882 eller 1883.
+                                       (1825,  3, 15, ["Christofer"]),      # (2)
+                                       (1874,  3, 18, ["Edvard"]),   # (1)
+                                       (1874,  3, 19, ["Josef"]),    # (1)
+                                       (1874,  3, 20, ["Joakim"]),   # (1)
+                                       (1874,  4,  6, ["Vilhelm"]),  # (1)
+                                       (1874,  4, 10, ["Hezekiel"]), # (1)
+                                       (1803,  4, 16, ["Patrik"]),   # Ändrades mellan 1800 och 1805. 
+                                       (1825,  4, 18, ["Valerian"]),   # (2) 
+                                       (1812,  4, 22, ["Bernhardina"]),
+                                       (1865,  4, 27, ["Theresia"]),
+                                       (1859,  4, 30, ["Mariana"]),
+                                       (1831,  5, 10, ["Esbjörn"]),
+                                       (1822,  5, 13, ["Servatius"]),
+                                       (1874,  5, 17, ["Rebecka"]),    # (1)
+                                       (1874,  5, 18, ["Erik"]),       # (1)
+                                       (1874,  5, 21, ["Konstantin"]), # (1)
+                                       (1812,  5, 23, ["Desideria"]),
+                                       (1874,  5, 26, ["Vilhelmina"]), # (1)
+                                       (1898,  5, 28, ["Ingeborg"]),
+                                       (1874,  6, 10, ["Svante"]),     # (1)
+                                       (1874,  6, 13, ["Akvilina"]),   # (1)
+                                       (1874,  6, 15, ["Vitus"]),      # (1)
+                                       (1825,  6, 19, ["Gervasius"]),  # (2)
+                                       (1874,  6, 23, ["Adolf"]),      # (1)
+                                       (1803,  6, 25, ["David"]),      # Ändrades mellan 1800 och 1805.
+                                       (1874,  7,  4, ["Ulrika"]),     # (1)
+                                       (1825,  7,  5, ["Melcher"]),    # (2)
+                                       (1874,  7, 18, ["Fredrik"]),     # (1)
+                                       (1874,  7, 20, ["Margareta"]),     # (1)
+                                       (1827,  7, 23, ["Emma"]),
+                                       (1883,  7, 26, ["Marta"]), # 1882 eller 1883 ändrades stavningen.
+                                       (1874,  7, 27, ["7 sofvare"]), # (1)
+                                       (1874,  7, 28, ["Botvid"]), # (1)
+                                       (1874,  8, 17, ["Verner"]),     # (1)
+                                       (1824,  8, 21, ["Josephina"]),
+                                       (1859,  8, 22, ["Henrietta"]),
+                                       (1825,  8, 23, ["Sachæus"]), # (2)
+                                       (1874,  8, 23, ["Sacheus"]), # (1)
+                                       (1874,  8, 24, ["Bartholomeus"]), # (1)
+                                       (1858,  8, 25, ["Lovisa"]), # Mellan 1845 och 1871 ändrades stavningen.
+                                       (1803,  8, 28, ["Augustinus"]), # Mellan 1800 och 1805.
+                                       (1890,  8, 30, ["Albert"]),
+                                       (1874,  8, 31, ["Arvid"]), # (1)
+                                       (1831,  9,  9, ["Augusta"]),
+                                       (1883,  9, 15, ["Nicetas"]), # 1882 eller 1883 ändrades stavningen.
+                                       (1874,  9, 19, ["Fredrika"]), # (1)
+                                       (1803,  9, 21, ["Mattheus"]), # Mellan 1800 och 1805.
+                                       (1825,  9, 21, ["Matthæus"]), # (2) Samma datum igen.
+                                       (1874,  9, 21, ["Mattheus"]), # (1) Samma datum igen.
+                                       (1874,  9, 23, ["Tekla"]),    # (1)
+                                       (1803, 10,  2, ["Ludvik"]),  # Mellan 1800 och 1805.
+                                       (1825, 10,  2, ["Ludvig"]),  # (2) Samma datum
+                                       (1874, 10,  3, ["Evald"]),   # (1) 
+                                       (1825, 10,  4, ["Frans"]),   # (2)
+                                       (1874, 10, 12, ["Valfrid"]),   # (1) 
+                                       (1865, 10, 17, ["Antoinetta"]),
+                                       (1858, 10, 22, ["Severus"]), # Mellan 1845 och 1871 ändrades stavningen.
+                                       (1874, 10, 20, ["Kasper"]),   # (1) 
+                                       (1874, 10, 23, ["Severin"]),   # (1) 
+                                       (1874, 10, 24, ["Evergistus"]),   # (1) 
+                                       (1825, 10, 31, ["Qvintinus"]), # (2)
+                                       (1828, 11,  5, ["Eugene"]),   # (1)
+                                       (1874, 11,  5, ["Eugen"]),   # (1) # Samma datum igen.
+                                       (1825, 11,  6, ["Gustaf Adolf"]), # (2)
+                                       (1874, 11,  8, ["Villehad"]),   # (1)
+                                       (1825, 11, 10, ["Mårthen Luther"]), # (2)
+                                       (1874, 11, 10, ["Mårten Luther"]),  # (1) # Samma datum igen.
+                                       (1825, 11, 11, ["Mårthen biskop"]), # (2)
+                                       (1874, 11, 11, ["Mårten biskop"]),  # (1) # Samma datum igen.
+                                       (1874, 11, 12, ["Kondrad"]),  # (1)
+                                       (1874, 11, 19, ["Elisabet"]), # (1)
+                                       (1812, 12,  1, ["Oscar"]),
+                                       (1874, 12,  7, ["Agaton"]), # (1)
+                                       (1803, 12,  8, ["Marie aflelse"]), # Mellan 1800 och 1805.
+                                       (1803, 12, 10, ["Judith"]), # Mellan 1800 och 1805.
+                                       (1874, 12, 10, ["Judit"]),  # (1) # Samma datum igen.
+                                       (1803, 12, 24, ["Adam, Eva"]), # Mellan 1800 och 1805.
+                                       (1803, 12, 27, ["Johannes Evangelistus"]), # Mellan 1800 och 1805.
+                                       (1825, 12, 30, ["David"]), # (2)
+                                       (1874, 12, 31, ["Sylvester"])
+])
+            # (1) Denna stavning verkar ha tagit över ungefär här. Mellan 1870 och 1877.
+            # (2) Denna stavning tog över mellan 1805 och 1845.
 
 	# Månfaser
 	self.place_moonphases()
@@ -551,8 +663,9 @@ class YearCal:
 	    (1939, None,  5,  1, MRED,  True,  "Första maj"), # 1939 blev 1 maj allmän helgdag.
 	    (None, 1938, 12, 25, MRED,  False,  "Juldagen"),
 	    (1939, None, 12, 25, MRED,  True,  "Juldagen"),
-	    (None, 1972, 12, 26, MRED,  False, "Den helige Stefanus dag eller Annandag jul"), # Lite godtyckligt valt, men verkar ha blivit allt mindre vanligt senare decennier. Mer forskning behövs.
-	    (1973, None, 12, 26, MRED,  False, "Annandag jul"),
+	    (None, 1923, 12, 26, MRED,  False, "Annandag jul"), # 1921 står denna form. 1925 har de med Stefanus med.
+	    (1924, 1982, 12, 26, MRED,  False, "Den helige Stefanus' dag eller Annandag jul"), # Formen fanns kvar 1977, men ej 1983 måste undersökas mera.
+	    (1983, None, 12, 26, MRED,  False, "Annandag jul"),
 	    
 	    # Fasta helgdagsaftnar
 	    (None, None,  1,  5, MBLACK, False, "Trettondedagsafton"),
@@ -659,9 +772,9 @@ class YearCal:
 	if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
 	    self.add_info_jd(sen, MRED, False, "Söndagen e nyår")
 
-	# Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
+	# Kyndelsmässodagen (Jungfru MarieKyrkogångsdag)
 	jmk = first_sunday(self.year, 2, 2)
-	if jmk == pd - 49:
+	if jmk == pd - 49 and self.year != 1845:
 	    # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
 	    jmk = jmk -7
 	# Vänta med att lägga dit namnet...
@@ -689,6 +802,797 @@ class YearCal:
 	    jmb = pd - 14
 	# Vänta med att lägga dit namnet...
 
+	# Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
+	# Håll reda på dem i en lista i den takt de räknas fram
+	se3_stoppers = []	# Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
+
+	# Vissa dagar ska "slå ut" vanliga "N efter påsk" och "N i fastan"
+	# Håll reda på dem i en lista i den takt de räknas fram
+	sep_stoppers = []
+
+        #Bönsöndagar, beslutades ofta år för år. Ofta fyra bönsöndagar varje år. 
+        forsta_bondagen = {
+            1800:(3,8),
+            1801:(3,7),
+            1802:(3,6),
+            1803:(3,5),
+            1804:(3,3),
+            1805:(3,2),
+            1806:(3,1),
+            1807:(3,7),
+            1808:(3,6),
+            1809:(3,5),
+            1810:(3,11),
+            1811:(3,3),
+            1812:(3,1),
+            1813:(3,7), #? osäker
+            1814:(3,6),
+            1815:(3,12),
+            1816:(3,3),
+            1817:(3,2),
+            1818:(3,8),
+            1819:(3,7),
+            1820:(3,5),
+            1821:(3,11),
+            1822:(3,3),
+            1823:(3,9),
+            1824:(3,7),
+            1825:(3,6),
+            1826:(3,12),
+            1827:(3,11),
+            1828:(3,2),
+            1829:(3,8),
+            1830:(3,7),
+            1831:(3,6),
+            1832:(3,11),
+            1833:(3,3),
+            1834:(3,2),
+            1835:(3,8),
+            1836:(3,6),
+            1837:(3,12),
+            1838:(3,11),
+            1839:(3,10),
+            1840:(3,8),
+            1841:(3,7),
+            1842:(3,6),
+            1843:(3,5),
+            1844:(3,3),
+            1845:(3,2),
+            1846:(3,8),
+            1847:(3,7),
+            1848:(3,12),
+            1849:(3,4),
+            1850:(3,3),
+            1851:(3,9),
+            1852:(3,8),
+            1853:(3,6),
+            1854:(3,5),
+            1855:(3,4),
+            1856:(3,2),
+            1857:(3,8),
+            1858:(3,7),
+            1859:(3,13),
+            1860:(3,4),
+            1861:(3,3),
+            1862:(3,9),
+            1863:(3,1),
+            1864:(3,6),
+            1865:(3,5),
+            1866:(3,4),
+            1867:(3,10),
+            1868:(3,8),
+            1869:(3,7),
+            1870:(3,6),
+            1871:(3,5),
+            1872:(3,3),
+            1873:(3,2),
+            1874:(3,1),
+            1875:(3,7),
+            1876:(3,5),
+            1877:(3,4),
+            1878:(3,3),
+            1879:(3,2),
+            1880:(3,1),
+            1881:(3,6),
+            1882:(3,5),
+            1883:(3,4),
+            1884:(3,2),
+            1885:(3,1),
+            1886:(3,14),
+            1887:(3,13),
+            1888:(3,4),
+            1889:(3,10),
+            1890:(3,9), # osäker
+            1891:(3,15), # osäker
+            1892:(3,13),
+            1893:(3,12),
+            1894:(3,4),
+            1895:(3,3),
+            1896:(3,1),
+            1897:(3,7),
+            1898:(3,6),
+            1899:(3,5),
+            1900:(3,4),
+            1901:(3,3),
+            1902:(3,2),
+            1903:(3,8),
+            1904:(3,6),
+            1905:(3,12),
+            1906:(3,4),
+            1907:(3,3),
+            1908:(3,8),
+            1909:(3,7),
+            1910:(3,13),
+            1911:(3,12),
+            1912:(3,10),
+            1913:(3,9),
+            1914:(3,15),
+            1915:(3,7),
+            1916:(3,12),
+            1917:(3,11),
+            1918:(3,17),
+            1919:(3,9),
+            1920:(3,14),
+            1921:(3,13),
+            1922:(3,12),
+            1923:(3,11),
+            1924:(3,9),
+            1925:(3,15),
+            1926:(3,14),
+            1927:(3,13),
+            1928:(3,11),
+            1929:(3,17),
+            1930:(3,9),
+            1931:(3,15),
+            1932:(2,21),
+            1933:(3,12),
+            1934:(3,4),
+            1935:(3,10),
+            1936:(3,8),
+            1937:(2,28),
+            1938:(3,6),
+            1939:(3,12),
+            1940:(2,18),
+            1941:(3,16),
+            1942:(2,22),
+            1943:(2,28),
+            1944:(3,5),
+            1945:(3,4),
+            1946:(3,10),
+            1947:(3,9),
+            1948:(2,22),
+            1949:(3,13),
+            1950:(2,26),
+            1951:(2,25),
+            1952:(3,2),
+            1953:(3,1),
+            1954:(3,7),
+            1955:(3,6),
+            1956:(2,19),
+            1957:(2,24),
+            1958:(2,23),
+            1959:(2,22),
+            1960:(3,6),
+            1961:(3,5),
+            1962:(3,11),
+            1963:(3,10),
+            1964:(3,1),
+            1965:(3,14),
+            1966:(3,13),
+            1967:(2,19),
+            1968:(3,17),
+            1969:(3,2),
+            1970:(3,1),
+            1971:(3,7),
+            1972:(3,5),
+            1973:(3,11),
+            1974:(3,17),
+            1975:(2,23),
+            1976:(3,21),
+            1977:(2,27),
+            1978:(2,26),
+            1979:(3,11),
+            1980:(3,9),
+            1981:(3,8),
+            1982:(3,14),
+            1983:(2,27)
+        }
+        andra_bondagen = {
+            1800:(4,26),
+            1801:(4,18),
+            1802:(4,3),
+            1803:(4,23),
+            1804:(4,22),
+            1805:(5,5),
+            1806:(4,20),
+            1807:(4,19),
+            1808:(5,8),
+            1809:(4,30),
+            1810:(4,29),
+            1811:(4,21),
+            1812:(4,26),
+            1813:(5,9),
+            1814:(5,8),
+            1815:(4,23),
+            1816:(4,21),
+            1817:(4,20),
+            1818:(4,19),
+            1819:(5,9),
+            1820:(4,30),
+            1821:(4,29),
+            1822:(4,28),
+            1823:(4,27),
+            1824:(5,9),
+            1825:(5,8),
+            1826:(4,23),
+            1827:(4,29),
+            1828:(4,27),
+            1829:(5,10),
+            1830:(5,9),
+            1831:(5,8),
+            1832:(4,29),
+            1833:(4,28),
+            1834:(4,27),
+            1835:(5,10),
+            1836:(5,15),
+            1837:(5,7),
+            1838:(5,6),
+            1839:(5,12),
+            1840:(5,10),
+            1841:(5,9),
+            1842:(5,8),
+            1843:(5,7),
+            1844:(5,5),
+            1845:(5,4),
+            1846:(5,10),
+            1847:(5,2),
+            1848:(5,7),
+            1849:(5,6),
+            1850:(4,28),
+            1851:(5,11),
+            1852:(5,9),
+            1853:(5,8),
+            1854:(5,7),
+            1855:(5,6),
+            1856:(5,4),
+            1857:(5,10),
+            1858:(4,25),
+            1859:(5,8),
+            1860:(5,6),
+            1861:(5,12),
+            1862:(5,4),
+            1863:(4,26),
+            1864:(5,8),
+            1865:(5,7),
+            1866:(4,29),
+            1867:(5,5),
+            1868:(5,10),
+            1869:(5,9),
+            1870:(5,8),
+            1871:(5,7),
+            1872:(5,24), #??? osäker
+            1873:(5,4),
+            1874:(5,3),
+            1875:(5,9),
+            1876:(5,7),
+            1877:(5,13),
+            1878:(5,12),
+            1879:(5,4),
+            1880:(5,9),
+            1881:(5,8),
+            1882:(5,7),
+            1883:(5,6),
+            1884:(5,4),
+            1885:(4,26),
+            1886:(5,2),
+            1887:(5,8),
+            1888:(5,13),
+            1889:(5,12),
+            1890:(4,27),
+            1891:(5,3), #? osäker
+            1892:(5,8),
+            1893:(4,30),
+            1894:(4,22),
+            1895:(4,28),
+            1896:(4,26),
+            1897:(5,2),
+            1898:(5,8),
+            1899:(5,14),
+            1900:(5,6),
+            1901:(5,5),
+            1902:(5,11),
+            1903:(5,3),
+            1904:(5,15),
+            1905:(5,14),
+            1906:(5,13),
+            1907:(5,12),
+            1908:(5,10),
+            1909:(5,9),
+            1910:(5,8),
+            1911:(5,14),
+            1912:(5,19),
+            1913:(5,25),
+            1914:(5,10),
+            1915:(5,16),
+            1916:(5,14),
+            1917:(5,20),
+            1918:(5,12),
+            1919:(5,11),
+            1920:(5,9),
+            1921:(5,8),
+            1922:(5,14),
+            1923:(5,13),
+            1924:(5,11),
+            1925:(5,10),
+            1926:(5,16),
+            1927:(5,15),
+            1928:(5,13),
+            1929:(5,12),
+            1930:(5,11),
+            1931:(5,10),
+            1932:(5,8),
+            1933:(5,14),
+            1934:(5,13),
+            1935:(5,5),
+            1936:(5,3),
+            1937:(5,9),
+            1938:(5,8),
+            1939:(5,21),
+            1940:(4,21),
+            1941:(5,11),
+            1942:(4,26),
+            1943:(5,2),
+            1944:(5,21),
+            1945:(5,13),
+            1946:(5,12),
+            1947:(5,4),
+            1948:(4,18),
+            1949:(5,15),
+            1950:(5,7),
+            1951:(5,6),
+            1952:(5,4),
+            1953:(5,17),
+            1954:(5,16),
+            1955:(5,8),
+            1956:(5,13),
+            1957:(5,12),
+            1958:(5,4),
+            1959:(5,10),
+            1960:(5,15),
+            1961:(5,14),
+            1962:(5,13),
+            1963:(5,5),
+            1964:(5,10),
+            1965:(5,16),
+            1966:(5,22),
+            1967:(4,23),
+            1968:(5,5),
+            1969:(5,4),
+            1970:(5,10),
+            1971:(5,9),
+            1972:(5,14),
+            1973:(5,13),
+            1974:(5,5),
+            1975:(4,27),
+            1976:(5,2),
+            1977:(5,8),
+            1978:(5,7),
+            1979:(5,6),
+            1980:(5,18),
+            1981:(5,3),
+            1982:(5,9),
+            1983:(4,24)
+        }
+        tredje_bondagen = {
+            1800:(6,14),
+            1801:(6,13),
+            1802:(5,8),
+            1803:(6,11),
+            1804:(6,3),
+            1805:(6,30),
+            1806:(6,15),
+            1807:(6,21),
+            1808:(6,26),
+            1809:(6,18),
+            1810:(7,1),
+            1811:(6,16),
+            1812:(6,21),
+            1813:(6,20),
+            1814:(6,26),
+            1815:(6,18),
+            1816:(6,16),
+            1817:(6,15),
+            1818:(6,21),
+            1819:(6,27),
+            1820:(6,18),
+            1821:(7,1),
+            1822:(6,16),
+            1823:(6,22),
+            1824:(6,20),
+            1825:(6,26),
+            1826:(6,18),
+            1827:(6,17),
+            1828:(6,15),
+            1829:(6,21),
+            1830:(6,27),
+            1831:(6,26),
+            1832:(7,1),
+            1833:(6,16),
+            1834:(6,15),
+            1835:(6,21),
+            1836:(7,3),
+            1837:(7,2),
+            1838:(7,1),
+            1839:(7,7),
+            1840:(7,5),
+            1841:(6,27),
+            1842:(7,3),
+            1843:(7,2),
+            1844:(7,7),
+            1845:(7,6),
+            1846:(7,5),
+            1847:(6,27),
+            1848:(7,2),
+            1849:(7,8),
+            1850:(7,7),
+            1851:(7,6),
+            1852:(6,27),
+            1853:(7,3),
+            1854:(7,2),
+            1855:(7,1),
+            1856:(7,6),
+            1857:(7,12),
+            1858:(7,11),
+            1859:(7,10),
+            1860:(7,8),
+            1861:(7,7),
+            1862:(7,6),
+            1863:(7,12),
+            1864:(7,10),
+            1865:(7,9),
+            1866:(7,8),
+            1867:(7,7),
+            1868:(7,5),
+            1869:(7,4),
+            1870:(7,10),
+            1871:(7,2),
+            1872:(7,7),
+            1873:(7,6),
+            1874:(7,12),
+            1875:(7,11),
+            1876:(7,16),
+            1877:(7,15),
+            1878:(7,14),
+            1879:(7,13),
+            1880:(7,11),
+            1881:(7,17),
+            1882:(7,16),
+            1883:(7,15),
+            1884:(7,20),
+            1885:(7,19),
+            1886:(7,18),
+            1887:(7,27),
+            1888:(7,15),
+            1889:(7,21),
+            1890:(7,20),
+            1891:(7,17), #? fel? Fredag!
+            1892:(7,17), 
+            1893:(7,23),
+            1894:(7,22),
+            1895:(7,21),
+            1896:(7,19),
+            1897:(7,18),
+            1898:(7,17),
+            1899:(7,23),
+            1900:(7,22),
+            1901:(7,21),
+            1902:(7,13),
+            1903:(7,5),
+            1904:(7,10),
+            1905:(7,2),
+            1906:(7,8),
+            1907:(7,7),
+            1908:(7,12),
+            1909:(7,11),
+            1910:(7,3),
+            1911:(7,9),
+            1912:(7,14),
+            1913:(7,13),
+            1914:(7,12),
+            1915:(7,4),
+            1916:(7,9),
+            1917:(7,15),
+            1918:(7,14),
+            1919:(7,13),
+            1920:(7,11),
+            1921:(7,10),
+            1922:(7,9),
+            1923:(7,15),
+            1924:(7,13),
+            1925:(7,12),
+            1926:(7,11),
+            1927:(7,10),
+            1928:(7,15),
+            1929:(7,14),
+            1930:(7,13),
+            1931:(7,12),
+            1932:(7,17),
+            1933:(7,9),
+            1934:(7,8),
+            1935:(7,7),
+            1936:(7,12),
+            1937:(7,4),
+            1938:(7,10),
+            1939:(7,30),
+            1940:(7,14),
+            1941:(7,13),
+            1942:(7,12),
+            1943:(7,11),
+            1944:(7,9),
+            1945:(7,8),
+            1946:(7,14),
+            1947:(7,13),
+            1948:(7,4),
+            1949:(7,10),
+            1950:(7,9),
+            1951:(7,15),
+            1952:(7,13),
+            1953:(7,12),
+            1954:(7,11),
+            1955:(7,10), # korrigerat.
+            1956:(7,8),
+            1957:(7,7),
+            1958:(7,13),
+            1959:(6,28), # ej juli
+            1960:(7,10),
+            1961:(7,2),
+            1962:(7,8),
+            1963:(7,14),
+            1964:(7,5),
+            1965:(7,11),
+            1966:(7,10),
+            1967:(7,2),
+            1968:(6,30),
+            1969:(6,29),
+            1970:(6,28),
+            1971:(7,4),
+            1972:(7,2),
+            1973:(7,1),
+            1974:(6,30),
+            1975:(6,29),
+            1976:(7,4),
+            1977:(7,3),
+            1978:(7,2),
+            1979:(7,1),
+            1980:(7,6),
+            1981:(7,12),
+            1982:(7,18),
+            1983:(7,3)
+        }
+        fjarde_bondagen = {
+            1800:(10,11),
+            1801:(10,10),
+            1802:(10,9),
+            1803:(10,22),
+            1804:(10,13),
+            1805:(10,19),
+            1806:(10,18),
+            1807:(10,17),
+            1808:(10,23),
+            1809:(10,22),
+            1810:(10,21),
+            1811:(10,20),
+            1812:(10,18),
+            1813:(10,17),
+            1814:(10,16),
+            1815:(10,22),
+            1816:(10,13),
+            1817:(10,19),
+            1818:(10,18),
+            1819:(10,24),
+            1820:(10,22),
+            1821:(10,21),
+            1822:(10,20),
+            1823:(10,19),
+            1824:(10,17),
+            1825:(10,16),
+            1826:(10,22),
+            1827:(10,14),
+            1828:(10,12),
+            1829:(10,18),
+            1830:(10,24),
+            1831:(10,16),
+            1832:(10,21),
+            1833:(10,20),
+            1834:(10,19),
+            1835:(10,18),
+            1836:(10,16),
+            1837:(10,15),
+            1838:(10,14),
+            1839:(10,13),
+            1840:(10,11),
+            1841:(10,10),
+            1842:(10,9),
+            1843:(10,8),
+            1844:(10,5),
+            1845:(10,12),
+            1846:(10,11),
+            1847:(10,10),
+            1848:(10,8),
+            1849:(10,7),
+            1850:(10,6),
+            1851:(10,12),
+            1852:(10,10),
+            1853:(10,9),
+            1854:(10,8),
+            1855:(10,7),
+            1856:(10,12),
+            1857:(10,11),
+            1858:(10,10),
+            1859:(10,9),
+            1860:(10,7),
+            1861:(10,6),
+            1862:(10,12),
+            1863:(10,11),
+            1864:(10,9),
+            1865:(10,8),
+            1866:(10,7),
+            1867:(10,6),
+            1868:(10,11),
+            1869:(10,10),
+            1870:(10,9),
+            1871:(10,8),
+            1872:(10,16),
+            1873:(10,12),
+            1874:(10,11),
+            1875:(10,10),
+            1876:(10,8),
+            1877:(10,7),
+            1878:(10,6),
+            1879:(10,12),
+            1880:(10,10),
+            1881:(10,9),
+            1882:(10,15),
+            1883:(10,14),
+            1884:(10,12),
+            1885:(10,11),
+            1886:(10,17),
+            1887:(10,16),
+            1888:(10,14),
+            1889:(10,13),
+            1890:(10,19),
+            1891:(10,16),
+            1892:(10,16),
+            1893:(10,15),
+            1894:(10,14),
+            1895:(10,13),
+            1896:(10,11),
+            1897:(10,10),
+            1898:(10,9),
+            1899:(10,8),
+            1900:(10,7),
+            1901:(10,6),
+            1902:(10,12),
+            1903:(10,11),
+            1904:(10,9),
+            1905:(10,8),
+            1906:(10,7),
+            1907:(10,6),
+            1908:(10,18),
+            1909:(10,17),
+            1910:(10,16),
+            1911:(10,15),
+            1912:(10,13),
+            1913:(10,12),
+            1914:(10,11),
+            1915:(10,10),
+            1916:(10,8),
+            1917:(10,14),
+            1918:(10,13),
+            1919:(10,12),
+            1920:(10,10),
+            1921:(10,9),
+            1922:(10,8),
+            1923:(10,13),
+            1924:(10,12),
+            1925:(10,11),
+            1926:(10,10),
+            1927:(10,9),
+            1928:(10,14),
+            1929:(10,13),
+            1930:(10,12),
+            1931:(10,11),
+            1932:(10,9),
+            1933:(10,8),
+            1934:(10,7),
+            1935:(10,6),
+            1936:(10,11),
+            1937:(10,10),
+            1938:(10,9),
+            1939:(10,15),
+            1940:(10,13),
+            1941:(10,12),
+            1942:(10,18),
+            1943:(10,17),
+            1944:(10,15),
+            1945:(10,14),
+            1946:(10,13),
+            1947:(10,19),
+            1948:(10,17),
+            1949:(10,16),
+            1950:(10,8),
+            1951:(10,7),
+            1952:(10,19),
+            1953:(10,18),
+            1954:(10,10),
+            1955:(10,23),
+            1956:(10,7),
+            1957:(10,6),
+            1958:(10,12),
+            1959:(10,11),
+            1960:(10,9),
+            1961:(10,15),
+            1962:(10,14),
+            1963:(10,13),
+            1964:(10,18),
+            1965:(10,17),
+            1966:(10,9),
+            1967:(10,8),
+            1968:(10,6),
+            1969:(10,12),
+            1970:(10,11),
+            1971:(10,10),
+            1972:(10,8),
+            1973:(10,14),
+            1974:(10,20),
+            1975:(10,12),
+            1976:(10,24),
+            1977:(10,9),
+            1978:(10,22),
+            1979:(10,14),
+            1980:(10,19),
+            1981:(10,11),
+            1982:(10,31),
+            1983:(10,9)
+        }
+
+        if 1800 <= self.year < 1984:
+            # Böndagarna bytte form och började "slå ut" andra dagar efter 1942, men senast 1945:
+            # 1 böndagen / Botdagen
+            bd1=JD(self.year, forsta_bondagen[self.year][0], forsta_bondagen[self.year][1])
+            if self.year < 1945:
+                self.add_info_jd(bd1, RED, False, "1 böndagen")
+            else:
+                self.add_info_jd(bd1, RED, False, "Botdagen (1 böndagen)")
+                sep_stoppers.append(bd1)
+
+            # 2 böndagen / Reformationsdagen
+            bd2=JD(self.year, andra_bondagen[self.year][0], andra_bondagen[self.year][1])
+            if self.year < 1945:
+                self.add_info_jd(bd2, RED, False, "2 böndagen")
+            else:
+                self.add_info_jd(bd2, RED, False, "Reformationsdagen (2 böndagen)")
+                sep_stoppers.append(bd2)
+
+            # 3 böndagen / Missionsdagen
+            bd3=JD(self.year, tredje_bondagen[self.year][0], tredje_bondagen[self.year][1])
+            if self.year < 1945:
+                self.add_info_jd(bd3, RED, False, "3 böndagen")
+            else:
+                self.add_info_jd(bd3, RED, False, "Missionsdagen (3 böndagen)") # fast 1983 står det bara "Missionsdagen".
+                se3_stoppers.append(bd3)
+
+            # 4 böndagen / Tacksägelsedagen
+            bd4=JD(self.year, fjarde_bondagen[self.year][0], fjarde_bondagen[self.year][1])
+            if self.year < 1945:
+                self.add_info_jd(bd4, RED, False, "4 böndagen")
+            else:
+                self.add_info_jd(bd4, RED, False, "Tacksägelsedagen (4 böndagen)")
+                se3_stoppers.append(bd4) # Böndagarna slår inte ut före 1942 iaf.
+
+
+
+
 	# Fasta, Påsk, Kristi Himmelsfärd, Pingst
 
 	# Dessa dagar slås ut av Kyndelsmässodagen
@@ -700,7 +1604,9 @@ class YearCal:
 		self.add_info_jd(jd, RED, False, name)
 
 	# Lägg så dit Kyndelsmässodagen
-	if self.year < 1924:
+	if self.year < 1901: # Ändrades mellan 1900 och 1905, troligen 1901.
+	    self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag")
+	elif self.year < 1924:
 	    self.add_info_jd(jmk, RED, False, "Kyndelsmässosöndagen")
 	elif self.year < 1943:
 	    self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag eller Kyndelsmässodagen")
@@ -713,7 +1619,7 @@ class YearCal:
 	self.add_info_jd(pd-46, BLACK,False, "Askonsdagen")
 
 	# Dessa dagar slås ut av Jungfru Marie bebådelsedag,
-	# fast bara efter 1983
+	# fast bara efter 1983. Böndagar slår också ut detta.
 	# 1952-1983 så står båda namnen!
 
 	for (jd, name) in [(pd-42, "1 i fastan"),
@@ -721,7 +1627,7 @@ class YearCal:
 			   (pd-28, "3 i fastan"),
 			   (pd-21, "Midfastosöndagen"),
 			   (pd-14, "5 i fastan")]:
-	    if jd != jmb or self.year <= 1983:
+	    if (jd != jmb or self.year <= 1983) and (jd not in sep_stoppers):
 		self.add_info_jd(jd, RED, False, name)
 
 	# Lägg så dit Jungfru Marie bebådelsedag
@@ -732,13 +1638,21 @@ class YearCal:
 	self.add_info_jd(pd- 3, MBLACK, False, "Skärtorsdagen")
 	self.add_info_jd(pd- 2, MRED,   False, "Långfredagen")
 	self.add_info_jd(pd- 1, MBLACK, False, "Påskafton")
-	self.add_info_jd(pd+ 0, MRED,   True,  "Påskdagen")
+        if self.year > 1938:
+            self.add_info_jd(pd+ 0, MRED,   True,  "Påskdagen")
+        else:
+            self.add_info_jd(pd+ 0, MRED,  False,  "Påskdagen")
+
 	self.add_info_jd(pd+ 1, MRED,   False, "Annandag påsk")
 	if self.year < 2004:
-	    self.add_info_jd(pd+ 7, RED, False, "1 e påsk")
-	    self.add_info_jd(pd+14, RED, False, "2 e påsk")
-	    self.add_info_jd(pd+21, RED, False, "3 e påsk")
-	    self.add_info_jd(pd+28, RED, False, "4 e påsk")
+            # Kollar så inget av dessa slås ut av en böndag:
+            for (jd, name) in [(pd+ 7, "1 e påsk"),
+                               (pd+14, "2 e påsk"),
+                               (pd+21, "3 e påsk"),
+                               (pd+28, "4 e påsk")]:
+                if(jd not in sep_stoppers):
+                    self.add_info_jd(jd, RED, False, name)
+
 	else:
 	    self.add_info_jd(pd+ 7, RED, False, "2 i påsktiden")
 	    self.add_info_jd(pd+14, RED, False, "3 i påsktiden")
@@ -747,20 +1661,20 @@ class YearCal:
 	self.add_info_jd(pd+35, RED, False, "Bönsöndagen")
 	self.add_info_jd(pd+39, MRED, False, "Kristi himmelsfärds dag")
 	if self.year < 2004:
-	    self.add_info_jd(pd+42, RED, False, "6 e påsk")
+            if pd+42 not in sep_stoppers:
+                self.add_info_jd(pd+42, RED, False, "6 e påsk")
 	else:
 	    self.add_info_jd(pd+42, RED, False, "Söndagen f Pingst")
 	self.add_info_jd(pd+48, MBLACK, False, "Pingstafton")
-	self.add_info_jd(pd+49, MRED, True,  "Pingstdagen")
+        if self.year > 1938:
+            self.add_info_jd(pd+49, MRED, True,  "Pingstdagen")
+        else:
+            self.add_info_jd(pd+49, MRED, False,  "Pingstdagen")
 	if self.year < 2005:
 	    self.add_info_jd(pd+50, MRED, False, "Annandag pingst")
 	else:
 	    self.add_info_jd(pd+50, BLACK,False, "Annandag pingst")
 	self.add_info_jd(pd+56, RED,False, "Heliga trefaldighets dag")
-
-	# Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
-	# Håll reda på dem i en lista i den takt de räknas fram
-	se3_stoppers = []
 
 	# Midsommardagen
 	if self.year < 1953:
@@ -769,10 +1683,13 @@ class YearCal:
 	else:
 	    # Från och med 1953 rörlig helgdag, lördag 20-26/6
 	    msd = first_saturday(self.year, 6, 20)
-	self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
-	if self.year <2004:
+        if self.year <1923: # Någon gång mellan 1921 och 1925 ändrades detta.
+	    self.add_info_jd(msd+0, MRED,  False,  "Johannes Döparens dag") 
+	elif self.year <2004:
+  	    self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
 	    self.add_info_jd(msd+0, MRED,  True,  "Den helige Johannes Döparens dag eller Midsommardagen")
         else:
+            self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
 	    self.add_info_jd(msd+0, MRED,  True,  "Midsommardagen")
 	    self.add_info_jd(msd+1, RED,  False,  "Den helige Johannes Döparens dag")
 	    se3_stoppers.append(msd+1)
@@ -794,8 +1711,10 @@ class YearCal:
 
 	# Advent (samt Domssöndagen och Söndagen före domssöndagen)
 	adv1=first_sunday(self.year, 11, 27 )
-	self.add_info_jd(adv1-14, RED,  False, "Söndagen f domssöndagen")
-	self.add_info_jd(adv1- 7, RED,  False, "Domssöndagen")
+        if self.year >= 1921:
+            # Googlar man på "domsöndagen" och 1921 finner man många källor.
+            self.add_info_jd(adv1-14, RED,  False, "Söndagen f domssöndagen")
+            self.add_info_jd(adv1- 7, RED,  False, "Domssöndagen")
 	self.add_info_jd(adv1+ 0, MRED, False, "1 i advent")
 	self.add_info_jd(adv1+ 7, MRED, False, "2 i advent")
 	self.add_info_jd(adv1+14, MRED, False, "3 i advent")
@@ -809,31 +1728,39 @@ class YearCal:
 
 	# Den helige Mikaels dag, söndag i tiden 29/9 till 5/10
 	hmd = first_sunday(self.year, 9, 29)
-	self.add_info_jd(hmd, RED, False, "Den helige Mikaels dag")
-	se3_stoppers.append(hmd)
+        if self.year < 1901: # Denna form fanns kvar 1900, men var borta 1905. Stora ändringar gjordes 1901.
+            self.add_info_jd(hmd, RED, False, "Michaelsdagen")
+        elif self.year < 1924: # Någon gång efter 1921 men senast 1925 ändrades namnet.
+            self.add_info_jd(hmd, RED, False, "Mikaelssöndagen")
+        else:
+            self.add_info_jd(hmd, RED, False, "Den helige Mikaels dag")
+        if self.year > 1981: se3_stoppers.append(hmd) # Åtminstone fram till 1972 visades båda. I kalendrar 1982-1983 visas bara "Mikaels dag".
 
-	# Tacksägelsedagen, andra söndagen i oktober
-	tsd = first_sunday(self.year, 10, 8)
-	self.add_info_jd(tsd, RED, False, "Tacksägelsedagen")
-	se3_stoppers.append(tsd)
+        if self.year > 1983:
+            # Tacksägelsedagen, andra söndagen i oktober
+            tsd = first_sunday(self.year, 10, 8)
+            self.add_info_jd(tsd, RED, False, "Tacksägelsedagen")
+            se3_stoppers.append(tsd)
 
 	# Söndagarna efter Trefaldighet
 	se3 = pd+63
 	for i in range(1,28):
 	    # Ska dagen vara en S e Tr?
-	    if se3 >= adv1 - 14:
+	    if self.year >= 1921 and se3 >= adv1 - 14:
 		# Inte lönt längre efter S f ds
 		break
-	    
+	    if self.year < 1921 and se3 >= adv1:
+		# Inte lönt längre efter 1 adv. Före 1921 fanns inga domsöndagar.
+		break
 	    # Har dagen redan ett annat namn som har prioritet?
 	    if se3 in se3_stoppers:
 		se3 += 7
 		continue
 
 	    # Särskilda namn för vissa av dagarna
-	    if i == 5:
+	    if self.year > 1983 and i == 5:
 		name = "Apostladagen"
-	    elif i == 7:
+	    elif self.year >= 1923 and i == 7:  # Ändrades mellan 1921 och 1925.
 		name = "Kristi förklarings dag"
 	    else:
 		name = "%d e trefaldighet" % i
@@ -928,7 +1855,10 @@ class MonthCal:
 	self.yc = yearcal
 	assert 1<= month <= 12
 	self.month = month
-	self.month_name = month_names[self.month]
+        if self.yc.year < 1872:
+            self.month_name = month_old_names[self.month]
+        else:
+            self.month_name = month_names[self.month]
 
 	self.num_days = [None, 31, 28, 31, 30, 31, 30,
 			 31, 31, 30, 31, 30, 31][self.month]
