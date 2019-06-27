@@ -1,0 +1,360 @@
+ 1  2 Abel,Seth
+ 1  3 Enoch
+ 1  4 Titus
+ 1  5 Simeon
+ 1  7 Lucianus
+ 1  8 Erhard
+ 1  9 Julianus
+ 1 10 Nicanor
+ 1 11 Hyginus
+ 1 12 Arcadius
+ 1 13 Knut
+ 1 14 Felix
+ 1 15 Maurus
+ 1 16 Marcellus
+ 1 17 Antonius
+ 1 18 Prisca
+ 1 19 Henrik
+ 1 20 Fabian
+ 1 21 Agneta
+ 1 22 Vincentius
+ 1 23 Emerentia
+ 1 24 Erik translatus
+ 1 25 Paulus
+ 1 26 Polycarpus
+ 1 27 Chrysostomus
+ 1 28 Carl
+ 1 29 Valerius
+ 1 30 Gunilla
+ 1 31 Wigilius 
+ 2  1 Brigitta
+ 2  2 Marie kyrkogångsdag
+ 2  3 Blasius
+ 2  4 Ansgarius
+ 2  5 Agatha
+ 2  6 Dorothea
+ 2  7 Richard
+ 2  8 Malachias
+ 2  9 Apollonia
+ 2 10 Scholastica
+ 2 11 Euphrosyne
+ 2 12 Eulalia
+ 2 13 Agabus
+ 2 14 Walentin
+ 2 15 Sigfrid
+ 2 16 Juliana
+ 2 17 Polychron
+ 2 18 Concordia
+ 2 19 Gabinus
+ 2 20 Eucharius
+ 2 21 Hilarius
+ 2 22 Petrus Cathedraticus
+ 2 23 Tertullianus
+ 2 24 Matthias
+ 2 25 Victorinus
+ 2 26 Nestor
+ 2 27 Leander
+ 2 28 Macharius
+ 3  1 Albinus
+ 3  2 Simplicius
+ 3  3 Kunigunda
+ 3  4 Adrianus
+ 3  5 Conon
+ 3  6 Fulgentius
+ 3  7 Perpetua
+ 3  8 Filemon
+ 3  9 40 martyrer
+ 3 10 Apollonius
+ 3 11 Vindician
+ 3 12 Gregorius
+ 3 13 Ernestus
+ 3 14 Mathilda
+ 3 15 Christopher
+ 3 16 Heribert
+ 3 17 Gertrud
+ 3 18 Edward
+ 3 19 Joseph
+ 3 20 Joachim 		
+ 3 21 Benedictus
+ 3 22 Viktor
+ 3 23 Axel
+ 3 24 Gabriel
+ 3 26 Emanuel
+ 3 27 Rupert
+ 3 28 Malcus
+ 3 29 Jonas
+ 3 30 Qvirinus
+ 3 31 Amos
+ 4  1 Harald
+ 4  2 Theodosius
+ 4  3 Ferdinand
+ 4  4 Ambrosius
+ 4  5 Irenes
+ 4  6 Wilhelm
+ 4  7 Hegesuppus
+ 4  8 Perpetuus
+ 4  9 Otto
+ 4 10 Hezekiel
+ 4 11 Antipas
+ 4 12 Julius
+ 4 13 Justinus
+ 4 14 Tiburtius
+ 4 15 Olympias
+ 4 16 Patrick
+ 4 17 Elias
+ 4 18 Walerian
+ 4 19 Bernhard
+ 4 20 Amalia
+ 4 21 Anshelm
+ 4 22 Sotherus
+ 4 23 Georgius
+ 4 24 Albertina
+ 4 25 Marcus
+ 4 26 Cletus
+ 4 27 Antimus
+ 4 28 Thure
+ 4 29 Tycho
+ 4 30 Marianus
+ 5  1 Phillippus
+ 5  2 Athanasius
+ 5  3 Korsmessa
+ 5  4 Monica
+ 5  5 Gotthard
+ 5  6 Sigismund
+ 5  7 Stanislaus
+ 5  8 Achatius
+ 5  9 Timotheus
+ 5 10 Epimachus
+ 5 11 Mamertus
+ 5 12 Charlotta
+ 5 13 Serwatius
+ 5 14 Corona
+ 5 15 Sophia
+ 5 16 Peregrinus
+ 5 17 Rebecca
+ 5 18 Eric
+ 5 19 Potentia
+ 5 20 Carolina
+ 5 21 Constantin
+ 5 22 Henning
+ 5 23 Desiderius
+ 5 24 Rogatius
+ 5 25 Urbanus
+ 5 26 Wilhelmina
+ 5 27 Beda
+ 5 28 Germanus
+ 5 29 Maximinus
+ 5 30 Basilius
+ 5 31 Petronella
+ 6  1 Nicodemus
+ 6  2 Erasmus
+ 6  3 Marcellinus
+ 6  4 Optatus
+ 6  5 Bonifatius
+ 6  6 Gustaf
+ 6  7 Robert
+ 6  8 Salomon
+ 6  9 Primus
+ 6 10 Swante
+ 6 11 Barnabas
+ 6 12 Eskil
+ 6 13 Aqwilina
+ 6 14 Elisa
+ 6 15 Witus
+ 6 16 Justina
+ 6 17 Botolf
+ 6 18 Leontius
+ 6 19 Gerwasius
+ 6 20 Florentin
+ 6 21 Albanus
+ 6 22 Paulinus
+ 6 23 Adolph
+ 6 25 Dawid
+ 6 26 Jeremias
+ 6 27 Crescens
+ 6 28 Leo
+ 6 29 Petrus
+ 6 30 Martialis
+ 7  1 Aron
+ 7  2 Marie besökelse
+ 7  3 Anatolius
+ 7  4 Ulrica
+ 7  5 Melker
+ 7  6 Esaias
+ 7  7 Claes
+ 7  8 Kilian
+ 7  9 Cyrillus
+ 7 10 Canutus
+ 7 11 Eleonora
+ 7 12 Herman
+ 7 13 Joel
+ 7 14 Phocas
+ 7 15 Apostlarnas delning
+ 7 16 Reinhold
+ 7 17 Alexius
+ 7 18 Fredric
+ 7 19 Sara
+ 7 20 Margaretha
+ 7 21 Johanna
+ 7 22 Magdalena
+ 7 23 Apollonia 
+ 7 24 Christina
+ 7 25 Jacobus
+ 7 26 Martha
+ 7 27 7 sofware
+ 7 28 Botwid
+ 7 29 Olof
+ 7 30 Abdon
+ 7 31 Helena
+ 8  1 Petri fängelse
+ 8  2 Katharina
+ 8  3 Stephanus
+ 8  4 Aristarchus
+ 8  5 Dominicus
+ 8  6 Sixtus
+ 8  7 Donatus
+ 8  8 Cyriacus
+ 8  9 Romanus
+ 8 10 Laurentius
+ 8 11 Susanna
+ 8 12 Clara
+ 8 13 Hippolitus
+ 8 14 Eusebius
+ 8 15 Vårfrudag
+ 8 16 Brynolf
+ 8 17 Werner
+ 8 18 Agapetus
+ 8 19 Magnus
+ 8 20 Samuel
+ 8 21 Anastasius
+ 8 22 Symphorian
+ 8 23 Zachäus
+ 8 24 Bartholomæus
+ 8 25 Lowisa
+ 8 26 Zephyrinus
+ 8 27 Rufus
+ 8 28 Augustin
+ 8 29 Johannes Döparens halshuggning
+ 8 30 Adauctus
+ 8 31 Arwid
+ 9  1 Egidius
+ 9  2 Justus
+ 9  3 Seraphia
+ 9  4 Moses
+ 9  5 Eudoxus
+ 9  6 Zacharias
+ 9  7 Regina
+ 9  8 Mormessa
+ 9  9 Eventius
+ 9 10 Theodard
+ 9 11 Protus
+ 9 12 Cyrus
+ 9 13 Amatus
+ 9 14 Korsmessa
+ 9 15 Nicethas
+ 9 16 Euphemia
+ 9 17 Lambert
+ 9 18 Methodius
+ 9 19 Fredrica
+ 9 20 Fausta
+ 9 21 Matthäus
+ 9 22 Mauritz
+ 9 23 Thecla
+ 9 24 Gerhard
+ 9 25 Cleophas
+ 9 26 Cyprianus
+ 9 27 Damianus
+ 9 28 Leonard
+ 9 29 Michael
+ 9 30 Hieronymus
+10  1 Remigius
+10  2 Ludwig
+10  3 Ewald
+10  4 Franciscus
+10  5 Placidus
+10  6 Bruno
+10  7 Brigitta
+10  8 Demetrius
+10  9 Dionysius
+10 10 Gereon
+10 11 Probus
+10 12 Walfrid
+10 13 Teophilus
+10 14 Calixtus
+10 15 Hedvig 
+10 16 Gallus
+10 17 Lucina
+10 18 Lucas
+10 19 Ptolemeus
+10 20 Casper
+10 21 Ursila
+10 22 Sewerus
+10 23 Sewerin
+10 24 Ewergistus
+10 25 Crispin
+10 26 Amandus
+10 27 Sabina
+10 28 Simon, Judas
+10 29 Narcissus
+10 30 Zenobia
+10 31 Qwintinus
+11  1 Alla helgons dag
+11  2 Tobias
+11  3 Eustachius
+11  4 Amatius
+11  5 Malachias
+11  6 Gustaf Adolph
+11  7 Engelbert
+11  8 Willehad
+11  9 Theodor
+11 10 Mårten Luther
+11 11 Mårten biskop
+11 12 Conrad
+11 13 Christian
+11 14 Hypatius
+11 15 Leopold
+11 16 Edmund
+11 17 Anian
+11 18 Maximus
+11 19 Elisabeth
+11 20 Pontus
+11 21 Heliodorus
+11 22 Cecilia
+11 23 Clemens
+11 24 Christogonus
+11 25 Catharina
+11 26 Linus
+11 27 Vitalis
+11 28 Sten
+11 29 Saturninus
+11 30 Andreas
+12  1 Eligius
+12  2 Beata
+12  3 Zephanias
+12  4 Barbara
+12  5 Crispina
+12  6 Nicolaus
+12  7 Agathon
+12  8 Mariæ aflelse
+12  9 Anna
+12 10 Judit
+12 11 Daniel
+12 12 Alexander
+12 13 Lucia
+12 14 Isidorus
+12 15 Ireneus
+12 16 Lazarus
+12 17 Ignatius
+12 18 Abraham
+12 19 Isaac
+12 20 Jacob
+12 21 Thomas apostel
+12 22 Joseph
+12 23 Israel
+12 24 Adam, Ewa
+12 26 Stephanus dag
+12 27 Johannes Ewangelistus
+12 28 Menlösa barns dag
+12 29 Thomas biskop
+12 30 Dawid
+12 31 Sylwester
