@@ -67,7 +67,10 @@ def easter_sunday(year):
     jd = jddate.ymd_to_jd_gregorian(year,n,p+1)
 
     # Korrigerar för upptäckta fel mot verkliga kalendrar:
-    if year==1805: jd += 7
+    # Sverige använde astronomisk påskräkning 1740-1844. Dock "fuskade"
+    # man ett par gånger och följde den gregorianska påskuträkningen.
+    if year==1802 or year==1805 or year==1818: jd += 7
+    elif year==1744: jd -= 7
 
     # Plockar fram datum för den kalender som råkar gälla vid jd:
     # year ändras inte, då påsksöndagen aldrig är nära nyår:
@@ -772,7 +775,7 @@ class YearCal:
 	if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
 	    self.add_info_jd(sen, MRED, False, "Söndagen e nyår")
 
-	# Kyndelsmässodagen (Jungfru MarieKyrkogångsdag)
+	# Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
 	jmk = first_sunday(self.year, 2, 2)
 	if jmk == pd - 49 and self.year != 1845:
 	    # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
