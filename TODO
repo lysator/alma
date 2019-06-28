@@ -7,8 +7,6 @@ Val av år på något smart sätt (SELECT + fält?)
 
 Varning för saker som är fel eller otestat
 
-Markera dagens datum
-
 Försök få tabellläget att se OK ut med avseende på kolumnbredd.
 
 Idé från Anders L: länkar från helgdagarna till en förklaring.
@@ -32,9 +30,10 @@ snyggare?
 Långa och korta namn, så att man kan ha de senare i tabellformen eller
 i dagsalmanacka.
 
-Midsommardagen före 1953
-  Hette den Midsommardagen eller Johannes Döparens dag tidigt?
-  Kollision med söndagar efter trefaldighet, t.ex. 1917
+Midsommardagen före 1925
+  Någon gång mellan 1921 och 1925 lades "Midsommardagen" till i namnharangen.
+  Kollision med söndagar efter trefaldighet, t.ex. 1917. År 1900 och 1945 kolliderar
+   de, och båda sakerna visas i kalendrarna.
 
 Kyndelsmässodagen
 
@@ -42,21 +41,30 @@ Kyndelsmässodagen
   Kyndelsmässodagen". Heter den fortfarande det? I brist på annan information
   antar jag det så länge.
 
+  I kalendern för 1800, 1805, 1845, 1871, 1877, 1881 och 1900 heter söndagen "Marie kyrkog."
+
 Apostladagen
 
-  Anders L har kollar 1977 och säger: 10/7 (Heter bara "5.e. Tref." i min källa)
+  Verkar ha funnits sedan 1983. Behöver verifieras.
 
 Juldagen
 
   Anders L om 1977: 25/12 (Även "D. h. Stefanus' d.")
+  1985 26/12 "Annandag Jul", inget om Stefanus'.
 
-Botdagen
-  Denna verkar tidigt ha placerats in lite godtyckligt, utan någon exakt regel. 1955 var den den 6 mars:
-   http://runeberg.org/statskal/1955/0036.html
-  men rent generellt behöver detta kartläggas för att kunna läggas in korrekt.
-Reformationsdagen och Missiondagen
-  ...är två andra böndagar som måste utredas.
+Böndagar:
+  1915,1931, 1940, 1942 hette de bara 1 böndag, osv.
 
+  1945, 1947, 1950, 1955, 1963, 1964, 1970, 1972 angavs böndagarna typ: "Botdagen (1 Bönd.)" och slår ut fast-dagarna.
+
+På mindre kalendrar:
+  1970 hette första bönedagen Botdagen.
+  1970 hette 2 böndag Reformationsdagen
+  1970 hette 3 böndag Missionsdagen
+  1970 hette 4 böndag Tacksägelsedagen
+troligen pga platsbrist.
+
+Kyndelsmässodagen heter bara så 1974.
 
 Valborgsmässoafton påstås i Wikipedia ha försvunnit som officiell benämning 2001. Ingen källa anges. Detta bör undersökas!
 https://sv.wikipedia.org/wiki/30_april
@@ -75,8 +83,16 @@ det saknar almanackorna snygga sammanställningar med flaggdagar.
 NAMNSDAGAR
 ----------
 
+Det verkar som att namnsdagar slås ut av böndagarna förr i tiden (1800-talet). (Eller är det bara pga
+platsbrist de inte skrivs ut? Men plastbrist verkar lösas på andra dagar). 1845 slogs 2 böndagen inte
+ut, så det kanske bara var av platsbrist det inte stod med ibland.
+
 ANDRA DAGAR
 -----------
+Apostladagen, när började den stå med? Verkar inte stå 1845. Inte 1881 eller 1905 heller. Verkar ha kommit 1983, men inte
+säker på detta.
+
+3-4Böndagen slår inte ut 3faldighet före 1906 åtminstone. När skedde det?
 
 Svenska flaggans dag
 
@@ -130,3 +146,7 @@ kanske ge prydligare utskrifter.
 > Jag tränar ett damlag i fotboll och skulle behöva en vertikal
 > almanacka utan namnsdagar där man kan skriva in egen text typ
 > matcher träningar m.m, var kan man hitta detta ?
+
+1972:
+Aftonar står inte med i någon kalender jag sett fram till 1972! Inte 1983-1985.
+Versaler på "sönd f. Domsöndagen", "Trefaldighet", osv.
