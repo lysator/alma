@@ -191,7 +191,8 @@ def handle_cgi():
 
     # Disclaimer
     if not print_format:
-	so.write('''<DIV CLASS="disclaimer">Vi kan inte lämna några garantier
+	so.write('''<DIV CLASS="disclaimer"><i>Nyhet 28 juni 2019: Uppdaterad version med 1800-talets namnsdagar och helger.</i><br>
+Vi kan inte lämna några garantier
 för att almanackan är fullständig och korrekt. Från och med 1983 bör det
 emellertid inte finnas några större felaktigheter.
 Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
