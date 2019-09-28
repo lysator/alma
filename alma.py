@@ -520,14 +520,14 @@ class YearCal:
 				       (1934, 10, 20, ["Sibylla"])])
         elif year >=1800:
             self.place_name_day_names("namnsdagar-1800.txt",
-                                      [(1883,  1,  2, ["Abel, Set"]), # Ändrades 1882 eller 1883.
+                                      [(1883,  1,  2, ["Abel, Set"]),
                                        (1811,  1,  7, ["August"]),
-                                       (1825,  1, 31, ["Vigilius"]),      # (2)
+                                       (1818,  1, 31, ["Vigilius"]),      # ersätter Wigilius
                                        (1823,  2,  1, ["Maximiliana"]),
-                                       (1874,  2,  5, ["Agata"]), # (1)
-                                       (1874,  2,  6, ["Dorotea"]), # (1)
+                                       (1877,  2,  5, ["Agata"]), # ersätter Agatha
+                                       (1877,  2,  6, ["Dorotea"]), # Dorothea
                                        (1812,  2, 10, ["Eugenia"]),
-                                       (1874,  2, 14, ["Valentin"]), # (1)
+                                       (1872,  2, 14, ["Valentin"]), # Walentin
                                        (1851,  2, 17, ["Alexandra"]),
                                        (1806,  2, 28, ["Maria"]),
                                        (1830,  3,  1, ["Albin"]),
@@ -537,90 +537,114 @@ class YearCal:
                                        (1882,  3, 12, ["Viktoria"]),
                                        (1831,  3, 13, ["Nicephorus"]),
                                        (1882,  3, 13, ["Gregorius"]),
-                                       (1883,  3, 14, ["Matilda"]), # Ändrades 1882 eller 1883.
-                                       (1825,  3, 15, ["Christofer"]),      # (2)
-                                       (1874,  3, 18, ["Edvard"]),   # (1)
-                                       (1874,  3, 19, ["Josef"]),    # (1)
-                                       (1874,  3, 20, ["Joakim"]),   # (1)
-                                       (1874,  4,  6, ["Vilhelm"]),  # (1)
-                                       (1874,  4, 10, ["Hezekiel"]), # (1)
-                                       (1803,  4, 16, ["Patrik"]),   # Ändrades mellan 1800 och 1805. 
-                                       (1825,  4, 18, ["Valerian"]),   # (2) 
+                                       (1883,  3, 14, ["Matilda"]),
+                                       (1837,  3, 15, ["Christofer"]), # (3) Christopher
+                                       (1873,  3, 18, ["Edvard"]),
+                                       (1877,  3, 19, ["Josef"]),    # Joseph
+                                       (1877,  3, 20, ["Joakim"]),   # Joachim
+                                       (1877,  4,  6, ["Vilhelm"]),  # Wilhelm
+                                       (1877,  4, 10, ["Hezekiel"]), # Hezechiel
+                                       (1803,  4, 16, ["Patrik"]),   # Patrick
+                                       (1837,  4, 18, ["Valerian"]), # (3) Walerian
                                        (1812,  4, 22, ["Bernhardina"]),
                                        (1865,  4, 27, ["Theresia"]),
                                        (1859,  4, 30, ["Mariana"]),
                                        (1831,  5, 10, ["Esbjörn"]),
                                        (1822,  5, 13, ["Servatius"]),
-                                       (1874,  5, 17, ["Rebecka"]),    # (1)
-                                       (1874,  5, 18, ["Erik"]),       # (1)
-                                       (1874,  5, 21, ["Konstantin"]), # (1)
+                                       (1877,  5, 17, ["Rebecka"]),    # Rebecca (två av tre kalendrar bytte till ck 1877)
+                                       (1872,  5, 18, ["Erik"]),       # Eric
+                                       (1877,  5, 21, ["Konstantin"]), # Constantin
                                        (1812,  5, 23, ["Desideria"]),
-                                       (1874,  5, 26, ["Vilhelmina"]), # (1)
+                                       (1877,  5, 26, ["Vilhelmina"]), # Wilhelmina
                                        (1898,  5, 28, ["Ingeborg"]),
-                                       (1874,  6, 10, ["Svante"]),     # (1)
-                                       (1874,  6, 13, ["Akvilina"]),   # (1)
-                                       (1874,  6, 15, ["Vitus"]),      # (1)
-                                       (1825,  6, 19, ["Gervasius"]),  # (2)
-                                       (1874,  6, 23, ["Adolf"]),      # (1)
-                                       (1803,  6, 25, ["David"]),      # Ändrades mellan 1800 och 1805.
-                                       (1874,  7,  4, ["Ulrika"]),     # (1)
-                                       (1825,  7,  5, ["Melcher"]),    # (2)
-                                       (1874,  7, 18, ["Fredrik"]),     # (1)
-                                       (1874,  7, 20, ["Margareta"]),     # (1)
+                                       (1872,  6, 10, ["Svante"]),     # Swante
+                                       (1806,  6  13, ["Aqvilina"])    # Aqwilina
+                                       (1872,  6, 15, ["Vitus"]),      # Witus
+                                       (1818,  6, 19, ["Gervasius"]),  # Efter Gerwasius
+                                       (1877,  6, 23, ["Adolf"]),      # Adolph
+                                       (1801,  6, 25, ["David"]),      # Dawid
+                                       (1876,  7,  4, ["Ulrika"]),     # Ulrica
+                                       (1820,  7,  5, ["Melcher"]),    # (2) Före: Melker
+                                       (1874,  7, 18, ["Fredrik"]),    # (4) Före: Fredric
+                                       (1877,  7, 20, ["Margareta"]),  # Margaretha
                                        (1827,  7, 23, ["Emma"]),
-                                       (1883,  7, 26, ["Marta"]), # 1882 eller 1883 ändrades stavningen.
-                                       (1874,  7, 27, ["7 sofvare"]), # (1)
-                                       (1874,  7, 28, ["Botvid"]), # (1)
-                                       (1874,  8, 17, ["Verner"]),     # (1)
+                                       (1883,  7, 26, ["Marta"]),
+                                       (1876,  7, 27, ["7 sofvare"]),  # 7 sofware
+                                       (1872,  7, 28, ["Botvid"]),     # Botwid
+                                       (1876,  8, 17, ["Verner"]),     # Werner
                                        (1824,  8, 21, ["Josephina"]),
                                        (1859,  8, 22, ["Henrietta"]),
-                                       (1825,  8, 23, ["Sachæus"]), # (2)
-                                       (1874,  8, 23, ["Sacheus"]), # (1)
-                                       (1874,  8, 24, ["Bartholomeus"]), # (1)
-                                       (1858,  8, 25, ["Lovisa"]), # Mellan 1845 och 1871 ändrades stavningen.
-                                       (1803,  8, 28, ["Augustinus"]), # Mellan 1800 och 1805.
+                                       (1877,  8, 23, ["Zacheus"]),     # Zachæus
+                                       (1877,  8, 24, ["Bartholomeus"]),# Bartholomæus
+                                       (1855,  8, 25, ["Lovisa"]),      # (5)
+                                       (1801,  8, 28, ["Augustinus"]),  # Augustin
                                        (1890,  8, 30, ["Albert"]),
-                                       (1874,  8, 31, ["Arvid"]), # (1)
+                                       (1872,  8, 31, ["Arvid"]),       # Arwid
                                        (1831,  9,  9, ["Augusta"]),
-                                       (1883,  9, 15, ["Nicetas"]), # 1882 eller 1883 ändrades stavningen.
-                                       (1874,  9, 19, ["Fredrika"]), # (1)
-                                       (1803,  9, 21, ["Mattheus"]), # Mellan 1800 och 1805.
-                                       (1825,  9, 21, ["Matthæus"]), # (2) Samma datum igen.
-                                       (1874,  9, 21, ["Mattheus"]), # (1) Samma datum igen.
-                                       (1874,  9, 23, ["Tekla"]),    # (1)
-                                       (1803, 10,  2, ["Ludvik"]),  # Mellan 1800 och 1805.
-                                       (1825, 10,  2, ["Ludvig"]),  # (2) Samma datum
-                                       (1874, 10,  3, ["Evald"]),   # (1) 
-                                       (1825, 10,  4, ["Frans"]),   # (2)
-                                       (1874, 10, 12, ["Valfrid"]),   # (1) 
+                                       (1883,  9, 15, ["Nicetas"]),
+                                       (1876,  9, 19, ["Fredrika"]),   # Fredrica
+                                       (1801,  9, 21, ["Mattheus"]),   # Matthæus
+                                       (1806,  9, 21, ["Matthæus"]),   # Samma datum
+                                       (1825,  9, 21, ["Mattheus"]),   # Efter 1821, senast 1829.
+                                       (1837,  9, 21, ["Matthæus"]),   # Efter 1829, senast 1845.
+                                       (1877,  9, 21, ["Mattheus"]),   #
+                                       (1897,  9, 21  ["Matteus"]),   # Vissa modernare kalendrar hade denna 1897.
+                                       (1877,  9, 23, ["Tekla"]),    # Thecla
+                                       (1804, 10,  2, ["Ludwik"]),  # Ludwig
+                                       (1806, 10,  2, ["Ludwig"]),  # Samma datum
+                                       (1811, 10,  2, ["Ludvig"]),  # Samma datum
+                                       (1813, 10,  2, ["Ludwig"]),  # Samma datum
+                                       (1818, 10,  2, ["Ludvig"]),  # Samma datum
+                                       (1870, 10,  2, ["Ludwig"]),  # Samma datum                                       
+                                       (1872, 10,  2, ["Ludvig"]),  # Samma datum
+                                       (1876, 10,  3, ["Evald"]),   # Ewald
+                                       (1812, 10,  4, ["Frans"]),   # Franciscus
+                                       (1876, 10, 12, ["Valfrid"]), # Walfrid
                                        (1865, 10, 17, ["Antoinetta"]),
-                                       (1858, 10, 22, ["Severus"]), # Mellan 1845 och 1871 ändrades stavningen.
-                                       (1874, 10, 20, ["Kasper"]),   # (1) 
-                                       (1874, 10, 23, ["Severin"]),   # (1) 
-                                       (1874, 10, 24, ["Evergistus"]),   # (1) 
-                                       (1825, 10, 31, ["Qvintinus"]), # (2)
-                                       (1828, 11,  5, ["Eugene"]),   # (1)
-                                       (1874, 11,  5, ["Eugen"]),   # (1) # Samma datum igen.
-                                       (1825, 11,  6, ["Gustaf Adolf"]), # (2)
-                                       (1874, 11,  8, ["Villehad"]),   # (1)
-                                       (1825, 11, 10, ["Mårthen Luther"]), # (2)
-                                       (1874, 11, 10, ["Mårten Luther"]),  # (1) # Samma datum igen.
-                                       (1825, 11, 11, ["Mårthen biskop"]), # (2)
-                                       (1874, 11, 11, ["Mårten biskop"]),  # (1) # Samma datum igen.
-                                       (1874, 11, 12, ["Kondrad"]),  # (1)
-                                       (1874, 11, 19, ["Elisabet"]), # (1)
+                                       (1877, 10, 20, ["Kasper"]),   # Casper
+                                       (1812, 10, 22, ["Severus"]), #
+                                       (1813, 10, 22, ["Sewerus"]), #
+                                       (1818, 10, 22, ["Severus"]), #
+                                       (1837, 10, 22, ["Sewerus"]), # (3)
+                                       (1855, 10, 22, ["Severus"]), # (5) Därefter lite olika hos olika utgivare, men w är avtagande.
+                                       (1812, 10, 23, ["Severin"]), # Sewerin
+                                       (1813, 10, 23, ["Sewerin"]), # 
+                                       (1818, 10, 23, ["Severin"]), # 
+                                       (1829, 10, 23, ["Sewerin"]), # 
+                                       (1872, 10, 23, ["Severin"]), # Lite blandat hos olika utgivare 1840-tal och framåt.
+                                       (1812, 10, 24, ["Evergistus"]), # Ewergistus
+                                       (1814, 10, 24, ["Ewergistus"]), #
+                                       (1818, 10, 24, ["Evergistus"]), #
+                                       (1829, 10, 24, ["Ewergistus"]), #
+                                       (1872, 10, 24, ["Evergistus"]), #                                       
+                                       (1806, 10, 31, ["Qvintinus"]),  #
+                                       (1810, 10, 31, ["Qwintinus"]),  #
+                                       (1811, 10, 31, ["Qvintinus"]),  #                                       
+                                       (1828, 11,  5, ["Eugene"]),   # 
+                                       (1874, 11,  5, ["Eugen"]),   # (4) # Samma datum igen
+                                       (1837, 11,  6, ["Gustaf Adolf"]), # (3) Gustaf Adolph
+                                       (1877, 11,  8, ["Villehad"]),   # Willehad
+                                       (1837, 11, 10, ["Mårthen Luther"]), # (3) (lite osäkert, 1821 o 1829 förk. "Mårt. Luther")
+                                       (1872, 11, 10, ["Mårten Luther"]),  # # Samma datum igen.
+                                       (1837, 11, 11, ["Mårthen biskop"]), # (3) (lite osäkert, 1821 o 1829 förk. "Mårt. biskop")
+                                       (1872, 11, 11, ["Mårten biskop"]),  # Samma datum igen.
+                                       (1877, 11, 12, ["Kondrad"]),  # Conrad
+                                       (1877, 11, 19, ["Elisabet"]), # Elisabeth
                                        (1812, 12,  1, ["Oscar"]),
-                                       (1874, 12,  7, ["Agaton"]), # (1)
-                                       (1803, 12,  8, ["Marie aflelse"]), # Mellan 1800 och 1805.
-                                       (1803, 12, 10, ["Judith"]), # Mellan 1800 och 1805.
-                                       (1874, 12, 10, ["Judit"]),  # (1) # Samma datum igen.
-                                       (1803, 12, 24, ["Adam, Eva"]), # Mellan 1800 och 1805.
-                                       (1803, 12, 27, ["Johannes Evangelistus"]), # Mellan 1800 och 1805.
-                                       (1825, 12, 30, ["David"]), # (2)
+                                       (1877, 12,  7, ["Agaton"]), # Agathon
+                                       (1801, 12,  8, ["Marie aflelse"]), # Ersätter Mariæ (?) aflelse (?)
+                                       (1801, 12, 10, ["Judith"]), # Judit
+                                       (1877, 12, 10, ["Judit"]),  # Judith.
+                                       (1803, 12, 24, ["Adam, Eva"]), #  Ersätter Adam, Ewa
+                                       (1801, 12, 27, ["Johannes Evangelistus"]), # Ersätter Johannes Ewangelistus
+                                       (1818, 12, 30, ["David"]), # Dawid
                                        (1874, 12, 31, ["Sylvester"])
 ])
-            # (1) Denna stavning verkar ha tagit över ungefär här. Mellan 1870 och 1877.
-            # (2) Denna stavning tog över mellan 1805 och 1845.
+            # (2) Denna stavning tog över år 1820 eller 1821.
+            # (3) Denna stavning tog över mellan 1829 och 1845 (vi säger 1837)
+            # (4) Denna stavning tog över åren 1874 eller 1875.
+            # (5) Denna stavning tog över efter 1845 men senast 1865 (vi säger 1855).
+
 
 	# Månfaser
 	self.place_moonphases()
@@ -828,7 +852,7 @@ class YearCal:
             1810:(3,11),
             1811:(3,3),
             1812:(3,1),
-            1813:(3,7), #? osäker
+            1813:(3,7),
             1814:(3,6),
             1815:(3,12),
             1816:(3,3),
@@ -1342,7 +1366,7 @@ class YearCal:
             1952:(7,13),
             1953:(7,12),
             1954:(7,11),
-            1955:(7,10), # korrigerat.
+            1955:(7,10),
             1956:(7,8),
             1957:(7,7),
             1958:(7,13),

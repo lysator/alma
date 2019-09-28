@@ -94,7 +94,7 @@
  4  7 Hegesuppus
  4  8 Perpetuus
  4  9 Otto
- 4 10 Hezekiel
+ 4 10 Hezechiel
  4 11 Antipas
  4 12 Julius
  4 13 Justinus
