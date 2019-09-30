@@ -558,7 +558,7 @@ class YearCal:
                                        (1877,  5, 26, ["Vilhelmina"]), # Wilhelmina
                                        (1898,  5, 28, ["Ingeborg"]),
                                        (1872,  6, 10, ["Svante"]),     # Swante
-                                       (1806,  6  13, ["Aqvilina"])    # Aqwilina
+                                       (1806,  6, 13, ["Aqvilina"]),   # Aqwilina
                                        (1872,  6, 15, ["Vitus"]),      # Witus
                                        (1818,  6, 19, ["Gervasius"]),  # Efter Gerwasius
                                        (1877,  6, 23, ["Adolf"]),      # Adolph
