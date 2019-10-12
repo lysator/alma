@@ -588,7 +588,7 @@ class YearCal:
                                        (1825,  9, 21, ["Mattheus"]),   # Efter 1821, senast 1829.
                                        (1837,  9, 21, ["Matthæus"]),   # Efter 1829, senast 1845.
                                        (1877,  9, 21, ["Mattheus"]),   #
-                                       (1897,  9, 21  ["Matteus"]),   # Vissa modernare kalendrar hade denna 1897.
+                                       (1897,  9, 21,  ["Matteus"]),   # Vissa modernare kalendrar hade denna 1897.
                                        (1877,  9, 23, ["Tekla"]),    # Thecla
                                        (1804, 10,  2, ["Ludwik"]),  # Ludwig
                                        (1806, 10,  2, ["Ludwig"]),  # Samma datum

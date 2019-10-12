@@ -150,7 +150,7 @@
  6  2 Erasmus
  6  3 Marcellinus
  6  4 Optatus
- 6  5 Bonifatius
+ 6  5 Bonifacius
  6  6 Gustaf
  6  7 Robert
  6  8 Salomon
