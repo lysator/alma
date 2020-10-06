@@ -502,7 +502,15 @@ class YearCal:
 				      [(2015,  7, 23, ["Emma","Emmy"]),
 				       (2015,  7, 26, ["Jesper","Jasmin"]),
 				       (2018,  3,  8, ["Siv","Saga"]),
-				       (2018,  9, 14, ["Ida","Ronja"])])
+				       (2018,  9, 14, ["Ida","Ronja"]),
+                                       (2022, 12,  3, ["Lydia", "Cornelia"]),
+                                       (2022,  1, 19, ["Henrik", "Henry"]),
+                                       (2022,  2, 28, ["Maria", "Maja"]),
+                                       (2022,  3, 31, ["Ester", "Noa"]),
+                                       (2022,  7, 29, ["Olof", "Olle"]),
+                                       (2022,  3, 12, ["Viktoria", "Regina"]),
+                                       (2022, 11,  2, ["Tobias", "Tim"]),
+                                       ])
 	elif year >= 2001:
 	    self.place_name_day_names("namnsdagar-2001.txt")
 	elif year >= 1993:
