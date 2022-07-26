@@ -500,7 +500,7 @@ class YearCal:
 	if year >= 2011:
 		self.place_name_day_names("namnsdagar-2011.txt",
 				      [(2015,  7, 23, ["Emma","Emmy"]),
-				       (2015,  7, 26, ["Jesper","Jasmin"]),
+				       (2015,  7, 26, ["Jesper","Jasmine"]),
 				       (2018,  3,  8, ["Siv","Saga"]),
 				       (2018,  9, 14, ["Ida","Ronja"]),
                                        (2022, 12,  3, ["Lydia", "Cornelia"]),
