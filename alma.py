@@ -724,6 +724,7 @@ class YearCal:
 	    (1939, None, 12, 10, BLACK, True,  "Nobeldagen"),
 	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
 	    (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
+	    (2023, 2023,  9, 15, BLACK, True, "50-årsdagen av kung Carl XVI Gustafs trontillträde"), # Tillfällig flaggdag 2023, enligt 2022/23:KU41
 
 	    # Flaggdagar för regerande kungahuset
 	    
