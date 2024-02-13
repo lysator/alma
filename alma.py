@@ -725,6 +725,8 @@ class YearCal:
 	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
 	    (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
 	    (2023, 2023,  9, 15, BLACK, True, "50-årsdagen av kung Carl XVI Gustafs trontillträde"), # Tillfällig flaggdag 2023, enligt 2022/23:KU41
+            (2024, 2024,  6,  9, BLACK, True, "Val till Europaparlamentet"), # Val till Europaparlamentet är flaggdag sedan 1 april 2023.
+
 
 	    # Flaggdagar för regerande kungahuset
 	    
