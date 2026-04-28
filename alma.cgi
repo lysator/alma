@@ -1,8 +1,7 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-1 -*-
 # $Id: alma.cgi,v 1.14 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
-# Copyright 2004 Kent Engström. Released under GPL.
+# Copyright 2004 Kent EngstrÃ¶m. Released under GPL.
 
 import time
 import cgi
@@ -32,11 +31,11 @@ def selected(bool):
 def handle_cgi():
     form = cgi.FieldStorage()
 
-    # Är det här en begäran om vCalendar-data, som hanteras separat?
+    # Ã„r det hÃ¤r en begÃ¤ran om vCalendar-data, som hanteras separat?
     if form.getfirst("vcal_preview") is not None or form.getfirst("vcal_generate") is not None:
         return handle_vcal(form)
 
-    # Nähä, då kan vi utgå från att det blir en vanlig webbsida...
+    # NÃ¤hÃ¤, dÃ¥ kan vi utgÃ¥ frÃ¥n att det blir en vanlig webbsida...
     so = sys.stdout
     so.write("Content-Type: text/html; charset=iso-8859-1\r\n\r\n")
 
@@ -44,7 +43,7 @@ def handle_cgi():
     calendar_type = form.getfirst("type","vertical")
     if calendar_type in ["vertical", "tabular", "tabular_high"]:
         month_based = True 
-        base_name = "månad"
+        base_name = "mÃ¥nad"
     elif calendar_type in ["week"]:
         month_based = False
         base_name = "vecka"
@@ -55,45 +54,45 @@ def handle_cgi():
     # Utskriftsformat?
     print_format = form.getfirst("print") is not None
 
-    # Ta reda på år, månad och veckonummer
-    # (vi förväntar oss år + månad eller år + veckonummer)
+    # Ta reda pÃ¥ Ã¥r, mÃ¥nad och veckonummer
+    # (vi fÃ¶rvÃ¤ntar oss Ã¥r + mÃ¥nad eller Ã¥r + veckonummer)
     year_string = form.getfirst("year")
     month_string = form.getfirst("month")
     week_string = form.getfirst("week")
 
-    # Om både år och månad saknas: låt dessa bli nuvarande värden
+    # Om bÃ¥de Ã¥r och mÃ¥nad saknas: lÃ¥t dessa bli nuvarande vÃ¤rden
     if year_string is None and month_string is None:
         year_string = str(time.localtime().tm_year)
         month_string = str(time.localtime().tm_mon)
 
-    # Omvandla till heltal och kolla gränser
+    # Omvandla till heltal och kolla grÃ¤nser
     year = guarded_int(year_string, min=1559)
     month = guarded_int(month_string, min=1, max=12)
     week = guarded_int(week_string, min=1, max=53)
 
-    # Vi kan inte vara utan år nu!
+    # Vi kan inte vara utan Ã¥r nu!
     if year is None:
-        so.write("<P>År måste anges!\n")
+        so.write("<P>Ã…r mÃ¥ste anges!\n")
         return
 
-    # Vi måste ha minst en av månad och veckonummmer
+    # Vi mÃ¥ste ha minst en av mÃ¥nad och veckonummmer
     if month is None and week is None:
-        so.write("<P>Månad eller vecka måste anges!\n")
+        so.write("<P>MÃ¥nad eller vecka mÃ¥ste anges!\n")
         return
 
-    # Vi kan inte ha månad och veckonummer samtidigt
+    # Vi kan inte ha mÃ¥nad och veckonummer samtidigt
     if month is not None and week is not None:
-        so.write("<P>Månad och vecka får inte anges samtidigt!\n")
+        so.write("<P>MÃ¥nad och vecka fÃ¥r inte anges samtidigt!\n")
         return
 
-    # Nu ska vi ta hand om ev övergångar mellan månadsbaserad
+    # Nu ska vi ta hand om ev Ã¶vergÃ¥ngar mellan mÃ¥nadsbaserad
     # och veckobaserat!
     if month_based and month is None:
         year, month = alma.yw_to_ym(year, week)
     elif not month_based and week is None:
         year, week = alma.ym_to_yw(year, month)
 
-    # Om användaren valt f.g. eller nästa: justera
+    # Om anvÃ¤ndaren valt f.g. eller nÃ¤sta: justera
     if form.getfirst("prev") is not None:
         if month_based:
             year, month = alma.previous_month(year, month)
@@ -105,10 +104,10 @@ def handle_cgi():
         else:
             year, week = alma.next_week(year, week)
 
-    # Ingen veckobaserad före 1973 så jag slipper klura på 
-    # layouten då :-)
+    # Ingen veckobaserad fÃ¶re 1973 sÃ¥ jag slipper klura pÃ¥ 
+    # layouten dÃ¥ :-)
     if not month_based and year < 1973:
-        so.write("<P>Ingen veckokalender tidigare än 1973!\n")
+        so.write("<P>Ingen veckokalender tidigare Ã¤n 1973!\n")
         return
         
 
@@ -133,7 +132,7 @@ def handle_cgi():
         so.write('<FORM METHOD="POST" ACTION="">')
 
         if month_based:
-            # Månad
+            # MÃ¥nad
             so.write('<SELECT NAME="month" onChange="this.form.submit();">')
             for m in range(1,13):
                 so.write('<OPTION VALUE="%d" %s>%s</OPTION>' % (m, selected(m == month), alma.month_names[m]))
@@ -142,14 +141,14 @@ def handle_cgi():
             # Vecka
             so.write('Vecka <INPUT TYPE="TEXT" NAME="week" VALUE="%d" SIZE="2" onChange="this.form.submit();">\n' % (week))
 
-        # År
+        # Ã…r
         so.write('<INPUT TYPE="TEXT" NAME="year" VALUE="%d" SIZE="4" onChange="this.form.submit();">\n' % (year))
 
         # Typ
         so.write('<SELECT NAME="type" onChange="this.form.submit();">')
         for (value, label) in (("vertical", "Vertikal"),
                                ("tabular",  "Tabell"),
-                               ("tabular_high",  "Tabell (hög)"),
+                               ("tabular_high",  "Tabell (hÃ¶g)"),
                                ("week",  "Vecka")):
             so.write('<OPTION VALUE="%s" %s>%s</OPTION>' % (value, selected(calendar_type == value), label))
         so.write('</SELECT>\n')
@@ -158,16 +157,16 @@ def handle_cgi():
         so.write('<INPUT TYPE="SUBMIT" NAME="go" VALUE="Uppdatera">\n')
 
         # Utskrift (= ingen navigering)
-        so.write('<INPUT TYPE=SUBMIT NAME="print" VALUE="Visa för utskrift">\n')
+        so.write('<INPUT TYPE=SUBMIT NAME="print" VALUE="Visa fÃ¶r utskrift">\n')
 
         # vCalendar
         so.write('<INPUT TYPE=SUBMIT NAME="vcal_preview" VALUE="vCalendar">\n')
 
         so.write(" ~ ")
 
-        # Snabblänkar till föregående och nästa {månad, vecka}
-        so.write('<INPUT TYPE=SUBMIT NAME="prev" VALUE="Föregående %s">\n' % base_name)
-        so.write('<INPUT TYPE=SUBMIT NAME="next" VALUE="Nästa %s">\n' % base_name)
+        # SnabblÃ¤nkar till fÃ¶regÃ¥ende och nÃ¤sta {mÃ¥nad, vecka}
+        so.write('<INPUT TYPE=SUBMIT NAME="prev" VALUE="FÃ¶regÃ¥ende %s">\n' % base_name)
+        so.write('<INPUT TYPE=SUBMIT NAME="next" VALUE="NÃ¤sta %s">\n' % base_name)
 
         so.write('</FORM>')
     
@@ -192,10 +191,10 @@ def handle_cgi():
     # Disclaimer
     if not print_format:
         so.write('''<DIV CLASS="disclaimer"><i>Nyhet 28 juni 2019: Uppdaterad version med 1800-talets namnsdagar och helger.</i><br>
-Vi kan inte lämna några garantier
-för att almanackan är fullständig och korrekt. Från och med 1983 bör det
-emellertid inte finnas några större felaktigheter.
-Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
+Vi kan inte lÃ¤mna nÃ¥gra garantier
+fÃ¶r att almanackan Ã¤r fullstÃ¤ndig och korrekt. FrÃ¥n och med 1983 bÃ¶r det
+emellertid inte finnas nÃ¥gra stÃ¶rre felaktigheter.
+Vi fÃ¶rsÃ¶ker att gÃ¶ra sÃ¥ gott vi kan och tar tacksamt emot synpunkter till
 <A HREF="mailto:kent@lysator.liu.se">kent@lysator.liu.se</A>.
 </DIV>''')
 
@@ -206,13 +205,13 @@ Vi försöker att göra så gott vi kan och tar tacksamt emot synpunkter till
 def handle_vcal(form):
     so = sys.stdout
 
-    # Ta reda på år
+    # Ta reda pÃ¥ Ã¥r
     year_string = form.getfirst("year")
     if year_string is None:
         year_string = str(time.localtime().tm_year)
     year = guarded_int(year_string, min=1559)
 
-    # Förhandsvisning eller generering?
+    # FÃ¶rhandsvisning eller generering?
     preview = form.getfirst("vcal_preview")
 
     if preview:
@@ -230,28 +229,28 @@ def handle_vcal(form):
     if preview:
         so.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">')
         so.write('<HEAD><TITLE>%d</TITLE></HEAD>\n' % year)
-        so.write('<BODY><H1>vCalendar-fil för år %d</H1>\n' % year)
+        so.write('<BODY><H1>vCalendar-fil fÃ¶r Ã¥r %d</H1>\n' % year)
 
-        so.write('<P>Välj nedan vilken information som ska med i vCalendar-filen. ')
-        so.write('Begär sedan en ny förhandsvisning eller tryck direkt på knappen ')
-        so.write('för att ladda ner vCalendar-filen. ')
+        so.write('<P>VÃ¤lj nedan vilken information som ska med i vCalendar-filen. ')
+        so.write('BegÃ¤r sedan en ny fÃ¶rhandsvisning eller tryck direkt pÃ¥ knappen ')
+        so.write('fÃ¶r att ladda ner vCalendar-filen. ')
 
         so.write('<FORM METHOD="POST" ACTION=""><TABLE>\n')
 
     # Val av vad som ska visas
     pdict = {}
     nodefaults = form.getfirst("vcal_nodefaults")
-    for (param, default, text) in [(str(alma.MRED),   True,  "Visa viktiga röda dagar"),
-                                   (str(alma.RED),    False, "Visa mindre viktiga röda dagar"),
+    for (param, default, text) in [(str(alma.MRED),   True,  "Visa viktiga rÃ¶da dagar"),
+                                   (str(alma.RED),    False, "Visa mindre viktiga rÃ¶da dagar"),
                                    (str(alma.MBLACK), True,  "Visa viktiga svarta dagar"),
                                    (str(alma.BLACK),  False, "Visa mindre viktiga svarta dagar"),
-                                   ("red",            False, "Markera röda dagar"),
+                                   ("red",            False, "Markera rÃ¶da dagar"),
                                    ("names",          False, "Visa namnsdagsnamn"),
-                                   ("moon",           False, "Visa månfaser"),
+                                   ("moon",           False, "Visa mÃ¥nfaser"),
                                    ("flag",           False, "Visa flaggdagar"),
                                    ("end",            False, "Ta med DTEND-post 23:59:59"),
                                    ]:
-        # Ta hand om inskickat värde
+        # Ta hand om inskickat vÃ¤rde
         if nodefaults:
             value = form.getfirst("vcal_" + param)
             if value == "yes":
@@ -270,18 +269,18 @@ def handle_vcal(form):
                 
             so.write('<TR><TD><INPUT TYPE="CHECKBOX" NAME="vcal_%s" VALUE="yes" %s></TD><TD>%s</TD></TR>\n' % (param, checked, text))
 
-    # Slut på huvud
+    # Slut pÃ¥ huvud
     if preview:
         so.write('</TABLE><P>\n')
         so.write('<INPUT TYPE="HIDDEN" NAME="year" VALUE="%d">\n' % year)
         so.write('<INPUT TYPE="HIDDEN" NAME="vcal_nodefaults" VALUE="yes">\n')
-        so.write('<INPUT TYPE="SUBMIT" NAME="vcal_preview" VALUE="Uppdatera förhandsvisning">\n')
+        so.write('<INPUT TYPE="SUBMIT" NAME="vcal_preview" VALUE="Uppdatera fÃ¶rhandsvisning">\n')
         so.write('<INPUT TYPE="SUBMIT" NAME="vcal_generate" VALUE="Ladda ner vCalendar-fil">\n')
         so.write('</FORM>\n')
 
-    # Kalender (förhandsvisning eller på riktigt)
+    # Kalender (fÃ¶rhandsvisning eller pÃ¥ riktigt)
     if preview:
-        so.write('<P>Förhandsvisning av information som exporteras till vCalendar-filen:\n')
+        so.write('<P>FÃ¶rhandsvisning av information som exporteras till vCalendar-filen:\n')
         so.write('<PRE>\n')
     else:
         so.write('BEGIN:VCALENDAR\n')
@@ -296,27 +295,27 @@ def handle_vcal(form):
         show = False
         parts = []
 
-        # Röda och svarta dagar
+        # RÃ¶da och svarta dagar
         for dayclass in range(alma.MRED, alma.BLACK+1):
             if pdict[str(dayclass)]:
                 for dayname in dc.day_names:
                     if dayname.dayclass == dayclass:
                         name = dayname.name
                         if pdict["red"] and dayname.is_red:
-                            name = name + " (röd)"
+                            name = name + " (rÃ¶d)"
                         parts.append(name)
 
         # Namnsdagar
         if pdict["names"]:
             parts.extend(dc.names)
 
-        # Månfaser
+        # MÃ¥nfaser
         if pdict["moon"]:
             phase = dc.moonphase_name()
             if phase:
                 parts.append(phase)
 
-        # Månfaser
+        # MÃ¥nfaser
         if pdict["flag"]:
             if dc.flag_day:
                 parts.append("flaggdag")
@@ -335,13 +334,13 @@ def handle_vcal(form):
                 so.write('END:VEVENT\n')
 
 
-    # Slut på kalendern
+    # Slut pÃ¥ kalendern
     if preview:
         so.write('</PRE>\n')
     else:
         so.write('END:VCALENDAR\n')
 
-    # Slut på sidan
+    # Slut pÃ¥ sidan
     if preview:
         so.write('</BODY>\n')
 

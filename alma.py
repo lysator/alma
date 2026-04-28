@@ -1,8 +1,7 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-1 -*-
 # $Id: alma.py,v 1.30 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
-# Copyright 2004 Kent Engström. Released under GPL.
+# Copyright 2004 Kent EngstrÃ¶m. Released under GPL.
 
 import math
 from io import StringIO
@@ -13,38 +12,38 @@ import jddate; JD=jddate.FromYMD
 # Data
 #
 
-# Månader (index 1..12)
+# MÃ¥nader (index 1..12)
 month_names =   [None,
                  "Januari", "Februari", "Mars",
                  "April", "Maj", "Juni",
                  "Juli", "Augusti", "September",
                  "Oktober", "November", "December"]
-# Fram till ungefär 1872 användes de latinska formerna i almanackan, ihop med de gamla hedniska månadsnamnen.
+# Fram till ungefÃ¤r 1872 anvÃ¤ndes de latinska formerna i almanackan, ihop med de gamla hedniska mÃ¥nadsnamnen.
 month_old_names =   [None,
-                 "Januarius &ndash; Thors-månad", "Februarius &ndash; Göjemånad", "Martius &ndash; Wårmånad",
-                 "Aprilis &ndash; Gräsmånad", "Majus &ndash; Blomstermånad", "Junius &ndash; Sommarmånad",
-                 "Julius &ndash; Hömånad", "Augustus &ndash; Skördemånad", "September &ndash; Höstmånad",
-                 "October &ndash; Slagtmånad", "November &ndash; Wintermånad", "December &ndash; Julmånad"]
+                 "Januarius &ndash; Thors-mÃ¥nad", "Februarius &ndash; GÃ¶jemÃ¥nad", "Martius &ndash; WÃ¥rmÃ¥nad",
+                 "Aprilis &ndash; GrÃ¤smÃ¥nad", "Majus &ndash; BlomstermÃ¥nad", "Junius &ndash; SommarmÃ¥nad",
+                 "Julius &ndash; HÃ¶mÃ¥nad", "Augustus &ndash; SkÃ¶rdemÃ¥nad", "September &ndash; HÃ¶stmÃ¥nad",
+                 "October &ndash; SlagtmÃ¥nad", "November &ndash; WintermÃ¥nad", "December &ndash; JulmÃ¥nad"]
 
 # Veckodagar (index 1..7)
-wday_names = [None, "Måndag", "Tisdag", "Onsdag",
-              "Torsdag", "Fredag", "Lördag", "Söndag"]
+wday_names = [None, "MÃ¥ndag", "Tisdag", "Onsdag",
+              "Torsdag", "Fredag", "LÃ¶rdag", "SÃ¶ndag"]
 
-# Klasser av dagar (uppdelning enligt intresse nedan är såklart väldigt godtycklig)
+# Klasser av dagar (uppdelning enligt intresse nedan Ã¤r sÃ¥klart vÃ¤ldigt godtycklig)
 
-MRED   = 0 # Röd dag, av mera allmänt intresse (t.ex. juldagen)
-RED    = 1 # Röd dag, ej av allmänt intresse (t.ex. domsöndagen)
-MBLACK = 2 # Svart dag, av mera allmänt intresse (t.ex. julafton)
-BLACK  = 3 # Svart dag, ej av allmänt intresse (t.ex. allhelgondagen)
+MRED   = 0 # RÃ¶d dag, av mera allmÃ¤nt intresse (t.ex. juldagen)
+RED    = 1 # RÃ¶d dag, ej av allmÃ¤nt intresse (t.ex. domsÃ¶ndagen)
+MBLACK = 2 # Svart dag, av mera allmÃ¤nt intresse (t.ex. julafton)
+BLACK  = 3 # Svart dag, ej av allmÃ¤nt intresse (t.ex. allhelgondagen)
 
-# Tidszon (positivt åt öster)
+# Tidszon (positivt Ã¥t Ã¶ster)
 TIMEZONE = 1
 
 #
 # Funktioner
 #
 
-# Beräkna vilken dag som är påsksöndag ett visst år 
+# BerÃ¤kna vilken dag som Ã¤r pÃ¥sksÃ¶ndag ett visst Ã¥r 
 # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 31
 
 def easter_sunday(year):
@@ -59,38 +58,38 @@ def easter_sunday(year):
     m = (a+11*h+22*l) // 451
     n, p = divmod(h+l-7*m+114, 31)
 
-    # Formeln ovan är gjord för den gregorianska kalendern.
-    # Konverteringar görs för att omvandla ifall det är den
+    # Formeln ovan Ã¤r gjord fÃ¶r den gregorianska kalendern.
+    # Konverteringar gÃ¶rs fÃ¶r att omvandla ifall det Ã¤r den
     # svenska kalendern eller julianska kalendern:
 
-    # Plockar ut JD utifrån vårt gregorianska datum:
+    # Plockar ut JD utifrÃ¥n vÃ¥rt gregorianska datum:
     jd = jddate.ymd_to_jd_gregorian(year,n,p+1)
 
-    # Korrigerar för upptäckta fel mot verkliga kalendrar:
-    # Sverige använde astronomisk påskräkning 1740-1844. Dock "fuskade"
-    # man ett par gånger och följde den gregorianska påskuträkningen.
+    # Korrigerar fÃ¶r upptÃ¤ckta fel mot verkliga kalendrar:
+    # Sverige anvÃ¤nde astronomisk pÃ¥skrÃ¤kning 1740-1844. Dock "fuskade"
+    # man ett par gÃ¥nger och fÃ¶ljde den gregorianska pÃ¥skutrÃ¤kningen.
     if year==1802 or year==1805 or year==1818: jd += 7
     elif year==1744: jd -= 7
 
-    # Plockar fram datum för den kalender som råkar gälla vid jd:
-    # year ändras inte, då påsksöndagen aldrig är nära nyår:
+    # Plockar fram datum fÃ¶r den kalender som rÃ¥kar gÃ¤lla vid jd:
+    # year Ã¤ndras inte, dÃ¥ pÃ¥sksÃ¶ndagen aldrig Ã¤r nÃ¤ra nyÃ¥r:
     
     (year,month,day) = jddate.jd_to_ymd(jd)
     
     return JD(year, month, day)
 
-# Beräkna JD då en viss månfas inträffar i en viss cykel
+# BerÃ¤kna JD dÃ¥ en viss mÃ¥nfas intrÃ¤ffar i en viss cykel
 # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
 
 
 def moonphase(cycle, phase):
-    # Beräkna parametrar
-    # phase: 0 är nymåne, 1 är växande halvmåne, 2 är fullmåne, 3 är avtagande halvmåne
+    # BerÃ¤kna parametrar
+    # phase: 0 Ã¤r nymÃ¥ne, 1 Ã¤r vÃ¤xande halvmÃ¥ne, 2 Ã¤r fullmÃ¥ne, 3 Ã¤r avtagande halvmÃ¥ne
     assert phase in [0,1,2,3]
     k = cycle + phase/4.0
     t  = k / 1236.85
 
-    # Beräkna ursprunglig "gissning"
+    # BerÃ¤kna ursprunglig "gissning"
 
     jd = 2415020.75933 \
         + 29.53058868 * k \
@@ -98,7 +97,7 @@ def moonphase(cycle, phase):
         - 0.000000155 * t*t*t \
         + 0.00033 * math.sin(2.90702 + 2.31902 * t + 0.0001601 * t*t)
 
-    # Beräkna positioner vid denna tidpunkt
+    # BerÃ¤kna positioner vid denna tidpunkt
 
     m  = 359.2242 +  29.10535608 * k - 0.0000333 * t*t - 0.00000347 * t*t*t
     mp = 306.0253 + 385.81691806 * k + 0.0107306 * t*t + 0.00001236 * t*t*t
@@ -110,7 +109,7 @@ def moonphase(cycle, phase):
     # Korrigera "gissningen" m a p dessa positioner
 
     if phase in [0, 2]: 
-        # Nymåne och fullmåne
+        # NymÃ¥ne och fullmÃ¥ne
         jd += (0.1734 - 0.000393*t) * math.sin(m) \
             + 0.0021 * math.sin(2*m) \
             - 0.4068 * math.sin(mp) \
@@ -125,7 +124,7 @@ def moonphase(cycle, phase):
             + 0.0010 * math.sin(2*f-mp) \
             + 0.0005 * math.sin(m+2*mp)
     else:
-        # Växande och avtagande halvmåne
+        # VÃ¤xande och avtagande halvmÃ¥ne
           jd += (0.1721 - 0.0004*t) * math.sin(m) \
               + 0.0021 * math.sin(2*m) \
               - 0.6280 * math.sin(mp) \
@@ -147,9 +146,9 @@ def moonphase(cycle, phase):
           else:
               jd -= (0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp));
 
-    # Korrigera för:
+    # Korrigera fÃ¶r:
     # 1) Resten av programmet har en lite annorlunda definition av JD.
-    #    JD här = JD i resten - 0.5 dygn
+    #    JD hÃ¤r = JD i resten - 0.5 dygn
     #  2) Tidszon
 
     jd = jd + 0.5 + TIMEZONE/24.0
@@ -161,11 +160,11 @@ def moonphase(cycle, phase):
     hour = int(rest)
     min  = int((rest - hour) * 60);
 
-    # Återvänd med datumtyp, kasta tillsvidare h och m
+    # Ã…tervÃ¤nd med datumtyp, kasta tillsvidare h och m
     return jddate.FromJD(day)
 
 
-# Första veckodagen av visst slag på eller efter ett visst datum
+# FÃ¶rsta veckodagen av visst slag pÃ¥ eller efter ett visst datum
 def first_weekday(y, m, d, wd):
     jd = JD(y, m, d)
     (_, _, jdwd) = jd.GetYWD()
@@ -179,41 +178,41 @@ def first_sunday(y, m, d):
 def first_saturday(y, m, d):
     return first_weekday(y, m, d, 6)
 
-# Föregående månad
+# FÃ¶regÃ¥ende mÃ¥nad
 def previous_month(y, m):
     if m == 1:
         return (y-1, 12)
     else:
         return (y, m-1)
 
-# Nästa månad
+# NÃ¤sta mÃ¥nad
 def next_month(y, m):
     if m == 12:
         return (y+1, 1)
     else:
         return (y, m+1)
 
-# Föregående vecka
+# FÃ¶regÃ¥ende vecka
 def previous_week(y, w):
     jd = jddate.FromYWD(y, w, 1) - 7
     y, w, _ = jd.GetYWD()
     return y, w
 
-# Nästa vecka
+# NÃ¤sta vecka
 def next_week(y, w):
     jd = jddate.FromYWD(y, w, 1) + 7
     y, w, _ = jd.GetYWD()
     return y, w
 
-# År och vecka --> År och månad
-# (första dagen i veckan får bestämma)
+# Ã…r och vecka --> Ã…r och mÃ¥nad
+# (fÃ¶rsta dagen i veckan fÃ¥r bestÃ¤mma)
 def yw_to_ym(year, week):
     jd = jddate.FromYWD(year, week, 1)
     year, month, _ = jd.GetYMD()
     return year, month
 
-# År och månad --> År och vecka
-# (första dagen i månaden får bestämma)
+# Ã…r och mÃ¥nad --> Ã…r och vecka
+# (fÃ¶rsta dagen i mÃ¥naden fÃ¥r bestÃ¤mma)
 def ym_to_yw(year, month):
     jd = jddate.FromYMD(year, month, 1)
     year, week, _ = jd.GetYWD()
@@ -248,28 +247,28 @@ class DayCal:
          self.week,
          self.wday) = self.jd.GetYWD()
 
-        # wday är alltid 1 för måndag ... 7 för söndag
+        # wday Ã¤r alltid 1 fÃ¶r mÃ¥ndag ... 7 fÃ¶r sÃ¶ndag
         # wpos talar om positionen i veckan
         if self.y >= 1973:
-            self.wpos = self.wday # måndag först i veckan
+            self.wpos = self.wday # mÃ¥ndag fÃ¶rst i veckan
         else:
             if self.wday == 7:
-                self.wpos = 1 # söndag först i veckan
+                self.wpos = 1 # sÃ¶ndag fÃ¶rst i veckan
             else:
                 self.wpos = self.wday + 1
 
         self.flag_day = False  # flaggdag?
-        self.day_names = []    # röda och svarta dagsnamn, blandat (klass DayName)
+        self.day_names = []    # rÃ¶da och svarta dagsnamn, blandat (klass DayName)
         self.names = []        # namnsdagsnamn
         self.wday_name = wday_names[self.wday]
         self.wday_name_short = self.wday_name[:3]
 
         if self.wday == 7:
-            self.red = True    # Alla söndagar är röda
+            self.red = True    # Alla sÃ¶ndagar Ã¤r rÃ¶da
         else:
-            self.red = False   # Alla andra dagar är svarta tillsvidare
+            self.red = False   # Alla andra dagar Ã¤r svarta tillsvidare
 
-        self.moonphase = None  # Månfas (0 = nymåne, 1, 2 = fullmåne, 3)
+        self.moonphase = None  # MÃ¥nfas (0 = nymÃ¥ne, 1, 2 = fullmÃ¥ne, 3)
  
     def add_info(self, dayclass, flag, name):
         assert MRED <= dayclass <= BLACK
@@ -289,7 +288,7 @@ class DayCal:
         if self.moonphase is None:
             return ""
         else:
-            return ["Nymåne", "Första kvarteret", "Fullmåne", "Sista kvarteret"][self.moonphase]
+            return ["NymÃ¥ne", "FÃ¶rsta kvarteret", "FullmÃ¥ne", "Sista kvarteret"][self.moonphase]
 
     def __repr__(self):
         return "<Day %s>"  % self.jd.GetString_YYYY_MM_DD()
@@ -317,16 +316,16 @@ class DayCal:
         else:
             f.write('<TR CLASS="v">')
 
-        # Veckan börjar på måndag fr o m 1973, innan på måndag
-        # Dessutom "börjar" ju en vecka i början av varje månad.
+        # Veckan bÃ¶rjar pÃ¥ mÃ¥ndag fr o m 1973, innan pÃ¥ mÃ¥ndag
+        # Dessutom "bÃ¶rjar" ju en vecka i bÃ¶rjan av varje mÃ¥nad.
         if self.d == 1 or self.wpos == 1:
             if in_week_cal:
-                # I en veckokalender är det ju månaden som är intressant
+                # I en veckokalender Ã¤r det ju mÃ¥naden som Ã¤r intressant
                 wtext = '<A CLASS="hidelink" HREF="?year=%d&month=%d&type=vertical">%s</A>' % (self.y,
                                                                                                self.m,
                                                                                                month_names[self.m][:3])
             else:
-                # I månadskalender vill vi ha veckonumret
+                # I mÃ¥nadskalender vill vi ha veckonumret
                 if self.y >= 1973:
                     # Veckonummer relevant fr o m 1973
                     wtext = '<A CLASS="hidelink" HREF="?year=%d&week=%d&type=week">%s</A>' % (self.wyear,
@@ -338,13 +337,13 @@ class DayCal:
         else:
             f.write('<TD CLASS="vweek_empty leftmost">&nbsp;</TD>')
 
-        # Veckodagens tre först tecken
+        # Veckodagens tre fÃ¶rst tecken
         f.write('<TD CLASS="vwday %s">%s</TD>' % (colour, self.wday_name_short))
 
         # Dagens nummer
         f.write('<TD CLASS="vday %s">%d</TD>' % (colour, self.d))
 
-        # Flaggdagar och månfaser
+        # Flaggdagar och mÃ¥nfaser
         f.write('<TD CLASS="vflag">')
         empty = True
 
@@ -360,7 +359,7 @@ class DayCal:
             f.write('&nbsp;')
         f.write('</TD>')
 
-        # Dagens namn. Överst röda, svarta. Under namnsdagar
+        # Dagens namn. Ã–verst rÃ¶da, svarta. Under namnsdagar
         redblack_string = self.html_redblack()
         name_string = ", ".join(self.names)
         
@@ -429,7 +428,7 @@ class DayCal:
         f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="day.css">')
         f.write('<DIV CLASS="douter">')
 
-        # Månad
+        # MÃ¥nad
         f.write('<DIV CLASS="dmonth">%s</DIV>' % month_names[self.m])
 
         # Dag
@@ -439,7 +438,7 @@ class DayCal:
         f.write('<DIV CLASS="dwday %s">%s v%d</DIV>' % (colour,
                                                         self.wday_name,
                                                         self.week))
-        # Flaggdagar och månfaser
+        # Flaggdagar och mÃ¥nfaser
         f.write('<DIV CLASS="dflag">')
         if self.flag_day:
             f.write('<IMG SRC="flag.gif">')
@@ -473,11 +472,11 @@ class YearCal:
     """Class to represent a whole year."""
 
     def __init__(self, year):
-        self.year = year       # År (exv. 2004)
+        self.year = year       # Ã…r (exv. 2004)
         self.jd_jan1 = JD(year, 1, 1)
         self.jd_dec31 = JD(year, 12, 31)
 
-        # Skapa alla dagar för året
+        # Skapa alla dagar fÃ¶r Ã¥ret
         self.days = []
         jd_today = jddate.FromToday()
         jd = self.jd_jan1
@@ -485,7 +484,7 @@ class YearCal:
             self.days.append(DayCal(jd, mark_as_today = (jd==jd_today)))
             jd = jd + 1
 
-        # Skottår?
+        # SkottÃ¥r?
         if len(self.days) == 365 or len(self.days) == 354:
             self.leap_year = False
         elif len(self.days) == 366 or len(self.days) == 367:
@@ -523,16 +522,16 @@ class YearCal:
                                        (1907, 11, 27, ["Astrid"]),
                                        (1918,  4, 26, ["Teresia"]), # Teresia och Engelbrekt byter plats med varandra.
                                        (1918,  4, 27, ["Engelbrekt"]),
-                                       (1953,  3, 25, ["Marie Bebådelsedag"]),
-                                       (1953,  6, 24, ["Johannes Döparens dag"]),
+                                       (1953,  3, 25, ["Marie BebÃ¥delsedag"]),
+                                       (1953,  6, 24, ["Johannes DÃ¶parens dag"]),
                                        (1934, 10, 20, ["Sibylla"])])
         elif year >=1800:
             self.place_name_day_names("namnsdagar-1800.txt",
                                       [(1883,  1,  2, ["Abel, Set"]),
                                        (1811,  1,  7, ["August"]),
-                                       (1818,  1, 31, ["Vigilius"]),      # ersätter Wigilius
+                                       (1818,  1, 31, ["Vigilius"]),      # ersÃ¤tter Wigilius
                                        (1823,  2,  1, ["Maximiliana"]),
-                                       (1877,  2,  5, ["Agata"]), # ersätter Agatha
+                                       (1877,  2,  5, ["Agata"]), # ersÃ¤tter Agatha
                                        (1877,  2,  6, ["Dorotea"]), # Dorothea
                                        (1812,  2, 10, ["Eugenia"]),
                                        (1872,  2, 14, ["Valentin"]), # Walentin
@@ -557,9 +556,9 @@ class YearCal:
                                        (1812,  4, 22, ["Bernhardina"]),
                                        (1865,  4, 27, ["Theresia"]),
                                        (1859,  4, 30, ["Mariana"]),
-                                       (1831,  5, 10, ["Esbjörn"]),
+                                       (1831,  5, 10, ["EsbjÃ¶rn"]),
                                        (1822,  5, 13, ["Servatius"]),
-                                       (1877,  5, 17, ["Rebecka"]),    # Rebecca (två av tre kalendrar bytte till ck 1877)
+                                       (1877,  5, 17, ["Rebecka"]),    # Rebecca (tvÃ¥ av tre kalendrar bytte till ck 1877)
                                        (1872,  5, 18, ["Erik"]),       # Eric
                                        (1877,  5, 21, ["Konstantin"]), # Constantin
                                        (1812,  5, 23, ["Desideria"]),
@@ -572,8 +571,8 @@ class YearCal:
                                        (1877,  6, 23, ["Adolf"]),      # Adolph
                                        (1801,  6, 25, ["David"]),      # Dawid
                                        (1876,  7,  4, ["Ulrika"]),     # Ulrica
-                                       (1820,  7,  5, ["Melcher"]),    # (2) Före: Melker
-                                       (1874,  7, 18, ["Fredrik"]),    # (4) Före: Fredric
+                                       (1820,  7,  5, ["Melcher"]),    # (2) FÃ¶re: Melker
+                                       (1874,  7, 18, ["Fredrik"]),    # (4) FÃ¶re: Fredric
                                        (1877,  7, 20, ["Margareta"]),  # Margaretha
                                        (1827,  7, 23, ["Emma"]),
                                        (1883,  7, 26, ["Marta"]),
@@ -582,8 +581,8 @@ class YearCal:
                                        (1876,  8, 17, ["Verner"]),     # Werner
                                        (1824,  8, 21, ["Josephina"]),
                                        (1859,  8, 22, ["Henrietta"]),
-                                       (1877,  8, 23, ["Zacheus"]),     # Zachæus
-                                       (1877,  8, 24, ["Bartholomeus"]),# Bartholomæus
+                                       (1877,  8, 23, ["Zacheus"]),     # ZachÃ¦us
+                                       (1877,  8, 24, ["Bartholomeus"]),# BartholomÃ¦us
                                        (1855,  8, 25, ["Lovisa"]),      # (5)
                                        (1801,  8, 28, ["Augustinus"]),  # Augustin
                                        (1890,  8, 30, ["Albert"]),
@@ -591,10 +590,10 @@ class YearCal:
                                        (1831,  9,  9, ["Augusta"]),
                                        (1883,  9, 15, ["Nicetas"]),
                                        (1876,  9, 19, ["Fredrika"]),   # Fredrica
-                                       (1801,  9, 21, ["Mattheus"]),   # Matthæus
-                                       (1806,  9, 21, ["Matthæus"]),   # Samma datum
+                                       (1801,  9, 21, ["Mattheus"]),   # MatthÃ¦us
+                                       (1806,  9, 21, ["MatthÃ¦us"]),   # Samma datum
                                        (1825,  9, 21, ["Mattheus"]),   # Efter 1821, senast 1829.
-                                       (1837,  9, 21, ["Matthæus"]),   # Efter 1829, senast 1845.
+                                       (1837,  9, 21, ["MatthÃ¦us"]),   # Efter 1829, senast 1845.
                                        (1877,  9, 21, ["Mattheus"]),   #
                                        (1897,  9, 21,  ["Matteus"]),   # Vissa modernare kalendrar hade denna 1897.
                                        (1877,  9, 23, ["Tekla"]),    # Thecla
@@ -614,12 +613,12 @@ class YearCal:
                                        (1813, 10, 22, ["Sewerus"]), #
                                        (1818, 10, 22, ["Severus"]), #
                                        (1837, 10, 22, ["Sewerus"]), # (3)
-                                       (1855, 10, 22, ["Severus"]), # (5) Därefter lite olika hos olika utgivare, men w är avtagande.
+                                       (1855, 10, 22, ["Severus"]), # (5) DÃ¤refter lite olika hos olika utgivare, men w Ã¤r avtagande.
                                        (1812, 10, 23, ["Severin"]), # Sewerin
                                        (1813, 10, 23, ["Sewerin"]), # 
                                        (1818, 10, 23, ["Severin"]), # 
                                        (1829, 10, 23, ["Sewerin"]), # 
-                                       (1872, 10, 23, ["Severin"]), # Lite blandat hos olika utgivare 1840-tal och framåt.
+                                       (1872, 10, 23, ["Severin"]), # Lite blandat hos olika utgivare 1840-tal och framÃ¥t.
                                        (1812, 10, 24, ["Evergistus"]), # Ewergistus
                                        (1814, 10, 24, ["Ewergistus"]), #
                                        (1818, 10, 24, ["Evergistus"]), #
@@ -632,53 +631,53 @@ class YearCal:
                                        (1874, 11,  5, ["Eugen"]),   # (4) # Samma datum igen
                                        (1837, 11,  6, ["Gustaf Adolf"]), # (3) Gustaf Adolph
                                        (1877, 11,  8, ["Villehad"]),   # Willehad
-                                       (1837, 11, 10, ["Mårthen Luther"]), # (3) (lite osäkert, 1821 o 1829 förk. "Mårt. Luther")
-                                       (1872, 11, 10, ["Mårten Luther"]),  # # Samma datum igen.
-                                       (1837, 11, 11, ["Mårthen biskop"]), # (3) (lite osäkert, 1821 o 1829 förk. "Mårt. biskop")
-                                       (1872, 11, 11, ["Mårten biskop"]),  # Samma datum igen.
+                                       (1837, 11, 10, ["MÃ¥rthen Luther"]), # (3) (lite osÃ¤kert, 1821 o 1829 fÃ¶rk. "MÃ¥rt. Luther")
+                                       (1872, 11, 10, ["MÃ¥rten Luther"]),  # # Samma datum igen.
+                                       (1837, 11, 11, ["MÃ¥rthen biskop"]), # (3) (lite osÃ¤kert, 1821 o 1829 fÃ¶rk. "MÃ¥rt. biskop")
+                                       (1872, 11, 11, ["MÃ¥rten biskop"]),  # Samma datum igen.
                                        (1877, 11, 12, ["Kondrad"]),  # Conrad
                                        (1877, 11, 19, ["Elisabet"]), # Elisabeth
                                        (1812, 12,  1, ["Oscar"]),
                                        (1877, 12,  7, ["Agaton"]), # Agathon
-                                       (1801, 12,  8, ["Marie aflelse"]), # Ersätter Mariæ (?) aflelse (?)
+                                       (1801, 12,  8, ["Marie aflelse"]), # ErsÃ¤tter MariÃ¦ (?) aflelse (?)
                                        (1801, 12, 10, ["Judith"]), # Judit
                                        (1877, 12, 10, ["Judit"]),  # Judith.
-                                       (1803, 12, 24, ["Adam, Eva"]), #  Ersätter Adam, Ewa
-                                       (1801, 12, 27, ["Johannes Evangelistus"]), # Ersätter Johannes Ewangelistus
+                                       (1803, 12, 24, ["Adam, Eva"]), #  ErsÃ¤tter Adam, Ewa
+                                       (1801, 12, 27, ["Johannes Evangelistus"]), # ErsÃ¤tter Johannes Ewangelistus
                                        (1818, 12, 30, ["David"]), # Dawid
                                        (1874, 12, 31, ["Sylvester"])
 ])
-            # (2) Denna stavning tog över år 1820 eller 1821.
-            # (3) Denna stavning tog över mellan 1829 och 1845 (vi säger 1837)
-            # (4) Denna stavning tog över åren 1874 eller 1875.
-            # (5) Denna stavning tog över efter 1845 men senast 1865 (vi säger 1855).
+            # (2) Denna stavning tog Ã¶ver Ã¥r 1820 eller 1821.
+            # (3) Denna stavning tog Ã¶ver mellan 1829 och 1845 (vi sÃ¤ger 1837)
+            # (4) Denna stavning tog Ã¶ver Ã¥ren 1874 eller 1875.
+            # (5) Denna stavning tog Ã¶ver efter 1845 men senast 1865 (vi sÃ¤ger 1855).
 
 
-        # Månfaser
+        # MÃ¥nfaser
         self.place_moonphases()
 
-    # Hämta dag givet m, d
+    # HÃ¤mta dag givet m, d
     def get_md(self, m, d):
         jd = JD(self.year, m, d)
         return self.days[jd - self.jd_jan1]
 
-    # Hämta dag givet jd
+    # HÃ¤mta dag givet jd
     def get_jd(self, jd):
         (y, m, d) = jd.GetYMD()
         assert y == self.year
         return self.days[jd - self.jd_jan1]
 
-    # Lägg till information för m, d
+    # LÃ¤gg till information fÃ¶r m, d
     def add_info_md(self, m, d, dayclass, flag, name):
         dc = self.get_md(m, d)
         dc.add_info(dayclass, flag, name)
 
-    # Lägg till information för jd
+    # LÃ¤gg till information fÃ¶r jd
     def add_info_jd(self, jd, dayclass, flag, name):
         dc = self.get_jd(jd)
         dc.add_info(dayclass, flag, name)
 
-    # Generator för årets alla dagar
+    # Generator fÃ¶r Ã¥rets alla dagar
     def generate(self):
         for dc in self.days:
             yield dc
@@ -692,26 +691,26 @@ class YearCal:
         for (from_year, to_year, m, d, dayclass, flag, name) in \
                 [
             # Fasta helgdagar
-            (None, 1938,  1,  1, MRED , False,  "Nyårsdagen"),
-            (1939, None,  1,  1, MRED , True,  "Nyårsdagen"),
+            (None, 1938,  1,  1, MRED , False,  "NyÃ¥rsdagen"),
+            (1939, None,  1,  1, MRED , True,  "NyÃ¥rsdagen"),
             (None, None,  1,  6, MRED,  False, "Trettondedag jul"),
-            (1939, None,  5,  1, MRED,  True,  "Första maj"), # 1939 blev 1 maj allmän helgdag.
+            (1939, None,  5,  1, MRED,  True,  "FÃ¶rsta maj"), # 1939 blev 1 maj allmÃ¤n helgdag.
             (None, 1938, 12, 25, MRED,  False,  "Juldagen"),
             (1939, None, 12, 25, MRED,  True,  "Juldagen"),
-            (None, 1923, 12, 26, MRED,  False, "Annandag jul"), # 1921 står denna form. 1925 har de med Stefanus med.
-            (1924, 1982, 12, 26, MRED,  False, "Den helige Stefanus' dag eller Annandag jul"), # Formen fanns kvar 1977, men ej 1983 måste undersökas mera.
+            (None, 1923, 12, 26, MRED,  False, "Annandag jul"), # 1921 stÃ¥r denna form. 1925 har de med Stefanus med.
+            (1924, 1982, 12, 26, MRED,  False, "Den helige Stefanus' dag eller Annandag jul"), # Formen fanns kvar 1977, men ej 1983 mÃ¥ste undersÃ¶kas mera.
             (1983, None, 12, 26, MRED,  False, "Annandag jul"),
             
             # Fasta helgdagsaftnar
             (None, None,  1,  5, MBLACK, False, "Trettondedagsafton"),
-            (None, None,  4, 30, MBLACK, False, "Valborgsmässoafton"),
+            (None, None,  4, 30, MBLACK, False, "ValborgsmÃ¤ssoafton"),
             (None, None, 12, 24, MBLACK, False, "Julafton"),
-            (None, None, 12, 31, MBLACK, False, "Nyårsafton"),
+            (None, None, 12, 31, MBLACK, False, "NyÃ¥rsafton"),
             
-            # Dagar som vissa år varit "namnsdagar", andra inte
-            (1993, 2000,  2,  2, BLACK, False, "Kyndelsmässodagen"),  # Saknas som namnsdag dessa år
-            (1993, 2000,  3, 25, BLACK, False, "Marie Bebådelsedag"), # Saknas som namnsdag dessa år
-            (1993, 2000, 11,  1, BLACK, False, "Allhelgonadagen"),    # Saknas som namnsdag dessa år
+            # Dagar som vissa Ã¥r varit "namnsdagar", andra inte
+            (1993, 2000,  2,  2, BLACK, False, "KyndelsmÃ¤ssodagen"),  # Saknas som namnsdag dessa Ã¥r
+            (1993, 2000,  3, 25, BLACK, False, "Marie BebÃ¥delsedag"), # Saknas som namnsdag dessa Ã¥r
+            (1993, 2000, 11,  1, BLACK, False, "Allhelgonadagen"),    # Saknas som namnsdag dessa Ã¥r
             
             # Svenska flaggans dag och nationaldagen
             (1939, 1981,  6,  6, MBLACK, True,  "Svenska flaggans dag"),
@@ -719,136 +718,136 @@ class YearCal:
             (2005, None,  6,  6, MRED,   True,  "Sveriges nationaldag"),
             
             # Andra flaggdagar
-            (1982, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270 den 29 april 1982.
+            (1982, None, 10, 24, BLACK, True,  "FN-dagen"), # InfÃ¶rdes i SFS1982:270 den 29 april 1982.
             (1939, None, 11,  6, BLACK, True,  "Gustav Adolfsdagen"), # Gustav Adolfsdagen
             (1939, None, 12, 10, BLACK, True,  "Nobeldagen"),
             (2018, None,  5, 29, BLACK, True, "Veterandagen"),
-            (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
-            (2023, 2023,  9, 15, BLACK, True, "50-årsdagen av kung Carl XVI Gustafs trontillträde"), # Tillfällig flaggdag 2023, enligt 2022/23:KU41
-            (2024, 2024,  6,  9, BLACK, True, "Val till Europaparlamentet"), # Val till Europaparlamentet är flaggdag sedan 1 april 2023.
+            (2018, 2018,  12, 17, BLACK, True, "Minnesdag fÃ¶r demokratins genombrott"), # TillfÃ¤llig flaggdag 2018, enligt 2017/18:KU28
+            (2023, 2023,  9, 15, BLACK, True, "50-Ã¥rsdagen av kung Carl XVI Gustafs trontilltrÃ¤de"), # TillfÃ¤llig flaggdag 2023, enligt 2022/23:KU41
+            (2024, 2024,  6,  9, BLACK, True, "Val till Europaparlamentet"), # Val till Europaparlamentet Ã¤r flaggdag sedan 1 april 2023.
 
 
-            # Flaggdagar för regerande kungahuset
+            # Flaggdagar fÃ¶r regerande kungahuset
             
-            # Victoria Ingrid Alice Désirée, kronprinsessa
-            # född 1977-07-14
-            # FIXME: Hon lär inte ha varit kronprinsessa innan successionsordningen
-            # ändrades, väl? SFS 1979:935
-            (1980, None,  7, 14, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
+            # Victoria Ingrid Alice DÃ©sirÃ©e, kronprinsessa
+            # fÃ¶dd 1977-07-14
+            # FIXME: Hon lÃ¤r inte ha varit kronprinsessa innan successionsordningen
+            # Ã¤ndrades, vÃ¤l? SFS 1979:935
+            (1980, None,  7, 14, BLACK, True,  "Kronprinsessans fÃ¶delsedag"), # fÃ¶delsedag
             (1980, None,  3, 12, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Viktoria"
 
             # Silvia Renate Sommerlath
-            # född 1943-12-23, drottning 1976-06-19
-            (1976, None, 12, 23, BLACK, True,  "Drottningens födelsedag"), # födelsedag
+            # fÃ¶dd 1943-12-23, drottning 1976-06-19
+            (1976, None, 12, 23, BLACK, True,  "Drottningens fÃ¶delsedag"), # fÃ¶delsedag
             (1976, None,  8,  8, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Silvia"
             
             # Carl XVI Gustaf Folke Hubertus
-            # född 1946-04-30, kronprins 1950-10-29, kung 1973-09-15
-            (1951, 1972,  4, 30, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
-            (1973, None,  4, 30, BLACK, True,  "Konungens födelsedag"), # födelsedag
+            # fÃ¶dd 1946-04-30, kronprins 1950-10-29, kung 1973-09-15
+            (1951, 1972,  4, 30, BLACK, True,  "Kronprinsens fÃ¶delsedag"), # fÃ¶delsedag
+            (1973, None,  4, 30, BLACK, True,  "Konungens fÃ¶delsedag"), # fÃ¶delsedag
             (1951, 1972,  1, 28, BLACK, True,  "Kronprinsens namnsdag"), # namnsdag "Karl"
             (1973, None,  1, 28, BLACK, True,  "Konungens namnsdag"), # namnsdag "Karl"
             
-            # Louise Alexandra Maria Irène
-            # född 1889-07-13, gift 1923-11-03, drottning 1950-10-29, död 1965-03-07
-            # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+            # Louise Alexandra Maria IrÃ¨ne
+            # fÃ¶dd 1889-07-13, gift 1923-11-03, drottning 1950-10-29, dÃ¶d 1965-03-07
+            # FIXME: FÃ¶rsta almanackan med flaggdagar utsatta 1939, sÃ¤tter
             # det som start. Flaggdag som kronprinsessa innan hon blev drottning.
-            (1939, 1950,  7, 13, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
-            (1951, 1964,  7, 13, BLACK, True,  "Drottningens födelsedag"), # födelsedag
+            (1939, 1950,  7, 13, BLACK, True,  "Kronprinsessans fÃ¶delsedag"), # fÃ¶delsedag
+            (1951, 1964,  7, 13, BLACK, True,  "Drottningens fÃ¶delsedag"), # fÃ¶delsedag
             (1939, 1950,  8, 25, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Lovisa"
             (1951, 1964,  8, 25, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Lovisa"
 
             # Oscar Fredrik Wilhelm Olaf Gustav VI Adolf
-            # född 1882-11-11, kung 1950-10-29, död 1973-09-15
-            # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+            # fÃ¶dd 1882-11-11, kung 1950-10-29, dÃ¶d 1973-09-15
+            # FIXME: FÃ¶rsta almanackan med flaggdagar utsatta 1939, sÃ¤tter
             # det som start. Flaggdag som kronprins innan han blev kung.
-            (1939, 1949, 11, 11, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
-            (1950, 1972, 11, 11, BLACK, True,  "Konungens födelsedag"), # födelsedag
+            (1939, 1949, 11, 11, BLACK, True,  "Kronprinsens fÃ¶delsedag"), # fÃ¶delsedag
+            (1950, 1972, 11, 11, BLACK, True,  "Konungens fÃ¶delsedag"), # fÃ¶delsedag
             (1939, 1950,  6,  6, BLACK, True,  "Konungens och kronprinsens namnsdag"), # namnsdag "Gustav". Ser styltigt upp att ha dem separat.
             (1951, 1973,  6,  6, BLACK, True,  "Konungens namnsdag"), # namnsdag "Gustav"
             
             # Oscar Gustaf V Adolf
-            # född 1858-06-16, kung 1907-12-08, död 1950-10-29
-            # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+            # fÃ¶dd 1858-06-16, kung 1907-12-08, dÃ¶d 1950-10-29
+            # FIXME: FÃ¶rsta almanackan med flaggdagar utsatta 1939, sÃ¤tter
             # det som start. Flaggdag som kronprins innan han blev kung?
-            (1939, 1950,  6, 16, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+            (1939, 1950,  6, 16, BLACK, True,  "Kronprinsens fÃ¶delsedag"), # fÃ¶delsedag
 
              ]:
             if from_year is not None and self.year < from_year: continue
             if to_year is not None and self.year > to_year: continue
             self.add_info_md(m, d, dayclass, flag, name)
 
-        # Dag för val till riksdagen är flaggdag från 29 april 1982.
-        # Tredje söndagen i september vart tredje år från och med 1982 till 1994.
+        # Dag fÃ¶r val till riksdagen Ã¤r flaggdag frÃ¥n 29 april 1982.
+        # Tredje sÃ¶ndagen i september vart tredje Ã¥r frÃ¥n och med 1982 till 1994.
         if 1982 <= self.year <= 1991 and self.year % 3 == 2:
             vd = first_sunday(self.year, 9, 15)
             self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
-        # Tredje söndagen i september, vart fjärde år 1994-2013
+        # Tredje sÃ¶ndagen i september, vart fjÃ¤rde Ã¥r 1994-2013
         elif 1994 <= self.year < 2013 and self.year % 4 == 2:
             vd = first_sunday(self.year, 9, 15)
             self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
-        # Andra söndagen i september, vart fjärde år 2013-
+        # Andra sÃ¶ndagen i september, vart fjÃ¤rde Ã¥r 2013-
         elif 2013 <= self.year and self.year % 4 == 2:
             vd = first_sunday(self.year, 9, 8)
             self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
 
-        # Skottdagen inföll den 24/2 -1996, infaller den 29/2 2000-
+        # Skottdagen infÃ¶ll den 24/2 -1996, infaller den 29/2 2000-
         if self.leap_year:
             if self.year >= 2000:
                 self.add_info_md(2, 29, BLACK, False, "Skottdagen")
             else:
                 self.add_info_md(2, 24, BLACK, False, "Skottdagen")
             if self.year == 1712:
-                self.add_info_md(2, 30, BLACK, False, "Tillökad")
+                self.add_info_md(2, 30, BLACK, False, "TillÃ¶kad")
 
-        # Påsksöndagen ligger till grund för de flesta kyrkliga helgdagarna
-        # under året, så den behöver vi räkna ut redan här
+        # PÃ¥sksÃ¶ndagen ligger till grund fÃ¶r de flesta kyrkliga helgdagarna
+        # under Ã¥ret, sÃ¥ den behÃ¶ver vi rÃ¤kna ut redan hÃ¤r
         pd = easter_sunday(self.year)
 
-        # Söndagen efter nyår
-        sen = first_sunday(self.year, 1, 2) # Första söndagen 2/1-
-        if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
-            self.add_info_jd(sen, MRED, False, "Söndagen e nyår")
+        # SÃ¶ndagen efter nyÃ¥r
+        sen = first_sunday(self.year, 1, 2) # FÃ¶rsta sÃ¶ndagen 2/1-
+        if sen < JD(self.year, 1 ,6):  # SlÃ¥s ut av 13dagen och 1 e 13dagen
+            self.add_info_jd(sen, MRED, False, "SÃ¶ndagen e nyÃ¥r")
 
-        # Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
+        # KyndelsmÃ¤ssodagen (Jungfru Marie KyrkogÃ¥ngsdag)
         jmk = first_sunday(self.year, 2, 2)
         if jmk == pd - 49 and self.year != 1845:
-            # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
+            # KyndelsmÃ¤ssodagen pÃ¥ fastlagssÃ¶ndagen => KyndelsmÃ¤ssodagen flyttas -1v
             jmk = jmk -7
-        # Vänta med att lägga dit namnet...
+        # VÃ¤nta med att lÃ¤gga dit namnet...
 
-        # Söndagar efter Trettondedagen
+        # SÃ¶ndagar efter Trettondedagen
         set = first_sunday(self.year, 1, 7)
         for i in range(1,7):
-            # Slås ut av Kyndelsmässodagen (efter 1983) och allt påskaktigt
+            # SlÃ¥s ut av KyndelsmÃ¤ssodagen (efter 1983) och allt pÃ¥skaktigt
             if (set != jmk or self.year <= 1983) and set < pd-63:
                 self.add_info_jd(set, RED, False, "%d e trettondedagen" % i)
             set = set + 7
 
-        # Jungfru Marie Bebådelsedag
+        # Jungfru Marie BebÃ¥delsedag
         if self.year < 1953:
-            # Före reformen 25 mars
+            # FÃ¶re reformen 25 mars
             jmb = JD(self.year, 3, 25)
         else:
-            # Efter reformen den närmaste söndagen (vilket är 22-28 mars)
+            # Efter reformen den nÃ¤rmaste sÃ¶ndagen (vilket Ã¤r 22-28 mars)
             jmb = first_sunday(self.year, 3, 22)
 
-        # Men: om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
-        # palmsöndagen, så flyttas den till söndagen innan
-        # palmsöndagen (5 i fastan).
+        # Men: om Jungfru Marie BebÃ¥delsedag hamnar pÃ¥ pÃ¥skdagen eller
+        # palmsÃ¶ndagen, sÃ¥ flyttas den till sÃ¶ndagen innan
+        # palmsÃ¶ndagen (5 i fastan).
         if jmb >= pd - 7 and jmb <= pd:
             jmb = pd - 14
-        # Vänta med att lägga dit namnet...
+        # VÃ¤nta med att lÃ¤gga dit namnet...
 
-        # Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
-        # Håll reda på dem i en lista i den takt de räknas fram
-        se3_stoppers = []       # Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
+        # Vissa dagar ska "slÃ¥ ut" vanliga "N efter trefaldighet"
+        # HÃ¥ll reda pÃ¥ dem i en lista i den takt de rÃ¤knas fram
+        se3_stoppers = []       # Vissa dagar ska "slÃ¥ ut" vanliga "N efter trefaldighet"
 
-        # Vissa dagar ska "slå ut" vanliga "N efter påsk" och "N i fastan"
-        # Håll reda på dem i en lista i den takt de räknas fram
+        # Vissa dagar ska "slÃ¥ ut" vanliga "N efter pÃ¥sk" och "N i fastan"
+        # HÃ¥ll reda pÃ¥ dem i en lista i den takt de rÃ¤knas fram
         sep_stoppers = []
 
-        #Bönsöndagar, beslutades ofta år för år. Ofta fyra bönsöndagar varje år. 
+        #BÃ¶nsÃ¶ndagar, beslutades ofta Ã¥r fÃ¶r Ã¥r. Ofta fyra bÃ¶nsÃ¶ndagar varje Ã¥r. 
         forsta_bondagen = {
             1800:(3,8),
             1801:(3,7),
@@ -940,8 +939,8 @@ class YearCal:
             1887:(3,13),
             1888:(3,4),
             1889:(3,10),
-            1890:(3,9), # osäker
-            1891:(3,15), # osäker
+            1890:(3,9), # osÃ¤ker
+            1891:(3,15), # osÃ¤ker
             1892:(3,13),
             1893:(3,12),
             1894:(3,4),
@@ -1127,7 +1126,7 @@ class YearCal:
             1888:(5,13),
             1889:(5,12),
             1890:(4,27),
-            1891:(5,3), #? osäker
+            1891:(5,3), #? osÃ¤ker
             1892:(5,8),
             1893:(4,30),
             1894:(4,22),
@@ -1595,114 +1594,114 @@ class YearCal:
         }
 
         if 1800 <= self.year < 1984:
-            # Böndagarna bytte form och började "slå ut" andra dagar efter 1942, men senast 1945:
-            # 1 böndagen / Botdagen
+            # BÃ¶ndagarna bytte form och bÃ¶rjade "slÃ¥ ut" andra dagar efter 1942, men senast 1945:
+            # 1 bÃ¶ndagen / Botdagen
             bd1=JD(self.year, forsta_bondagen[self.year][0], forsta_bondagen[self.year][1])
             if self.year < 1945:
-                self.add_info_jd(bd1, RED, False, "1 böndagen")
+                self.add_info_jd(bd1, RED, False, "1 bÃ¶ndagen")
             else:
-                self.add_info_jd(bd1, RED, False, "Botdagen (1 böndagen)")
+                self.add_info_jd(bd1, RED, False, "Botdagen (1 bÃ¶ndagen)")
                 sep_stoppers.append(bd1)
 
-            # 2 böndagen / Reformationsdagen
+            # 2 bÃ¶ndagen / Reformationsdagen
             bd2=JD(self.year, andra_bondagen[self.year][0], andra_bondagen[self.year][1])
             if self.year < 1945:
-                self.add_info_jd(bd2, RED, False, "2 böndagen")
+                self.add_info_jd(bd2, RED, False, "2 bÃ¶ndagen")
             else:
-                self.add_info_jd(bd2, RED, False, "Reformationsdagen (2 böndagen)")
+                self.add_info_jd(bd2, RED, False, "Reformationsdagen (2 bÃ¶ndagen)")
                 sep_stoppers.append(bd2)
 
-            # 3 böndagen / Missionsdagen
+            # 3 bÃ¶ndagen / Missionsdagen
             bd3=JD(self.year, tredje_bondagen[self.year][0], tredje_bondagen[self.year][1])
             if self.year < 1945:
-                self.add_info_jd(bd3, RED, False, "3 böndagen")
+                self.add_info_jd(bd3, RED, False, "3 bÃ¶ndagen")
             else:
-                self.add_info_jd(bd3, RED, False, "Missionsdagen (3 böndagen)") # fast 1983 står det bara "Missionsdagen".
+                self.add_info_jd(bd3, RED, False, "Missionsdagen (3 bÃ¶ndagen)") # fast 1983 stÃ¥r det bara "Missionsdagen".
                 se3_stoppers.append(bd3)
 
-            # 4 böndagen / Tacksägelsedagen
+            # 4 bÃ¶ndagen / TacksÃ¤gelsedagen
             bd4=JD(self.year, fjarde_bondagen[self.year][0], fjarde_bondagen[self.year][1])
             if self.year < 1945:
-                self.add_info_jd(bd4, RED, False, "4 böndagen")
+                self.add_info_jd(bd4, RED, False, "4 bÃ¶ndagen")
             else:
-                self.add_info_jd(bd4, RED, False, "Tacksägelsedagen (4 böndagen)")
-                se3_stoppers.append(bd4) # Böndagarna slår inte ut före 1942 iaf.
+                self.add_info_jd(bd4, RED, False, "TacksÃ¤gelsedagen (4 bÃ¶ndagen)")
+                se3_stoppers.append(bd4) # BÃ¶ndagarna slÃ¥r inte ut fÃ¶re 1942 iaf.
 
 
 
 
-        # Fasta, Påsk, Kristi Himmelsfärd, Pingst
+        # Fasta, PÃ¥sk, Kristi HimmelsfÃ¤rd, Pingst
 
-        # Dessa dagar slås ut av Kyndelsmässodagen
+        # Dessa dagar slÃ¥s ut av KyndelsmÃ¤ssodagen
         # fast bara efter 1983
-        # Tidigare så står båda namnen!
+        # Tidigare sÃ¥ stÃ¥r bÃ¥da namnen!
         for (jd, name) in [(pd-63, "Septuagesima"),
                            (pd-56, "Sexagesima")]:
             if jd != jmk or self.year <= 1983:
                 self.add_info_jd(jd, RED, False, name)
 
-        # Lägg så dit Kyndelsmässodagen
-        if self.year < 1901: # Ändrades mellan 1900 och 1905, troligen 1901.
-            self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag")
+        # LÃ¤gg sÃ¥ dit KyndelsmÃ¤ssodagen
+        if self.year < 1901: # Ã„ndrades mellan 1900 och 1905, troligen 1901.
+            self.add_info_jd(jmk, RED, False, "Marie kyrkogÃ¥ngsdag")
         elif self.year < 1924:
-            self.add_info_jd(jmk, RED, False, "Kyndelsmässosöndagen")
+            self.add_info_jd(jmk, RED, False, "KyndelsmÃ¤ssosÃ¶ndagen")
         elif self.year < 1943:
-            self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag eller Kyndelsmässodagen")
+            self.add_info_jd(jmk, RED, False, "Marie kyrkogÃ¥ngsdag eller KyndelsmÃ¤ssodagen")
         else:
-            self.add_info_jd(jmk, RED, False, "Jungfru Marie Kyrkogångsdag eller Kyndelsmässodagen")
+            self.add_info_jd(jmk, RED, False, "Jungfru Marie KyrkogÃ¥ngsdag eller KyndelsmÃ¤ssodagen")
 
-        # Fastlagssöndagen och icke-helgdagar efter den
-        self.add_info_jd(pd-49, RED, False, "Fastlagssöndagen")
+        # FastlagssÃ¶ndagen och icke-helgdagar efter den
+        self.add_info_jd(pd-49, RED, False, "FastlagssÃ¶ndagen")
         self.add_info_jd(pd-47, BLACK,False, "Fettisdagen")
         self.add_info_jd(pd-46, BLACK,False, "Askonsdagen")
 
-        # Dessa dagar slås ut av Jungfru Marie bebådelsedag,
-        # fast bara efter 1983. Böndagar slår också ut detta.
-        # 1952-1983 så står båda namnen!
+        # Dessa dagar slÃ¥s ut av Jungfru Marie bebÃ¥delsedag,
+        # fast bara efter 1983. BÃ¶ndagar slÃ¥r ocksÃ¥ ut detta.
+        # 1952-1983 sÃ¥ stÃ¥r bÃ¥da namnen!
 
         for (jd, name) in [(pd-42, "1 i fastan"),
                            (pd-35, "2 i fastan"),
                            (pd-28, "3 i fastan"),
-                           (pd-21, "Midfastosöndagen"),
+                           (pd-21, "MidfastosÃ¶ndagen"),
                            (pd-14, "5 i fastan")]:
             if (jd != jmb or self.year <= 1983) and (jd not in sep_stoppers):
                 self.add_info_jd(jd, RED, False, name)
 
-        # Lägg så dit Jungfru Marie bebådelsedag
-        self.add_info_jd(jmb, RED, False, "Jungfru Marie bebådelsedag")
+        # LÃ¤gg sÃ¥ dit Jungfru Marie bebÃ¥delsedag
+        self.add_info_jd(jmb, RED, False, "Jungfru Marie bebÃ¥delsedag")
 
-        self.add_info_jd(pd- 7, RED,    False, "Palmsöndagen")
+        self.add_info_jd(pd- 7, RED,    False, "PalmsÃ¶ndagen")
         self.add_info_jd(pd- 4, BLACK,  False, "Dymmelonsdagen")
-        self.add_info_jd(pd- 3, MBLACK, False, "Skärtorsdagen")
-        self.add_info_jd(pd- 2, MRED,   False, "Långfredagen")
-        self.add_info_jd(pd- 1, MBLACK, False, "Påskafton")
+        self.add_info_jd(pd- 3, MBLACK, False, "SkÃ¤rtorsdagen")
+        self.add_info_jd(pd- 2, MRED,   False, "LÃ¥ngfredagen")
+        self.add_info_jd(pd- 1, MBLACK, False, "PÃ¥skafton")
         if self.year > 1938:
-            self.add_info_jd(pd+ 0, MRED,   True,  "Påskdagen")
+            self.add_info_jd(pd+ 0, MRED,   True,  "PÃ¥skdagen")
         else:
-            self.add_info_jd(pd+ 0, MRED,  False,  "Påskdagen")
+            self.add_info_jd(pd+ 0, MRED,  False,  "PÃ¥skdagen")
 
-        self.add_info_jd(pd+ 1, MRED,   False, "Annandag påsk")
+        self.add_info_jd(pd+ 1, MRED,   False, "Annandag pÃ¥sk")
         if self.year < 2004:
-            # Kollar så inget av dessa slås ut av en böndag:
-            for (jd, name) in [(pd+ 7, "1 e påsk"),
-                               (pd+14, "2 e påsk"),
-                               (pd+21, "3 e påsk"),
-                               (pd+28, "4 e påsk")]:
+            # Kollar sÃ¥ inget av dessa slÃ¥s ut av en bÃ¶ndag:
+            for (jd, name) in [(pd+ 7, "1 e pÃ¥sk"),
+                               (pd+14, "2 e pÃ¥sk"),
+                               (pd+21, "3 e pÃ¥sk"),
+                               (pd+28, "4 e pÃ¥sk")]:
                 if(jd not in sep_stoppers):
                     self.add_info_jd(jd, RED, False, name)
 
         else:
-            self.add_info_jd(pd+ 7, RED, False, "2 i påsktiden")
-            self.add_info_jd(pd+14, RED, False, "3 i påsktiden")
-            self.add_info_jd(pd+21, RED, False, "4 i påsktiden")
-            self.add_info_jd(pd+28, RED, False, "5 i påsktiden")
-        self.add_info_jd(pd+35, RED, False, "Bönsöndagen")
-        self.add_info_jd(pd+39, MRED, False, "Kristi himmelsfärds dag")
+            self.add_info_jd(pd+ 7, RED, False, "2 i pÃ¥sktiden")
+            self.add_info_jd(pd+14, RED, False, "3 i pÃ¥sktiden")
+            self.add_info_jd(pd+21, RED, False, "4 i pÃ¥sktiden")
+            self.add_info_jd(pd+28, RED, False, "5 i pÃ¥sktiden")
+        self.add_info_jd(pd+35, RED, False, "BÃ¶nsÃ¶ndagen")
+        self.add_info_jd(pd+39, MRED, False, "Kristi himmelsfÃ¤rds dag")
         if self.year < 2004:
             if pd+42 not in sep_stoppers:
-                self.add_info_jd(pd+42, RED, False, "6 e påsk")
+                self.add_info_jd(pd+42, RED, False, "6 e pÃ¥sk")
         else:
-            self.add_info_jd(pd+42, RED, False, "Söndagen f Pingst")
+            self.add_info_jd(pd+42, RED, False, "SÃ¶ndagen f Pingst")
         self.add_info_jd(pd+48, MBLACK, False, "Pingstafton")
         if self.year > 1938:
             self.add_info_jd(pd+49, MRED, True,  "Pingstdagen")
@@ -1716,97 +1715,97 @@ class YearCal:
 
         # Midsommardagen
         if self.year < 1953:
-            # Före 1953 inföll midsommardagen alltid på 24/6
+            # FÃ¶re 1953 infÃ¶ll midsommardagen alltid pÃ¥ 24/6
             msd = JD(self.year, 6, 24)
         else:
-            # Från och med 1953 rörlig helgdag, lördag 20-26/6
+            # FrÃ¥n och med 1953 rÃ¶rlig helgdag, lÃ¶rdag 20-26/6
             msd = first_saturday(self.year, 6, 20)
-        if self.year <1923: # Någon gång mellan 1921 och 1925 ändrades detta.
-            self.add_info_jd(msd+0, MRED,  False,  "Johannes Döparens dag") 
+        if self.year <1923: # NÃ¥gon gÃ¥ng mellan 1921 och 1925 Ã¤ndrades detta.
+            self.add_info_jd(msd+0, MRED,  False,  "Johannes DÃ¶parens dag") 
         elif self.year <2004:
             self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
-            self.add_info_jd(msd+0, MRED,  True,  "Den helige Johannes Döparens dag eller Midsommardagen")
+            self.add_info_jd(msd+0, MRED,  True,  "Den helige Johannes DÃ¶parens dag eller Midsommardagen")
         else:
             self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
             self.add_info_jd(msd+0, MRED,  True,  "Midsommardagen")
-            self.add_info_jd(msd+1, RED,  False,  "Den helige Johannes Döparens dag")
+            self.add_info_jd(msd+1, RED,  False,  "Den helige Johannes DÃ¶parens dag")
             se3_stoppers.append(msd+1)
 
         # Alla Helgons dag
         if self.year < 1953:
-            # NE: "Genom helgdagsreformen 1772 förlades firandet till
-            # första söndagen i november"
+            # NE: "Genom helgdagsreformen 1772 fÃ¶rlades firandet till
+            # fÃ¶rsta sÃ¶ndagen i november"
             ahd = first_sunday(self.year, 11, 1)
-            # Vänta med att sätta ut namnet, som inte ska slå ut någon Söndag e Tref.
+            # VÃ¤nta med att sÃ¤tta ut namnet, som inte ska slÃ¥ ut nÃ¥gon SÃ¶ndag e Tref.
         else:
-            # NE: "År 1953 flyttades dagen i den svenska almanackan till
-            # den lördag som infaller 31 oktober till 6 november.
+            # NE: "Ã…r 1953 flyttades dagen i den svenska almanackan till
+            # den lÃ¶rdag som infaller 31 oktober till 6 november.
             ahd = first_saturday(self.year, 10, 31)
-            # Vänta med att sätta ut namnet (för fallet ovan, egentligen)
+            # VÃ¤nta med att sÃ¤tta ut namnet (fÃ¶r fallet ovan, egentligen)
             if self.year > 1983:
-                self.add_info_jd(ahd+1, RED, False, "Söndagen e alla helgons dag")
+                self.add_info_jd(ahd+1, RED, False, "SÃ¶ndagen e alla helgons dag")
                 se3_stoppers.append(ahd+1)
 
-        # Advent (samt Domssöndagen och Söndagen före domssöndagen)
+        # Advent (samt DomssÃ¶ndagen och SÃ¶ndagen fÃ¶re domssÃ¶ndagen)
         adv1=first_sunday(self.year, 11, 27 )
         if self.year >= 1921:
-            # Googlar man på "domsöndagen" och 1921 finner man många källor.
-            self.add_info_jd(adv1-14, RED,  False, "Söndagen f domssöndagen")
-            self.add_info_jd(adv1- 7, RED,  False, "Domssöndagen")
+            # Googlar man pÃ¥ "domsÃ¶ndagen" och 1921 finner man mÃ¥nga kÃ¤llor.
+            self.add_info_jd(adv1-14, RED,  False, "SÃ¶ndagen f domssÃ¶ndagen")
+            self.add_info_jd(adv1- 7, RED,  False, "DomssÃ¶ndagen")
         self.add_info_jd(adv1+ 0, MRED, False, "1 i advent")
         self.add_info_jd(adv1+ 7, MRED, False, "2 i advent")
         self.add_info_jd(adv1+14, MRED, False, "3 i advent")
         self.add_info_jd(adv1+21, MRED, False, "4 i advent")
 
 
-        # Söndagen e Jul
+        # SÃ¶ndagen e Jul
         sej=first_sunday(self.year, 12, 27)
         if sej <= self.jd_dec31:
-            self.add_info_jd(sej, RED, False, "Söndagen e jul")
+            self.add_info_jd(sej, RED, False, "SÃ¶ndagen e jul")
 
-        # Den helige Mikaels dag, söndag i tiden 29/9 till 5/10
+        # Den helige Mikaels dag, sÃ¶ndag i tiden 29/9 till 5/10
         hmd = first_sunday(self.year, 9, 29)
-        if self.year < 1901: # Denna form fanns kvar 1900, men var borta 1905. Stora ändringar gjordes 1901.
+        if self.year < 1901: # Denna form fanns kvar 1900, men var borta 1905. Stora Ã¤ndringar gjordes 1901.
             self.add_info_jd(hmd, RED, False, "Michaelsdagen")
-        elif self.year < 1924: # Någon gång efter 1921 men senast 1925 ändrades namnet.
-            self.add_info_jd(hmd, RED, False, "Mikaelssöndagen")
+        elif self.year < 1924: # NÃ¥gon gÃ¥ng efter 1921 men senast 1925 Ã¤ndrades namnet.
+            self.add_info_jd(hmd, RED, False, "MikaelssÃ¶ndagen")
         else:
             self.add_info_jd(hmd, RED, False, "Den helige Mikaels dag")
-        if self.year > 1981: se3_stoppers.append(hmd) # Åtminstone fram till 1972 visades båda. I kalendrar 1982-1983 visas bara "Mikaels dag".
+        if self.year > 1981: se3_stoppers.append(hmd) # Ã…tminstone fram till 1972 visades bÃ¥da. I kalendrar 1982-1983 visas bara "Mikaels dag".
 
         if self.year > 1983:
-            # Tacksägelsedagen, andra söndagen i oktober
+            # TacksÃ¤gelsedagen, andra sÃ¶ndagen i oktober
             tsd = first_sunday(self.year, 10, 8)
-            self.add_info_jd(tsd, RED, False, "Tacksägelsedagen")
+            self.add_info_jd(tsd, RED, False, "TacksÃ¤gelsedagen")
             se3_stoppers.append(tsd)
 
-        # Söndagarna efter Trefaldighet
+        # SÃ¶ndagarna efter Trefaldighet
         se3 = pd+63
         for i in range(1,28):
             # Ska dagen vara en S e Tr?
             if self.year >= 1921 and se3 >= adv1 - 14:
-                # Inte lönt längre efter S f ds
+                # Inte lÃ¶nt lÃ¤ngre efter S f ds
                 break
             if self.year < 1921 and se3 >= adv1:
-                # Inte lönt längre efter 1 adv. Före 1921 fanns inga domsöndagar.
+                # Inte lÃ¶nt lÃ¤ngre efter 1 adv. FÃ¶re 1921 fanns inga domsÃ¶ndagar.
                 break
             # Har dagen redan ett annat namn som har prioritet?
             if se3 in se3_stoppers:
                 se3 += 7
                 continue
 
-            # Särskilda namn för vissa av dagarna
+            # SÃ¤rskilda namn fÃ¶r vissa av dagarna
             if self.year > 1983 and i == 5:
                 name = "Apostladagen"
-            elif self.year >= 1923 and i == 7:  # Ändrades mellan 1921 och 1925.
-                name = "Kristi förklarings dag"
+            elif self.year >= 1923 and i == 7:  # Ã„ndrades mellan 1921 och 1925.
+                name = "Kristi fÃ¶rklarings dag"
             else:
                 name = "%d e trefaldighet" % i
             
             self.add_info_jd(se3, RED, False, name)
             se3 += 7
 
-        # Sätt ut A H D
+        # SÃ¤tt ut A H D
         self.add_info_jd(ahd, MRED, False, "Alla helgons dag")
 
     def place_name_day_names(self, filename, patches = None):
@@ -1814,7 +1813,7 @@ class YearCal:
             (ms, ds, ns) = line.strip().split(None,2)
             m = int(ms)
             d = int(ds)
-            # Innan år 2000, då skottdagen var 24/2, så flyttades
+            # Innan Ã¥r 2000, dÃ¥ skottdagen var 24/2, sÃ¥ flyttades
             # namnen till senare dagar i februari
             if self.leap_year and self.year < 2000 and m == 2 and d >= 24: 
                 d = d + 1
@@ -1828,7 +1827,7 @@ class YearCal:
                     dc.set_names(names)
                     
 
-    # Placera ut månfaserna i almanackan.
+    # Placera ut mÃ¥nfaserna i almanackan.
     # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
     def place_moonphases(self):
         # FIXME:
@@ -1838,13 +1837,13 @@ class YearCal:
         # day_cal *dcal;
         # jd_t jd1jan,jd31dec,jd;
 
-        # Ta reda på en måncykel i mitten av året (ungefär)
+        # Ta reda pÃ¥ en mÃ¥ncykel i mitten av Ã¥ret (ungefÃ¤r)
         midcycle = int((self.year - 1900) * 12.3685) + 6
 
-        # Arbeta bakåt mot början av året och placera ut månfaserna
+        # Arbeta bakÃ¥t mot bÃ¶rjan av Ã¥ret och placera ut mÃ¥nfaserna
 
         cycle = midcycle
-        phase = 0 # Nymåne
+        phase = 0 # NymÃ¥ne
 
         while True:
             jd = moonphase(cycle, phase)
@@ -1859,10 +1858,10 @@ class YearCal:
             else:
                 phase = phase -1 
 
-        # Arbeta framåt mot slutet av året och placera ut månfaserna
+        # Arbeta framÃ¥t mot slutet av Ã¥ret och placera ut mÃ¥nfaserna
 
         cycle = midcycle
-        phase = 0 # Nymåne
+        phase = 0 # NymÃ¥ne
 
         while True:
             jd = moonphase(cycle, phase)
@@ -1946,7 +1945,7 @@ class MonthCal:
         f.write('</TR>')
         
         for dc in self.generate():
-            # Börja ny rad på första dagen i månaden eller veckan
+            # BÃ¶rja ny rad pÃ¥ fÃ¶rsta dagen i mÃ¥naden eller veckan
             if dc.d == 1 or dc.wpos == 1:
                 f.write('<TR CLASS="tw">')
                 # Veckonummer relevant fr o m 1973
@@ -1958,20 +1957,20 @@ class MonthCal:
                     wtext = "&nbsp;"
                 f.write('<TD CLASS="twno">%s</TD>' %wtext)
 
-            # Fyll ut med tomdagar om det behövs i början
+            # Fyll ut med tomdagar om det behÃ¶vs i bÃ¶rjan
             if dc.d == 1:
                 for i in range(1, dc.wpos):
                     f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
 
-            # Själva dagen
+            # SjÃ¤lva dagen
             dc.html_tabular(f, for_printing = for_printing, high = high)
 
-            # Fyll ut med tomdagar om det behövs på slutet
+            # Fyll ut med tomdagar om det behÃ¶vs pÃ¥ slutet
             if dc.d == self.num_days:
                 for i in range(dc.wpos, 7):
                     f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
 
-            # Avsluta sist i veckan och månaden
+            # Avsluta sist i veckan och mÃ¥naden
             if dc.d == self.num_days or dc.wpos == 7:
                 f.write('</TR>')
 
