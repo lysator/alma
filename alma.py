@@ -4,7 +4,6 @@
 # Copyright 2004 Kent Engström. Released under GPL.
 
 import math
-from io import StringIO
 
 import jddate; JD=jddate.FromYMD
 
@@ -142,9 +141,9 @@ def moonphase(cycle, phase):
               - 0.0003 * math.sin(2*m+mp)
 
           if phase == 1:
-              jd += 0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp);
+              jd += 0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp)
           else:
-              jd -= (0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp));
+              jd -= (0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp))
 
     # Korrigera för:
     # 1) Resten av programmet har en lite annorlunda definition av JD.
@@ -158,7 +157,7 @@ def moonphase(cycle, phase):
     day  = int(jd)
     rest = (jd - day) * 24
     hour = int(rest)
-    min  = int((rest - hour) * 60);
+    min  = int((rest - hour) * 60)
 
     # Återvänd med datumtyp, kasta tillsvidare h och m
     return jddate.FromJD(day)
@@ -1989,7 +1988,7 @@ class WeekCal:
         for wd in range(1, 7+1):
             jd = jddate.FromYWD(self.week_year, self.week_no, wd)
             y, m, d = jd.GetYMD()
-            if not y in self.year_cals:
+            if y not in self.year_cals:
                 self.year_cals[y] = YearCal(y)
             self.days.append(self.year_cals[y].get_md(m, d))
 

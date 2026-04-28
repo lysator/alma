@@ -97,8 +97,8 @@ def ymd_to_jd_swedish(year,month,day):
 
 def ymd_to_jd_gregorian(y,m,d):
     if m<3: y=y-1; m=m+12
-    a = y//100;
-    return 1720995 + d + 2 - a + (a//4) + (36525*y)//100 + (306001*(m+1))//10000;
+    a = y//100
+    return 1720995 + d + 2 - a + (a//4) + (36525*y)//100 + (306001*(m+1))//10000
 
 # Get weekday from JD (Monday = 1, ..., Sunday = 7)
 
@@ -142,7 +142,7 @@ def ywd_to_jd(y,w,d):
     if wd1jan <= 4:
         jd1mon = jd1jan + 1 - wd1jan
     else:
-        jd1mon = jd1jan + 8 - wd1jan;
+        jd1mon = jd1jan + 8 - wd1jan
 
     return jd1mon + w * 7 + d - 8
 
