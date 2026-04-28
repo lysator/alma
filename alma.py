@@ -461,13 +461,13 @@ class DayCal:
 
     def dump(self):
         """Show in text format for debugging."""
-        print "%s %4d-%02d-%1d %s%s <%s> <%s>" % (self.jd.GetString_YYYY_MM_DD(),
+        print("%s %4d-%02d-%1d %s%s <%s> <%s>" % (self.jd.GetString_YYYY_MM_DD(),
                                                   self.wyear, self.week, self.wday,
                                                   " R"[self.red],
                                                   " F"[self.flag_day],
                                                   ",".join(map(str,self.day_names)),
                                                   ",".join(self.names),
-                                                  )
+                                                  ))
 
 class YearCal:
     """Class to represent a whole year."""
