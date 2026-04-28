@@ -49,7 +49,7 @@ def handle_cgi():
 
     # Nähä, då kan vi utgå från att det blir en vanlig webbsida...
     so = sys.stdout
-    so.write("Content-Type: text/html; charset=iso-8859-1\r\n\r\n")
+    so.write("Content-Type: text/html; charset=UTF-8\r\n\r\n")
 
     # Kalendertyp
     calendar_type = form.getfirst("type", "vertical")
