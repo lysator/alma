@@ -213,7 +213,7 @@ class Date:
         # Check validity by convering back to YWD
         if self.__valid:
             (y3, w3, d3) = self.GetYWD()
-            if y3 <> y or w3 <> w or d3 <> d:
+            if y3 != y or w3 != w or d3 != d:
                 self.__valid = 0
 
     # Getting (parts of) the date in different formats
