@@ -57,13 +57,13 @@ def jd_to_ymd_swedish(jd):
 #
 
 def jd_to_ymd_gregorian(jd):
-    alpha = int((100*jd - 186721625L)/3652425L)
+    alpha = int((100*jd - 186721625)/3652425)
     a = jd + 1 + alpha - alpha/4
     b = a + 1524
     c = int(100*b - 12210)/36525
-    d = int((36525L*c)/100)
-    e = int((10000L*b-10000L*d)/306001L)
-    res_d = b - d - int((306001L*e)/10000L)
+    d = int((36525*c)/100)
+    e = int((10000*b-10000*d)/306001)
+    res_d = b - d - int((306001*e)/10000)
     if e<14:
         res_m=e-1
     else:
