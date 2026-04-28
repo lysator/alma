@@ -22,13 +22,13 @@
  1 24 Erika
  1 25 Paulus
  1 26 Botilda
- 1 27 Göte
+ 1 27 GÃ¶te
  1 28 Karl
  1 29 Valter
  1 30 Gunhild
  1 31 Ivar
  2  1 Max
- 2  2 Kyndelsmässodagen
+ 2  2 KyndelsmÃ¤ssodagen
  2  3 Disa
  2  4 Ansgar
  2  5 Agata
@@ -63,7 +63,7 @@
  3  6 Ebba
  3  7 Ottilia
  3  8 Filippa
- 3  9 Torbjörn
+ 3  9 TorbjÃ¶rn
  3 10 Edla
  3 11 Edvin
  3 12 Viktoria
@@ -117,15 +117,15 @@
  4 30 Mariana
  5  1 Valborg
  5  2 Filip
- 5  3 Göta
+ 5  3 GÃ¶ta
  5  4 Monika
  5  5 Gotthard
  5  6 Sigmund
  5  7 Gustava
- 5  8 Åke
+ 5  8 Ã…ke
  5  9 Jonatan
- 5 10 Esbjörn
- 5 11 Märta
+ 5 10 EsbjÃ¶rn
+ 5 11 MÃ¤rta
  5 12 Charlotta
  5 13 Linnea
  5 14 Halvard
@@ -154,16 +154,16 @@
  6  6 Gustav
  6  7 Robert
  6  8 Salomon
- 6  9 Börje
+ 6  9 BÃ¶rje
  6 10 Svante
  6 11 Bertil
  6 12 Eskil
  6 13 Aina
- 6 14 Håkan
+ 6 14 HÃ¥kan
  6 15 Justina
  6 16 Axel
  6 17 Torborg
- 6 18 Björn
+ 6 18 BjÃ¶rn
  6 19 Germund
  6 20 Flora
  6 21 Alf
@@ -183,7 +183,7 @@
  7  6 Esaias
  7  7 Klas
  7  8 Kjell
- 7  9 Götilda
+ 7  9 GÃ¶tilda
  7 10 Anund
  7 11 Eleonora
  7 12 Herman
@@ -231,7 +231,7 @@
  8 23 Signe
  8 24 Bartolomeus
  8 25 Lovisa
- 8 26 Östen
+ 8 26 Ã–sten
  8 27 Rolf
  8 28 Augustin
  8 29 Hans
@@ -249,7 +249,7 @@
  9 10 Tord
  9 11 Dagny
  9 12 Tyra
- 9 13 Ambjörn
+ 9 13 AmbjÃ¶rn
  9 14 Ida
  9 15 Sigrid
  9 16 Eufemia
@@ -289,7 +289,7 @@
 10 20 Kasper
 10 21 Birger
 10 22 Seved
-10 23 Sören
+10 23 SÃ¶ren
 10 24 Evert
 10 25 Inga
 10 26 Amanda
@@ -308,7 +308,7 @@
 11  8 Vendela
 11  9 Teodor
 11 10 Martin Luther
-11 11 Mårten
+11 11 MÃ¥rten
 11 12 Konrad
 11 13 Kristian
 11 14 Emil
@@ -354,7 +354,7 @@
 12 24 Eva
 12 26 Stefan
 12 27 Johannes
-12 28 Menlösa barns dag
+12 28 MenlÃ¶sa barns dag
 12 29 Abel
 12 30 Set
 12 31 Sylvester

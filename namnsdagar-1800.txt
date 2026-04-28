@@ -28,7 +28,7 @@
  1 30 Gunilla
  1 31 Wigilius 
  2  1 Brigitta
- 2  2 Marie kyrkogångsdag
+ 2  2 Marie kyrkogÃ¥ngsdag
  2  3 Blasius
  2  4 Ansgarius
  2  5 Agatha
@@ -176,7 +176,7 @@
  6 29 Petrus
  6 30 Martialis
  7  1 Aron
- 7  2 Marie besökelse
+ 7  2 Marie besÃ¶kelse
  7  3 Anatolius
  7  4 Ulrica
  7  5 Melker
@@ -206,7 +206,7 @@
  7 29 Olof
  7 30 Abdon
  7 31 Helena
- 8  1 Petri fängelse
+ 8  1 Petri fÃ¤ngelse
  8  2 Katharina
  8  3 Stephanus
  8  4 Aristarchus
@@ -220,7 +220,7 @@
  8 12 Clara
  8 13 Hippolitus
  8 14 Eusebius
- 8 15 Vårfrudag
+ 8 15 VÃ¥rfrudag
  8 16 Brynolf
  8 17 Werner
  8 18 Agapetus
@@ -228,13 +228,13 @@
  8 20 Samuel
  8 21 Anastasius
  8 22 Symphorian
- 8 23 Zachäus
- 8 24 Bartholomæus
+ 8 23 ZachÃ¤us
+ 8 24 BartholomÃ¦us
  8 25 Lowisa
  8 26 Zephyrinus
  8 27 Rufus
  8 28 Augustin
- 8 29 Johannes Döparens halshuggning
+ 8 29 Johannes DÃ¶parens halshuggning
  8 30 Adauctus
  8 31 Arwid
  9  1 Egidius
@@ -257,7 +257,7 @@
  9 18 Methodius
  9 19 Fredrica
  9 20 Fausta
- 9 21 Matthäus
+ 9 21 MatthÃ¤us
  9 22 Mauritz
  9 23 Thecla
  9 24 Gerhard
@@ -307,8 +307,8 @@
 11  7 Engelbert
 11  8 Willehad
 11  9 Theodor
-11 10 Mårten Luther
-11 11 Mårten biskop
+11 10 MÃ¥rten Luther
+11 11 MÃ¥rten biskop
 11 12 Conrad
 11 13 Christian
 11 14 Hypatius
@@ -335,7 +335,7 @@
 12  5 Crispina
 12  6 Nicolaus
 12  7 Agathon
-12  8 Mariæ aflelse
+12  8 MariÃ¦ aflelse
 12  9 Anna
 12 10 Judit
 12 11 Daniel
@@ -354,7 +354,7 @@
 12 24 Adam, Ewa
 12 26 Stephanus dag
 12 27 Johannes Ewangelistus
-12 28 Menlösa barns dag
+12 28 MenlÃ¶sa barns dag
 12 29 Thomas biskop
 12 30 Dawid
 12 31 Sylwester

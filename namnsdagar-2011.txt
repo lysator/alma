@@ -21,16 +21,16 @@
  1 22 Vincent,Viktor
  1 23 Frej,Freja
  1 24 Erika
- 1 25 Paul,Pål
+ 1 25 Paul,PÃ¥l
  1 26 Bodil,Boel
- 1 27 Göte,Göta
+ 1 27 GÃ¶te,GÃ¶ta
  1 28 Karl,Karla
  1 29 Diana
  1 30 Gunilla,Gunhild
  1 31 Ivar,Joar
  2  1 Max,Maximilian
- 2  2 Kyndelsmässodagen
- 2  3 Disa,Hjördis
+ 2  2 KyndelsmÃ¤ssodagen
+ 2  3 Disa,HjÃ¶rdis
  2  4 Ansgar,Anselm
  2  5 Agata,Agda
  2  6 Dorotea,Doris
@@ -64,7 +64,7 @@
  3  6 Ebba,Ebbe
  3  7 Camilla
  3  8 Siv
- 3  9 Torbjörn,Torleif
+ 3  9 TorbjÃ¶rn,Torleif
  3 10 Edla,Ada
  3 11 Edvin,Egon
  3 12 Viktoria
@@ -80,7 +80,7 @@
  3 22 Kennet,Kent
  3 23 Gerda,Gerd
  3 24 Gabriel,Rafael
- 3 25 Marie bebådelsedag
+ 3 25 Marie bebÃ¥delsedag
  3 26 Emanuel
  3 27 Rudolf,Ralf
  3 28 Malkolm,Morgan
@@ -109,7 +109,7 @@
  4 20 Amalia,Amelie
  4 21 Anneli,Annika
  4 22 Allan,Glenn
- 4 23 Georg,Göran
+ 4 23 Georg,GÃ¶ran
  4 24 Vega
  4 25 Markus
  4 26 Teresia,Terese
@@ -124,10 +124,10 @@
  5  5 Gotthard,Erhard
  5  6 Marit,Rita
  5  7 Carina,Carita
- 5  8 Åke
+ 5  8 Ã…ke
  5  9 Reidar,Reidun
- 5 10 Esbjörn,Styrbjörn
- 5 11 Märta,Märit
+ 5 10 EsbjÃ¶rn,StyrbjÃ¶rn
+ 5 11 MÃ¤rta,MÃ¤rit
  5 12 Charlotta,Lotta
  5 13 Linnea,Linn
  5 14 Halvard,Halvar
@@ -139,7 +139,7 @@
  5 20 Karolina,Carola
  5 21 Konstantin,Conny
  5 22 Hemming,Henning
- 5 23 Desideria,Desirée
+ 5 23 Desideria,DesirÃ©e
  5 24 Ivan,Vanja
  5 25 Urban
  5 26 Vilhelmina,Vilma
@@ -153,25 +153,25 @@
  6  3 Ingemar,Gudmar
  6  4 Solbritt,Solveig
  6  5 Bo
- 6  6 Gustav,Gösta
+ 6  6 Gustav,GÃ¶sta
  6  7 Robert,Robin
  6  8 Eivor,Majvor
- 6  9 Börje,Birger
+ 6  9 BÃ¶rje,Birger
  6 10 Svante,Boris
  6 11 Bertil,Berthold
  6 12 Eskil
  6 13 Aina,Aino
- 6 14 Håkan,Hakon
+ 6 14 HÃ¥kan,Hakon
  6 15 Margit,Margot
  6 16 Axel,Axelina
  6 17 Torborg,Torvald
- 6 18 Björn,Bjarne
- 6 19 Germund,Görel
+ 6 18 BjÃ¶rn,Bjarne
+ 6 19 Germund,GÃ¶rel
  6 20 Linda
  6 21 Alf,Alvar
  6 22 Paulina,Paula
  6 23 Adolf,Alice
- 6 24 Johannes Döparens dag
+ 6 24 Johannes DÃ¶parens dag
  6 25 David,Salomon
  6 26 Rakel,Lea
  6 27 Selma,Fingal
@@ -186,8 +186,8 @@
  7  6 Esaias,Jessika
  7  7 Klas
  7  8 Kjell
- 7  9 Jörgen,Örjan
- 7 10 André,Andrea
+ 7  9 JÃ¶rgen,Ã–rjan
+ 7 10 AndrÃ©,Andrea
  7 11 Eleonora,Ellinor
  7 12 Herman,Hermine
  7 13 Joel,Judit
@@ -227,14 +227,14 @@
  8 16 Brynolf
  8 17 Verner,Valter
  8 18 Ellen,Lena
- 8 19 Magnus,Måns
+ 8 19 Magnus,MÃ¥ns
  8 20 Bernhard,Bernt
  8 21 Jon,Jonna
  8 22 Henrietta,Henrika
  8 23 Signe,Signhild
  8 24 Bartolomeus
  8 25 Lovisa,Louise
- 8 26 Östen
+ 8 26 Ã–sten
  8 27 Rolf,Raoul
  8 28 Leila,Fatima
  8 29 Hans,Hampus
@@ -251,7 +251,7 @@
  9  9 Anita,Annette
  9 10 Tord,Turid
  9 11 Dagny,Helny
- 9 12 Åsa,Åslög
+ 9 12 Ã…sa,Ã…slÃ¶g
  9 13 Sture
  9 14 Ida
  9 15 Sigrid,Siri
@@ -292,7 +292,7 @@
 10 20 Sibylla
 10 21 Ursula,Yrsa
 10 22 Marika,Marita
-10 23 Severin,Sören
+10 23 Severin,SÃ¶ren
 10 24 Evert,Eilert
 10 25 Inga,Ingalill
 10 26 Amanda,Rasmus
@@ -311,7 +311,7 @@
 11  8 Vendela
 11  9 Teodor,Teodora
 11 10 Martin,Martina
-11 11 Mårten
+11 11 MÃ¥rten
 11 12 Konrad,Kurt
 11 13 Kristian,Krister
 11 14 Emil,Emilia
