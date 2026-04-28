@@ -45,7 +45,7 @@ def jd_to_ymd_julian(jd):
 
 def jd_to_ymd_swedish(jd):
     if jd == 2346425:
-      ymd=(1712,02,30)
+      ymd=(1712,2,30)
     else:
       ymd = jd_to_ymd_julian(jd+1)
     return ymd
