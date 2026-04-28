@@ -7,7 +7,7 @@
 import time
 import string
 import re
-
+from functools import total_ordering
 
 # Convert JD -> YMD
 
@@ -158,6 +158,7 @@ def ywd_to_ymd(y,w,d):
 # THE DATE CLASS
 #
 
+@total_ordering
 class Date:
     # Initializing and printing
 
@@ -301,8 +302,12 @@ class Date:
 
     # Comparison between two dates: compare the JDs
 
-    def __cmp__(self, other):
-        return cmp(self.GetJD(), other.GetJD())
+    def __eq__(self, other):
+        return self.GetJD() == other.GetJD()
+
+    def __lt__(self, other):
+        return self.GetJD() < other.GetJD()
+
 
 #
 # INITIALIZERS FOR THE DATE CLASS
