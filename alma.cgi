@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # $Id: alma.cgi,v 1.14 2009/11/30 18:28:38 kent Exp $
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
