@@ -15,20 +15,20 @@ import jddate; JD=jddate.FromYMD
 
 # Månader (index 1..12)
 month_names =   [None,
-		 "Januari", "Februari", "Mars",
-		 "April", "Maj", "Juni",
-		 "Juli", "Augusti", "September",
-		 "Oktober", "November", "December"]
+                 "Januari", "Februari", "Mars",
+                 "April", "Maj", "Juni",
+                 "Juli", "Augusti", "September",
+                 "Oktober", "November", "December"]
 # Fram till ungefär 1872 användes de latinska formerna i almanackan, ihop med de gamla hedniska månadsnamnen.
 month_old_names =   [None,
-		 "Januarius &ndash; Thors-månad", "Februarius &ndash; Göjemånad", "Martius &ndash; Wårmånad",
-		 "Aprilis &ndash; Gräsmånad", "Majus &ndash; Blomstermånad", "Junius &ndash; Sommarmånad",
-		 "Julius &ndash; Hömånad", "Augustus &ndash; Skördemånad", "September &ndash; Höstmånad",
-		 "October &ndash; Slagtmånad", "November &ndash; Wintermånad", "December &ndash; Julmånad"]
+                 "Januarius &ndash; Thors-månad", "Februarius &ndash; Göjemånad", "Martius &ndash; Wårmånad",
+                 "Aprilis &ndash; Gräsmånad", "Majus &ndash; Blomstermånad", "Junius &ndash; Sommarmånad",
+                 "Julius &ndash; Hömånad", "Augustus &ndash; Skördemånad", "September &ndash; Höstmånad",
+                 "October &ndash; Slagtmånad", "November &ndash; Wintermånad", "December &ndash; Julmånad"]
 
 # Veckodagar (index 1..7)
 wday_names = [None, "Måndag", "Tisdag", "Onsdag",
-	      "Torsdag", "Fredag", "Lördag", "Söndag"]
+              "Torsdag", "Fredag", "Lördag", "Söndag"]
 
 # Klasser av dagar (uppdelning enligt intresse nedan är såklart väldigt godtycklig)
 
@@ -93,10 +93,10 @@ def moonphase(cycle, phase):
     # Beräkna ursprunglig "gissning"
 
     jd = 2415020.75933 \
-	+ 29.53058868 * k \
-	+ 0.0001178 * t*t \
-	- 0.000000155 * t*t*t \
-	+ 0.00033 * math.sin(2.90702 + 2.31902 * t + 0.0001601 * t*t)
+        + 29.53058868 * k \
+        + 0.0001178 * t*t \
+        - 0.000000155 * t*t*t \
+        + 0.00033 * math.sin(2.90702 + 2.31902 * t + 0.0001601 * t*t)
 
     # Beräkna positioner vid denna tidpunkt
 
@@ -110,42 +110,42 @@ def moonphase(cycle, phase):
     # Korrigera "gissningen" m a p dessa positioner
 
     if phase in [0, 2]: 
-	# Nymåne och fullmåne
-	jd += (0.1734 - 0.000393*t) * math.sin(m) \
-	    + 0.0021 * math.sin(2*m) \
-	    - 0.4068 * math.sin(mp) \
-	    + 0.0161 * math.sin(2*mp) \
-	    - 0.0004 * math.sin(3*mp) \
-	    + 0.0104 * math.sin(2*f) \
-	    - 0.0051 * math.sin(m+mp) \
-	    - 0.0074 * math.sin(m-mp) \
-	    + 0.0004 * math.sin(2*f+m) \
-	    - 0.0004 * math.sin(2*f-m) \
-	    - 0.0006 * math.sin(2*f+mp) \
-	    + 0.0010 * math.sin(2*f-mp) \
-	    + 0.0005 * math.sin(m+2*mp)
+        # Nymåne och fullmåne
+        jd += (0.1734 - 0.000393*t) * math.sin(m) \
+            + 0.0021 * math.sin(2*m) \
+            - 0.4068 * math.sin(mp) \
+            + 0.0161 * math.sin(2*mp) \
+            - 0.0004 * math.sin(3*mp) \
+            + 0.0104 * math.sin(2*f) \
+            - 0.0051 * math.sin(m+mp) \
+            - 0.0074 * math.sin(m-mp) \
+            + 0.0004 * math.sin(2*f+m) \
+            - 0.0004 * math.sin(2*f-m) \
+            - 0.0006 * math.sin(2*f+mp) \
+            + 0.0010 * math.sin(2*f-mp) \
+            + 0.0005 * math.sin(m+2*mp)
     else:
-	# Växande och avtagande halvmåne
-	  jd += (0.1721 - 0.0004*t) * math.sin(m) \
-	      + 0.0021 * math.sin(2*m) \
-	      - 0.6280 * math.sin(mp) \
-	      + 0.0089 * math.sin(2*mp) \
-	      - 0.0004 * math.sin(3*mp) \
-	      + 0.0079 * math.sin(2*f) \
-	      - 0.0119 * math.sin(m+mp) \
-	      - 0.0047 * math.sin(m-mp) \
-	      + 0.0003 * math.sin(2*f+m) \
-	      - 0.0004 * math.sin(2*f-m) \
-	      - 0.0006 * math.sin(2*f+mp) \
-	      + 0.0021 * math.sin(2*f-mp) \
-	      + 0.0003 * math.sin(m+2*mp) \
-	      + 0.0004 * math.sin(m-2*mp) \
-	      - 0.0003 * math.sin(2*m+mp)
+        # Växande och avtagande halvmåne
+          jd += (0.1721 - 0.0004*t) * math.sin(m) \
+              + 0.0021 * math.sin(2*m) \
+              - 0.6280 * math.sin(mp) \
+              + 0.0089 * math.sin(2*mp) \
+              - 0.0004 * math.sin(3*mp) \
+              + 0.0079 * math.sin(2*f) \
+              - 0.0119 * math.sin(m+mp) \
+              - 0.0047 * math.sin(m-mp) \
+              + 0.0003 * math.sin(2*f+m) \
+              - 0.0004 * math.sin(2*f-m) \
+              - 0.0006 * math.sin(2*f+mp) \
+              + 0.0021 * math.sin(2*f-mp) \
+              + 0.0003 * math.sin(m+2*mp) \
+              + 0.0004 * math.sin(m-2*mp) \
+              - 0.0003 * math.sin(2*m+mp)
 
-	  if phase == 1:
-	      jd += 0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp);
-	  else:
-	      jd -= (0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp));
+          if phase == 1:
+              jd += 0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp);
+          else:
+              jd -= (0.0028 - 0.0004*math.cos(m) + 0.0003*math.cos(mp));
 
     # Korrigera för:
     # 1) Resten av programmet har en lite annorlunda definition av JD.
@@ -182,16 +182,16 @@ def first_saturday(y, m, d):
 # Föregående månad
 def previous_month(y, m):
     if m == 1:
-	return (y-1, 12)
+        return (y-1, 12)
     else:
-	return (y, m-1)
+        return (y, m-1)
 
 # Nästa månad
 def next_month(y, m):
     if m == 12:
-	return (y+1, 1)
+        return (y+1, 1)
     else:
-	return (y, m+1)
+        return (y, m+1)
 
 # Föregående vecka
 def previous_week(y, w):
@@ -227,99 +227,99 @@ def ym_to_yw(year, month):
 class DayName:
     """Class to represent a day name and its importance."""
     def __init__(self, name, dayclass):
-	self.name = name
-	self.dayclass = dayclass
-	self.is_red = dayclass <= RED
+        self.name = name
+        self.dayclass = dayclass
+        self.is_red = dayclass <= RED
 
     def __repr__(self):
-	return "<%s %d>" % (self.name, self.dayclass)
+        return "<%s %d>" % (self.name, self.dayclass)
 
 class DayCal:
     """Class to represent a single day."""
     def __init__(self, jd, mark_as_today = False):
-	self.jd = jd           # jddate
+        self.jd = jd           # jddate
         self.is_today = mark_as_today
 
-	(self.y,
-	 self.m,
-	 self.d) = self.jd.GetYMD()
+        (self.y,
+         self.m,
+         self.d) = self.jd.GetYMD()
 
-	(self.wyear,
-	 self.week,
-	 self.wday) = self.jd.GetYWD()
+        (self.wyear,
+         self.week,
+         self.wday) = self.jd.GetYWD()
 
-	# wday är alltid 1 för måndag ... 7 för söndag
-	# wpos talar om positionen i veckan
-	if self.y >= 1973:
-	    self.wpos = self.wday # måndag först i veckan
-	else:
-	    if self.wday == 7:
-		self.wpos = 1 # söndag först i veckan
-	    else:
-		self.wpos = self.wday + 1
+        # wday är alltid 1 för måndag ... 7 för söndag
+        # wpos talar om positionen i veckan
+        if self.y >= 1973:
+            self.wpos = self.wday # måndag först i veckan
+        else:
+            if self.wday == 7:
+                self.wpos = 1 # söndag först i veckan
+            else:
+                self.wpos = self.wday + 1
 
-	self.flag_day = False  # flaggdag?
-	self.day_names = []    # röda och svarta dagsnamn, blandat (klass DayName)
-	self.names = []        # namnsdagsnamn
-	self.wday_name = wday_names[self.wday]
-	self.wday_name_short = self.wday_name[:3]
+        self.flag_day = False  # flaggdag?
+        self.day_names = []    # röda och svarta dagsnamn, blandat (klass DayName)
+        self.names = []        # namnsdagsnamn
+        self.wday_name = wday_names[self.wday]
+        self.wday_name_short = self.wday_name[:3]
 
-	if self.wday == 7:
-	    self.red = True    # Alla söndagar är röda
-	else:
-	    self.red = False   # Alla andra dagar är svarta tillsvidare
+        if self.wday == 7:
+            self.red = True    # Alla söndagar är röda
+        else:
+            self.red = False   # Alla andra dagar är svarta tillsvidare
 
-	self.moonphase = None  # Månfas (0 = nymåne, 1, 2 = fullmåne, 3)
+        self.moonphase = None  # Månfas (0 = nymåne, 1, 2 = fullmåne, 3)
  
     def add_info(self, dayclass, flag, name):
-	assert MRED <= dayclass <= BLACK
-	if dayclass <= RED:
-	    self.red = True
-	if name: self.day_names.append(DayName(name, dayclass))
-	if flag:
-	    self.flag_day = True
+        assert MRED <= dayclass <= BLACK
+        if dayclass <= RED:
+            self.red = True
+        if name: self.day_names.append(DayName(name, dayclass))
+        if flag:
+            self.flag_day = True
     
     def set_names(self, names):
-	self.names = names
+        self.names = names
 
     def set_moonphase(self, moonphase):
-	self.moonphase = moonphase
+        self.moonphase = moonphase
 
     def moonphase_name(self):
-	if self.moonphase is None:
-	    return ""
-	else:
-	    return ["Nymåne", "Första kvarteret", "Fullmåne", "Sista kvarteret"][self.moonphase]
+        if self.moonphase is None:
+            return ""
+        else:
+            return ["Nymåne", "Första kvarteret", "Fullmåne", "Sista kvarteret"][self.moonphase]
 
     def __repr__(self):
-	return "<Day %s>"  % self.jd.GetString_YYYY_MM_DD()
+        return "<Day %s>"  % self.jd.GetString_YYYY_MM_DD()
 
     def html_redblack(self, sep = ", "):
-	redblack = []
-	for dayclass in range(MRED,BLACK+1):
-	    for dayname in self.day_names:
-		if dayname.dayclass == dayclass:
-		    if dayname.is_red:
-			colour = "red"
-		    else:
-			colour = "black"
-		    redblack.append('<SPAN CLASS="vname %s">%s</SPAN>' % (colour, dayname.name))
-	return sep.join(redblack)
+        redblack = []
+        for dayclass in range(MRED,BLACK+1):
+            for dayname in self.day_names:
+                if dayname.dayclass == dayclass:
+                    if dayname.is_red:
+                        colour = "red"
+                    else:
+                        colour = "black"
+                    redblack.append('<SPAN CLASS="vname %s">%s</SPAN>' % (colour, dayname.name))
+        return sep.join(redblack)
 
     def html_vertical(self, f, in_week_cal = False, for_printing = False):
-	if self.red:
-	    colour = "red"
-	else:
-	    colour = "black"
+        if self.red:
+            colour = "red"
+        else:
+            colour = "black"
 
         if self.is_today and not for_printing:
             f.write('<TR CLASS="v today">')
         else:
             f.write('<TR CLASS="v">')
 
-	# Veckan börjar på måndag fr o m 1973, innan på måndag
-	# Dessutom "börjar" ju en vecka i början av varje månad.
-	if self.d == 1 or self.wpos == 1:
+        # Veckan börjar på måndag fr o m 1973, innan på måndag
+        # Dessutom "börjar" ju en vecka i början av varje månad.
+        if self.d == 1 or self.wpos == 1:
             if in_week_cal:
                 # I en veckokalender är det ju månaden som är intressant
                 wtext = '<A CLASS="hidelink" HREF="?year=%d&month=%d&type=vertical">%s</A>' % (self.y,
@@ -334,175 +334,175 @@ class DayCal:
                                                                                               self.week)
                 else:
                     wtext = "&nbsp;"
-	    f.write('<TD CLASS="vweek_present leftmost">%s</TD>' % wtext)
-	else:
-	    f.write('<TD CLASS="vweek_empty leftmost">&nbsp;</TD>')
+            f.write('<TD CLASS="vweek_present leftmost">%s</TD>' % wtext)
+        else:
+            f.write('<TD CLASS="vweek_empty leftmost">&nbsp;</TD>')
 
-	# Veckodagens tre först tecken
-	f.write('<TD CLASS="vwday %s">%s</TD>' % (colour, self.wday_name_short))
+        # Veckodagens tre först tecken
+        f.write('<TD CLASS="vwday %s">%s</TD>' % (colour, self.wday_name_short))
 
-	# Dagens nummer
-	f.write('<TD CLASS="vday %s">%d</TD>' % (colour, self.d))
+        # Dagens nummer
+        f.write('<TD CLASS="vday %s">%d</TD>' % (colour, self.d))
 
-	# Flaggdagar och månfaser
-	f.write('<TD CLASS="vflag">')
-	empty = True
+        # Flaggdagar och månfaser
+        f.write('<TD CLASS="vflag">')
+        empty = True
 
-	if self.flag_day:
-	    f.write('<IMG SRC="flag.gif" ALT="Flaggdag" TITLE="Flaggdag">')
-	    empty = False
+        if self.flag_day:
+            f.write('<IMG SRC="flag.gif" ALT="Flaggdag" TITLE="Flaggdag">')
+            empty = False
 
-	if self.moonphase is not None:
-	    f.write('<IMG SRC="moonphase%d.gif" ALT="%s" TITLE="%s">' % (self.moonphase, self.moonphase_name(), self.moonphase_name()))
-	    empty = False
+        if self.moonphase is not None:
+            f.write('<IMG SRC="moonphase%d.gif" ALT="%s" TITLE="%s">' % (self.moonphase, self.moonphase_name(), self.moonphase_name()))
+            empty = False
 
-	if empty:
-	    f.write('&nbsp;')
-	f.write('</TD>')
+        if empty:
+            f.write('&nbsp;')
+        f.write('</TD>')
 
-	# Dagens namn. Överst röda, svarta. Under namnsdagar
-	redblack_string = self.html_redblack()
-	name_string = ", ".join(self.names)
-	
-	if in_week_cal:
+        # Dagens namn. Överst röda, svarta. Under namnsdagar
+        redblack_string = self.html_redblack()
+        name_string = ", ".join(self.names)
+        
+        if in_week_cal:
             f.write('<TD CLASS="vnames">')
         else:
             f.write('<TD CLASS="vnames rightmost">')
-	f.write(redblack_string)
-	if redblack_string and name_string: f.write('<BR>')
-	f.write(name_string)
-	f.write('&nbsp;</TD>')
+        f.write(redblack_string)
+        if redblack_string and name_string: f.write('<BR>')
+        f.write(name_string)
+        f.write('&nbsp;</TD>')
 
         # Anteckningsutrymme i veckoalmanackan
         if in_week_cal:
             f.write('<TD CLASS="vnotes rightmost">&nbsp;</TD>')
 
 
-	f.write('</TR>\n')
+        f.write('</TR>\n')
 
     def html_tabular(self, f, for_printing = False, high = False):
-	if self.red:
-	    colour = "red"
-	else:
-	    colour = "black"
-	
+        if self.red:
+            colour = "red"
+        else:
+            colour = "black"
+        
         if self.is_today and not for_printing:
             f.write('<TD CLASS="tday today">')
         else:
             f.write('<TD CLASS="tday">')
-	f.write('<TABLE>')
+        f.write('<TABLE>')
 
-	# Dagens nummer
-	f.write('<TR><TD CLASS="tdday %s">%d</TD>' % (colour, self.d))
+        # Dagens nummer
+        f.write('<TR><TD CLASS="tdday %s">%d</TD>' % (colour, self.d))
 
-	# Dagens namn
-	f.write('<TD ROWSPAN="2" CLASS="tdnames">')
-	redblack_string = self.html_redblack(sep="<BR>")
-	name_string = ", ".join(self.names)
-	f.write(redblack_string)
-	if redblack_string and name_string: f.write('<BR>')
-	f.write(name_string)
-	f.write('&nbsp;</TD></TR>')
+        # Dagens namn
+        f.write('<TD ROWSPAN="2" CLASS="tdnames">')
+        redblack_string = self.html_redblack(sep="<BR>")
+        name_string = ", ".join(self.names)
+        f.write(redblack_string)
+        if redblack_string and name_string: f.write('<BR>')
+        f.write(name_string)
+        f.write('&nbsp;</TD></TR>')
 
-	# Flaggdagar
-	f.write('<TR><TD CLASS="tdflag">')
-	if self.flag_day:
-	    f.write('<IMG SRC="flag.gif" ALT="Flaggdag" TITLE="Flaggdag">')
-	if self.moonphase is not None:
-	    f.write('<IMG SRC="moonphase%d.gif" ALT="%s" TITLE="%s">' % (self.moonphase, self.moonphase_name(), self.moonphase_name()))
-	f.write('</TD></TR>')
+        # Flaggdagar
+        f.write('<TR><TD CLASS="tdflag">')
+        if self.flag_day:
+            f.write('<IMG SRC="flag.gif" ALT="Flaggdag" TITLE="Flaggdag">')
+        if self.moonphase is not None:
+            f.write('<IMG SRC="moonphase%d.gif" ALT="%s" TITLE="%s">' % (self.moonphase, self.moonphase_name(), self.moonphase_name()))
+        f.write('</TD></TR>')
 
         if high:
             f.write('<TR><TD CLASS="tdspacer">&nbsp;</TD></TR>')
             
 
-	f.write('</TABLE>')
-	f.write('</TD>')
+        f.write('</TABLE>')
+        f.write('</TD>')
 
     # Dagblocksliknande
     def html_day(self, f):
-	if self.red:
-	    colour = "red"
-	else:
-	    colour = "black"
-	
-	f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="day.css">')
-	f.write('<DIV CLASS="douter">')
+        if self.red:
+            colour = "red"
+        else:
+            colour = "black"
+        
+        f.write('<LINK TYPE="text/css" REL="stylesheet" HREF="day.css">')
+        f.write('<DIV CLASS="douter">')
 
-	# Månad
+        # Månad
         f.write('<DIV CLASS="dmonth">%s</DIV>' % month_names[self.m])
 
-	# Dag
-	f.write('<DIV CLASS="dday %s">%d</DIV>' % (colour, self.d))
+        # Dag
+        f.write('<DIV CLASS="dday %s">%d</DIV>' % (colour, self.d))
 
-	# Veckodag
-	f.write('<DIV CLASS="dwday %s">%s v%d</DIV>' % (colour,
-							self.wday_name,
-							self.week))
-	# Flaggdagar och månfaser
-	f.write('<DIV CLASS="dflag">')
-	if self.flag_day:
-	    f.write('<IMG SRC="flag.gif">')
-	if self.moonphase is not None:
-	    f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
-	f.write('</DIV>')
+        # Veckodag
+        f.write('<DIV CLASS="dwday %s">%s v%d</DIV>' % (colour,
+                                                        self.wday_name,
+                                                        self.week))
+        # Flaggdagar och månfaser
+        f.write('<DIV CLASS="dflag">')
+        if self.flag_day:
+            f.write('<IMG SRC="flag.gif">')
+        if self.moonphase is not None:
+            f.write('<IMG SRC="moonphase%d.gif">' % self.moonphase)
+        f.write('</DIV>')
 
-	# Dagens namn
-	f.write('<DIV CLASS="dnames">')
-	redblack_string = self.html_redblack(sep="<BR>")
-	name_string = ", ".join(self.names)
-	f.write(redblack_string)
-	if redblack_string and name_string: f.write('<BR>')
-	f.write(name_string)
-	f.write('&nbsp;</DIV>')
+        # Dagens namn
+        f.write('<DIV CLASS="dnames">')
+        redblack_string = self.html_redblack(sep="<BR>")
+        name_string = ", ".join(self.names)
+        f.write(redblack_string)
+        if redblack_string and name_string: f.write('<BR>')
+        f.write(name_string)
+        f.write('&nbsp;</DIV>')
 
-	f.write('</DIV>')
+        f.write('</DIV>')
 
 
     def dump(self):
-	"""Show in text format for debugging."""
-	print "%s %4d-%02d-%1d %s%s <%s> <%s>" % (self.jd.GetString_YYYY_MM_DD(),
-						  self.wyear, self.week, self.wday,
-						  " R"[self.red],
-						  " F"[self.flag_day],
-						  ",".join(map(str,self.day_names)),
-						  ",".join(self.names),
-						  )
+        """Show in text format for debugging."""
+        print "%s %4d-%02d-%1d %s%s <%s> <%s>" % (self.jd.GetString_YYYY_MM_DD(),
+                                                  self.wyear, self.week, self.wday,
+                                                  " R"[self.red],
+                                                  " F"[self.flag_day],
+                                                  ",".join(map(str,self.day_names)),
+                                                  ",".join(self.names),
+                                                  )
 
 class YearCal:
     """Class to represent a whole year."""
 
     def __init__(self, year):
-	self.year = year       # År (exv. 2004)
-	self.jd_jan1 = JD(year, 1, 1)
-	self.jd_dec31 = JD(year, 12, 31)
+        self.year = year       # År (exv. 2004)
+        self.jd_jan1 = JD(year, 1, 1)
+        self.jd_dec31 = JD(year, 12, 31)
 
-	# Skapa alla dagar för året
-	self.days = []
+        # Skapa alla dagar för året
+        self.days = []
         jd_today = jddate.FromToday()
-	jd = self.jd_jan1
-	while jd <= self.jd_dec31:
-	    self.days.append(DayCal(jd, mark_as_today = (jd==jd_today)))
-	    jd = jd + 1
+        jd = self.jd_jan1
+        while jd <= self.jd_dec31:
+            self.days.append(DayCal(jd, mark_as_today = (jd==jd_today)))
+            jd = jd + 1
 
-	# Skottår?
-	if len(self.days) == 365 or len(self.days) == 354:
-	    self.leap_year = False
-	elif len(self.days) == 366 or len(self.days) == 367:
-	    self.leap_year = True
-	else:
-	    assert ValueError, "bad number of days in a year"
+        # Skottår?
+        if len(self.days) == 365 or len(self.days) == 354:
+            self.leap_year = False
+        elif len(self.days) == 366 or len(self.days) == 367:
+            self.leap_year = True
+        else:
+            assert ValueError, "bad number of days in a year"
 
-	# Helgdagar, flaggdagar med mera
-	self.place_names()
+        # Helgdagar, flaggdagar med mera
+        self.place_names()
 
-	# Namnsdagar
-	if year >= 2011:
-		self.place_name_day_names("namnsdagar-2011.txt",
-				      [(2015,  7, 23, ["Emma","Emmy"]),
-				       (2015,  7, 26, ["Jesper","Jasmine"]),
-				       (2018,  3,  8, ["Siv","Saga"]),
-				       (2018,  9, 14, ["Ida","Ronja"]),
+        # Namnsdagar
+        if year >= 2011:
+                self.place_name_day_names("namnsdagar-2011.txt",
+                                      [(2015,  7, 23, ["Emma","Emmy"]),
+                                       (2015,  7, 26, ["Jesper","Jasmine"]),
+                                       (2018,  3,  8, ["Siv","Saga"]),
+                                       (2018,  9, 14, ["Ida","Ronja"]),
                                        (2022, 12,  3, ["Lydia", "Cornelia"]),
                                        (2022,  1, 19, ["Henrik", "Henry"]),
                                        (2022,  2, 28, ["Maria", "Maja"]),
@@ -511,21 +511,21 @@ class YearCal:
                                        (2022,  3, 12, ["Viktoria", "Regina"]),
                                        (2022, 11,  2, ["Tobias", "Tim"]),
                                        ])
-	elif year >= 2001:
-	    self.place_name_day_names("namnsdagar-2001.txt")
-	elif year >= 1993:
-	    self.place_name_day_names("namnsdagar-1993.txt")
-	elif year >= 1986:
-	    self.place_name_day_names("namnsdagar-1986.txt")
-	elif year >= 1901:
-	    self.place_name_day_names("namnsdagar-1901.txt",
-				      [(1905, 11,  4, ["Sverker"]),
-				       (1907, 11, 27, ["Astrid"]),
+        elif year >= 2001:
+            self.place_name_day_names("namnsdagar-2001.txt")
+        elif year >= 1993:
+            self.place_name_day_names("namnsdagar-1993.txt")
+        elif year >= 1986:
+            self.place_name_day_names("namnsdagar-1986.txt")
+        elif year >= 1901:
+            self.place_name_day_names("namnsdagar-1901.txt",
+                                      [(1905, 11,  4, ["Sverker"]),
+                                       (1907, 11, 27, ["Astrid"]),
                                        (1918,  4, 26, ["Teresia"]), # Teresia och Engelbrekt byter plats med varandra.
                                        (1918,  4, 27, ["Engelbrekt"]),
-				       (1953,  3, 25, ["Marie Bebådelsedag"]),
-				       (1953,  6, 24, ["Johannes Döparens dag"]),
-				       (1934, 10, 20, ["Sibylla"])])
+                                       (1953,  3, 25, ["Marie Bebådelsedag"]),
+                                       (1953,  6, 24, ["Johannes Döparens dag"]),
+                                       (1934, 10, 20, ["Sibylla"])])
         elif year >=1800:
             self.place_name_day_names("namnsdagar-1800.txt",
                                       [(1883,  1,  2, ["Abel, Set"]),
@@ -654,199 +654,199 @@ class YearCal:
             # (5) Denna stavning tog över efter 1845 men senast 1865 (vi säger 1855).
 
 
-	# Månfaser
-	self.place_moonphases()
+        # Månfaser
+        self.place_moonphases()
 
     # Hämta dag givet m, d
     def get_md(self, m, d):
-	jd = JD(self.year, m, d)
-	return self.days[jd - self.jd_jan1]
+        jd = JD(self.year, m, d)
+        return self.days[jd - self.jd_jan1]
 
     # Hämta dag givet jd
     def get_jd(self, jd):
-	(y, m, d) = jd.GetYMD()
-	assert y == self.year
-	return self.days[jd - self.jd_jan1]
+        (y, m, d) = jd.GetYMD()
+        assert y == self.year
+        return self.days[jd - self.jd_jan1]
 
     # Lägg till information för m, d
     def add_info_md(self, m, d, dayclass, flag, name):
-	dc = self.get_md(m, d)
-	dc.add_info(dayclass, flag, name)
+        dc = self.get_md(m, d)
+        dc.add_info(dayclass, flag, name)
 
     # Lägg till information för jd
     def add_info_jd(self, jd, dayclass, flag, name):
-	dc = self.get_jd(jd)
-	dc.add_info(dayclass, flag, name)
+        dc = self.get_jd(jd)
+        dc.add_info(dayclass, flag, name)
 
     # Generator för årets alla dagar
     def generate(self):
-	for dc in self.days:
-	    yield dc
+        for dc in self.days:
+            yield dc
 
     # Placera namn
     def place_names(self):
-	"""Place holidays etc. in the calendar."""
+        """Place holidays etc. in the calendar."""
 
-	# Fasta helgdagar och flaggdagar
+        # Fasta helgdagar och flaggdagar
 
-	for (from_year, to_year, m, d, dayclass, flag, name) in \
-		[
-	    # Fasta helgdagar
-	    (None, 1938,  1,  1, MRED , False,  "Nyårsdagen"),
-	    (1939, None,  1,  1, MRED , True,  "Nyårsdagen"),
-	    (None, None,  1,  6, MRED,  False, "Trettondedag jul"),
-	    (1939, None,  5,  1, MRED,  True,  "Första maj"), # 1939 blev 1 maj allmän helgdag.
-	    (None, 1938, 12, 25, MRED,  False,  "Juldagen"),
-	    (1939, None, 12, 25, MRED,  True,  "Juldagen"),
-	    (None, 1923, 12, 26, MRED,  False, "Annandag jul"), # 1921 står denna form. 1925 har de med Stefanus med.
-	    (1924, 1982, 12, 26, MRED,  False, "Den helige Stefanus' dag eller Annandag jul"), # Formen fanns kvar 1977, men ej 1983 måste undersökas mera.
-	    (1983, None, 12, 26, MRED,  False, "Annandag jul"),
-	    
-	    # Fasta helgdagsaftnar
-	    (None, None,  1,  5, MBLACK, False, "Trettondedagsafton"),
-	    (None, None,  4, 30, MBLACK, False, "Valborgsmässoafton"),
-	    (None, None, 12, 24, MBLACK, False, "Julafton"),
-	    (None, None, 12, 31, MBLACK, False, "Nyårsafton"),
-	    
-	    # Dagar som vissa år varit "namnsdagar", andra inte
-	    (1993, 2000,  2,  2, BLACK, False, "Kyndelsmässodagen"),  # Saknas som namnsdag dessa år
-	    (1993, 2000,  3, 25, BLACK, False, "Marie Bebådelsedag"), # Saknas som namnsdag dessa år
-	    (1993, 2000, 11,  1, BLACK, False, "Allhelgonadagen"),    # Saknas som namnsdag dessa år
-	    
-	    # Svenska flaggans dag och nationaldagen
-	    (1939, 1981,  6,  6, MBLACK, True,  "Svenska flaggans dag"),
-	    (1982, 2004,  6,  6, MBLACK, True,  "Sveriges nationaldag"),
-	    (2005, None,  6,  6, MRED,   True,  "Sveriges nationaldag"),
-	    
-	    # Andra flaggdagar
-	    (1982, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270 den 29 april 1982.
+        for (from_year, to_year, m, d, dayclass, flag, name) in \
+                [
+            # Fasta helgdagar
+            (None, 1938,  1,  1, MRED , False,  "Nyårsdagen"),
+            (1939, None,  1,  1, MRED , True,  "Nyårsdagen"),
+            (None, None,  1,  6, MRED,  False, "Trettondedag jul"),
+            (1939, None,  5,  1, MRED,  True,  "Första maj"), # 1939 blev 1 maj allmän helgdag.
+            (None, 1938, 12, 25, MRED,  False,  "Juldagen"),
+            (1939, None, 12, 25, MRED,  True,  "Juldagen"),
+            (None, 1923, 12, 26, MRED,  False, "Annandag jul"), # 1921 står denna form. 1925 har de med Stefanus med.
+            (1924, 1982, 12, 26, MRED,  False, "Den helige Stefanus' dag eller Annandag jul"), # Formen fanns kvar 1977, men ej 1983 måste undersökas mera.
+            (1983, None, 12, 26, MRED,  False, "Annandag jul"),
+            
+            # Fasta helgdagsaftnar
+            (None, None,  1,  5, MBLACK, False, "Trettondedagsafton"),
+            (None, None,  4, 30, MBLACK, False, "Valborgsmässoafton"),
+            (None, None, 12, 24, MBLACK, False, "Julafton"),
+            (None, None, 12, 31, MBLACK, False, "Nyårsafton"),
+            
+            # Dagar som vissa år varit "namnsdagar", andra inte
+            (1993, 2000,  2,  2, BLACK, False, "Kyndelsmässodagen"),  # Saknas som namnsdag dessa år
+            (1993, 2000,  3, 25, BLACK, False, "Marie Bebådelsedag"), # Saknas som namnsdag dessa år
+            (1993, 2000, 11,  1, BLACK, False, "Allhelgonadagen"),    # Saknas som namnsdag dessa år
+            
+            # Svenska flaggans dag och nationaldagen
+            (1939, 1981,  6,  6, MBLACK, True,  "Svenska flaggans dag"),
+            (1982, 2004,  6,  6, MBLACK, True,  "Sveriges nationaldag"),
+            (2005, None,  6,  6, MRED,   True,  "Sveriges nationaldag"),
+            
+            # Andra flaggdagar
+            (1982, None, 10, 24, BLACK, True,  "FN-dagen"), # Infördes i SFS1982:270 den 29 april 1982.
             (1939, None, 11,  6, BLACK, True,  "Gustav Adolfsdagen"), # Gustav Adolfsdagen
-	    (1939, None, 12, 10, BLACK, True,  "Nobeldagen"),
-	    (2018, None,  5, 29, BLACK, True, "Veterandagen"),
-	    (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
-	    (2023, 2023,  9, 15, BLACK, True, "50-årsdagen av kung Carl XVI Gustafs trontillträde"), # Tillfällig flaggdag 2023, enligt 2022/23:KU41
+            (1939, None, 12, 10, BLACK, True,  "Nobeldagen"),
+            (2018, None,  5, 29, BLACK, True, "Veterandagen"),
+            (2018, 2018,  12, 17, BLACK, True, "Minnesdag för demokratins genombrott"), # Tillfällig flaggdag 2018, enligt 2017/18:KU28
+            (2023, 2023,  9, 15, BLACK, True, "50-årsdagen av kung Carl XVI Gustafs trontillträde"), # Tillfällig flaggdag 2023, enligt 2022/23:KU41
             (2024, 2024,  6,  9, BLACK, True, "Val till Europaparlamentet"), # Val till Europaparlamentet är flaggdag sedan 1 april 2023.
 
 
-	    # Flaggdagar för regerande kungahuset
-	    
-	    # Victoria Ingrid Alice Désirée, kronprinsessa
-	    # född 1977-07-14
-	    # FIXME: Hon lär inte ha varit kronprinsessa innan successionsordningen
-	    # ändrades, väl? SFS 1979:935
-	    (1980, None,  7, 14, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
-	    (1980, None,  3, 12, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Viktoria"
+            # Flaggdagar för regerande kungahuset
+            
+            # Victoria Ingrid Alice Désirée, kronprinsessa
+            # född 1977-07-14
+            # FIXME: Hon lär inte ha varit kronprinsessa innan successionsordningen
+            # ändrades, väl? SFS 1979:935
+            (1980, None,  7, 14, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
+            (1980, None,  3, 12, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Viktoria"
 
-	    # Silvia Renate Sommerlath
-	    # född 1943-12-23, drottning 1976-06-19
-	    (1976, None, 12, 23, BLACK, True,  "Drottningens födelsedag"), # födelsedag
-	    (1976, None,  8,  8, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Silvia"
-	    
-	    # Carl XVI Gustaf Folke Hubertus
-	    # född 1946-04-30, kronprins 1950-10-29, kung 1973-09-15
-	    (1951, 1972,  4, 30, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
-	    (1973, None,  4, 30, BLACK, True,  "Konungens födelsedag"), # födelsedag
-	    (1951, 1972,  1, 28, BLACK, True,  "Kronprinsens namnsdag"), # namnsdag "Karl"
-	    (1973, None,  1, 28, BLACK, True,  "Konungens namnsdag"), # namnsdag "Karl"
-	    
-	    # Louise Alexandra Maria Irène
-	    # född 1889-07-13, gift 1923-11-03, drottning 1950-10-29, död 1965-03-07
-	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
-	    # det som start. Flaggdag som kronprinsessa innan hon blev drottning.
-	    (1939, 1950,  7, 13, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
+            # Silvia Renate Sommerlath
+            # född 1943-12-23, drottning 1976-06-19
+            (1976, None, 12, 23, BLACK, True,  "Drottningens födelsedag"), # födelsedag
+            (1976, None,  8,  8, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Silvia"
+            
+            # Carl XVI Gustaf Folke Hubertus
+            # född 1946-04-30, kronprins 1950-10-29, kung 1973-09-15
+            (1951, 1972,  4, 30, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+            (1973, None,  4, 30, BLACK, True,  "Konungens födelsedag"), # födelsedag
+            (1951, 1972,  1, 28, BLACK, True,  "Kronprinsens namnsdag"), # namnsdag "Karl"
+            (1973, None,  1, 28, BLACK, True,  "Konungens namnsdag"), # namnsdag "Karl"
+            
+            # Louise Alexandra Maria Irène
+            # född 1889-07-13, gift 1923-11-03, drottning 1950-10-29, död 1965-03-07
+            # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+            # det som start. Flaggdag som kronprinsessa innan hon blev drottning.
+            (1939, 1950,  7, 13, BLACK, True,  "Kronprinsessans födelsedag"), # födelsedag
             (1951, 1964,  7, 13, BLACK, True,  "Drottningens födelsedag"), # födelsedag
-	    (1939, 1950,  8, 25, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Lovisa"
+            (1939, 1950,  8, 25, BLACK, True,  "Kronprinsessans namnsdag"), # namnsdag "Lovisa"
             (1951, 1964,  8, 25, BLACK, True,  "Drottningens namnsdag"), # namnsdag "Lovisa"
 
-	    # Oscar Fredrik Wilhelm Olaf Gustav VI Adolf
-	    # född 1882-11-11, kung 1950-10-29, död 1973-09-15
-	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
-	    # det som start. Flaggdag som kronprins innan han blev kung.
-	    (1939, 1949, 11, 11, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+            # Oscar Fredrik Wilhelm Olaf Gustav VI Adolf
+            # född 1882-11-11, kung 1950-10-29, död 1973-09-15
+            # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+            # det som start. Flaggdag som kronprins innan han blev kung.
+            (1939, 1949, 11, 11, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
             (1950, 1972, 11, 11, BLACK, True,  "Konungens födelsedag"), # födelsedag
-	    (1939, 1950,  6,  6, BLACK, True,  "Konungens och kronprinsens namnsdag"), # namnsdag "Gustav". Ser styltigt upp att ha dem separat.
-	    (1951, 1973,  6,  6, BLACK, True,  "Konungens namnsdag"), # namnsdag "Gustav"
-	    
-	    # Oscar Gustaf V Adolf
-	    # född 1858-06-16, kung 1907-12-08, död 1950-10-29
-	    # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
-	    # det som start. Flaggdag som kronprins innan han blev kung?
-	    (1939, 1950,  6, 16, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
+            (1939, 1950,  6,  6, BLACK, True,  "Konungens och kronprinsens namnsdag"), # namnsdag "Gustav". Ser styltigt upp att ha dem separat.
+            (1951, 1973,  6,  6, BLACK, True,  "Konungens namnsdag"), # namnsdag "Gustav"
+            
+            # Oscar Gustaf V Adolf
+            # född 1858-06-16, kung 1907-12-08, död 1950-10-29
+            # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
+            # det som start. Flaggdag som kronprins innan han blev kung?
+            (1939, 1950,  6, 16, BLACK, True,  "Kronprinsens födelsedag"), # födelsedag
 
-	     ]:
-	    if from_year is not None and self.year < from_year: continue
-	    if to_year is not None and self.year > to_year: continue
-	    self.add_info_md(m, d, dayclass, flag, name)
+             ]:
+            if from_year is not None and self.year < from_year: continue
+            if to_year is not None and self.year > to_year: continue
+            self.add_info_md(m, d, dayclass, flag, name)
 
-	# Dag för val till riksdagen är flaggdag från 29 april 1982.
+        # Dag för val till riksdagen är flaggdag från 29 april 1982.
         # Tredje söndagen i september vart tredje år från och med 1982 till 1994.
-	if 1982 <= self.year <= 1991 and self.year % 3 == 2:
-	    vd = first_sunday(self.year, 9, 15)
-	    self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
-	# Tredje söndagen i september, vart fjärde år 1994-2013
-	elif 1994 <= self.year < 2013 and self.year % 4 == 2:
-	    vd = first_sunday(self.year, 9, 15)
-	    self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
-	# Andra söndagen i september, vart fjärde år 2013-
-	elif 2013 <= self.year and self.year % 4 == 2:
-	    vd = first_sunday(self.year, 9, 8)
-	    self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
+        if 1982 <= self.year <= 1991 and self.year % 3 == 2:
+            vd = first_sunday(self.year, 9, 15)
+            self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
+        # Tredje söndagen i september, vart fjärde år 1994-2013
+        elif 1994 <= self.year < 2013 and self.year % 4 == 2:
+            vd = first_sunday(self.year, 9, 15)
+            self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
+        # Andra söndagen i september, vart fjärde år 2013-
+        elif 2013 <= self.year and self.year % 4 == 2:
+            vd = first_sunday(self.year, 9, 8)
+            self.add_info_jd(vd, BLACK, True, "Val till riksdagen")
 
-	# Skottdagen inföll den 24/2 -1996, infaller den 29/2 2000-
-	if self.leap_year:
-	    if self.year >= 2000:
-		self.add_info_md(2, 29, BLACK, False, "Skottdagen")
-	    else:
-		self.add_info_md(2, 24, BLACK, False, "Skottdagen")
+        # Skottdagen inföll den 24/2 -1996, infaller den 29/2 2000-
+        if self.leap_year:
+            if self.year >= 2000:
+                self.add_info_md(2, 29, BLACK, False, "Skottdagen")
+            else:
+                self.add_info_md(2, 24, BLACK, False, "Skottdagen")
             if self.year == 1712:
                 self.add_info_md(2, 30, BLACK, False, "Tillökad")
 
-	# Påsksöndagen ligger till grund för de flesta kyrkliga helgdagarna
-	# under året, så den behöver vi räkna ut redan här
-	pd = easter_sunday(self.year)
+        # Påsksöndagen ligger till grund för de flesta kyrkliga helgdagarna
+        # under året, så den behöver vi räkna ut redan här
+        pd = easter_sunday(self.year)
 
-	# Söndagen efter nyår
-	sen = first_sunday(self.year, 1, 2) # Första söndagen 2/1-
-	if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
-	    self.add_info_jd(sen, MRED, False, "Söndagen e nyår")
+        # Söndagen efter nyår
+        sen = first_sunday(self.year, 1, 2) # Första söndagen 2/1-
+        if sen < JD(self.year, 1 ,6):  # Slås ut av 13dagen och 1 e 13dagen
+            self.add_info_jd(sen, MRED, False, "Söndagen e nyår")
 
-	# Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
-	jmk = first_sunday(self.year, 2, 2)
-	if jmk == pd - 49 and self.year != 1845:
-	    # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
-	    jmk = jmk -7
-	# Vänta med att lägga dit namnet...
+        # Kyndelsmässodagen (Jungfru Marie Kyrkogångsdag)
+        jmk = first_sunday(self.year, 2, 2)
+        if jmk == pd - 49 and self.year != 1845:
+            # Kyndelsmässodagen på fastlagssöndagen => Kyndelsmässodagen flyttas -1v
+            jmk = jmk -7
+        # Vänta med att lägga dit namnet...
 
-	# Söndagar efter Trettondedagen
-	set = first_sunday(self.year, 1, 7)
-	for i in range(1,7):
-	    # Slås ut av Kyndelsmässodagen (efter 1983) och allt påskaktigt
-	    if (set != jmk or self.year <= 1983) and set < pd-63:
-		self.add_info_jd(set, RED, False, "%d e trettondedagen" % i)
-	    set = set + 7
+        # Söndagar efter Trettondedagen
+        set = first_sunday(self.year, 1, 7)
+        for i in range(1,7):
+            # Slås ut av Kyndelsmässodagen (efter 1983) och allt påskaktigt
+            if (set != jmk or self.year <= 1983) and set < pd-63:
+                self.add_info_jd(set, RED, False, "%d e trettondedagen" % i)
+            set = set + 7
 
-	# Jungfru Marie Bebådelsedag
-	if self.year < 1953:
-	    # Före reformen 25 mars
-	    jmb = JD(self.year, 3, 25)
-	else:
-	    # Efter reformen den närmaste söndagen (vilket är 22-28 mars)
-	    jmb = first_sunday(self.year, 3, 22)
+        # Jungfru Marie Bebådelsedag
+        if self.year < 1953:
+            # Före reformen 25 mars
+            jmb = JD(self.year, 3, 25)
+        else:
+            # Efter reformen den närmaste söndagen (vilket är 22-28 mars)
+            jmb = first_sunday(self.year, 3, 22)
 
-	# Men: om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
-	# palmsöndagen, så flyttas den till söndagen innan
-	# palmsöndagen (5 i fastan).
-	if jmb >= pd - 7 and jmb <= pd:
-	    jmb = pd - 14
-	# Vänta med att lägga dit namnet...
+        # Men: om Jungfru Marie Bebådelsedag hamnar på påskdagen eller
+        # palmsöndagen, så flyttas den till söndagen innan
+        # palmsöndagen (5 i fastan).
+        if jmb >= pd - 7 and jmb <= pd:
+            jmb = pd - 14
+        # Vänta med att lägga dit namnet...
 
-	# Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
-	# Håll reda på dem i en lista i den takt de räknas fram
-	se3_stoppers = []	# Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
+        # Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
+        # Håll reda på dem i en lista i den takt de räknas fram
+        se3_stoppers = []       # Vissa dagar ska "slå ut" vanliga "N efter trefaldighet"
 
-	# Vissa dagar ska "slå ut" vanliga "N efter påsk" och "N i fastan"
-	# Håll reda på dem i en lista i den takt de räknas fram
-	sep_stoppers = []
+        # Vissa dagar ska "slå ut" vanliga "N efter påsk" och "N i fastan"
+        # Håll reda på dem i en lista i den takt de räknas fram
+        sep_stoppers = []
 
         #Bönsöndagar, beslutades ofta år för år. Ofta fyra bönsöndagar varje år. 
         forsta_bondagen = {
@@ -1631,58 +1631,58 @@ class YearCal:
 
 
 
-	# Fasta, Påsk, Kristi Himmelsfärd, Pingst
+        # Fasta, Påsk, Kristi Himmelsfärd, Pingst
 
-	# Dessa dagar slås ut av Kyndelsmässodagen
-	# fast bara efter 1983
-	# Tidigare så står båda namnen!
-	for (jd, name) in [(pd-63, "Septuagesima"),
-			   (pd-56, "Sexagesima")]:
-	    if jd != jmk or self.year <= 1983:
-		self.add_info_jd(jd, RED, False, name)
+        # Dessa dagar slås ut av Kyndelsmässodagen
+        # fast bara efter 1983
+        # Tidigare så står båda namnen!
+        for (jd, name) in [(pd-63, "Septuagesima"),
+                           (pd-56, "Sexagesima")]:
+            if jd != jmk or self.year <= 1983:
+                self.add_info_jd(jd, RED, False, name)
 
-	# Lägg så dit Kyndelsmässodagen
-	if self.year < 1901: # Ändrades mellan 1900 och 1905, troligen 1901.
-	    self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag")
-	elif self.year < 1924:
-	    self.add_info_jd(jmk, RED, False, "Kyndelsmässosöndagen")
-	elif self.year < 1943:
-	    self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag eller Kyndelsmässodagen")
-	else:
-	    self.add_info_jd(jmk, RED, False, "Jungfru Marie Kyrkogångsdag eller Kyndelsmässodagen")
+        # Lägg så dit Kyndelsmässodagen
+        if self.year < 1901: # Ändrades mellan 1900 och 1905, troligen 1901.
+            self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag")
+        elif self.year < 1924:
+            self.add_info_jd(jmk, RED, False, "Kyndelsmässosöndagen")
+        elif self.year < 1943:
+            self.add_info_jd(jmk, RED, False, "Marie kyrkogångsdag eller Kyndelsmässodagen")
+        else:
+            self.add_info_jd(jmk, RED, False, "Jungfru Marie Kyrkogångsdag eller Kyndelsmässodagen")
 
-	# Fastlagssöndagen och icke-helgdagar efter den
-	self.add_info_jd(pd-49, RED, False, "Fastlagssöndagen")
-	self.add_info_jd(pd-47, BLACK,False, "Fettisdagen")
-	self.add_info_jd(pd-46, BLACK,False, "Askonsdagen")
+        # Fastlagssöndagen och icke-helgdagar efter den
+        self.add_info_jd(pd-49, RED, False, "Fastlagssöndagen")
+        self.add_info_jd(pd-47, BLACK,False, "Fettisdagen")
+        self.add_info_jd(pd-46, BLACK,False, "Askonsdagen")
 
-	# Dessa dagar slås ut av Jungfru Marie bebådelsedag,
-	# fast bara efter 1983. Böndagar slår också ut detta.
-	# 1952-1983 så står båda namnen!
+        # Dessa dagar slås ut av Jungfru Marie bebådelsedag,
+        # fast bara efter 1983. Böndagar slår också ut detta.
+        # 1952-1983 så står båda namnen!
 
-	for (jd, name) in [(pd-42, "1 i fastan"),
-			   (pd-35, "2 i fastan"),
-			   (pd-28, "3 i fastan"),
-			   (pd-21, "Midfastosöndagen"),
-			   (pd-14, "5 i fastan")]:
-	    if (jd != jmb or self.year <= 1983) and (jd not in sep_stoppers):
-		self.add_info_jd(jd, RED, False, name)
+        for (jd, name) in [(pd-42, "1 i fastan"),
+                           (pd-35, "2 i fastan"),
+                           (pd-28, "3 i fastan"),
+                           (pd-21, "Midfastosöndagen"),
+                           (pd-14, "5 i fastan")]:
+            if (jd != jmb or self.year <= 1983) and (jd not in sep_stoppers):
+                self.add_info_jd(jd, RED, False, name)
 
-	# Lägg så dit Jungfru Marie bebådelsedag
-	self.add_info_jd(jmb, RED, False, "Jungfru Marie bebådelsedag")
+        # Lägg så dit Jungfru Marie bebådelsedag
+        self.add_info_jd(jmb, RED, False, "Jungfru Marie bebådelsedag")
 
-	self.add_info_jd(pd- 7, RED,    False, "Palmsöndagen")
-	self.add_info_jd(pd- 4, BLACK,  False, "Dymmelonsdagen")
-	self.add_info_jd(pd- 3, MBLACK, False, "Skärtorsdagen")
-	self.add_info_jd(pd- 2, MRED,   False, "Långfredagen")
-	self.add_info_jd(pd- 1, MBLACK, False, "Påskafton")
+        self.add_info_jd(pd- 7, RED,    False, "Palmsöndagen")
+        self.add_info_jd(pd- 4, BLACK,  False, "Dymmelonsdagen")
+        self.add_info_jd(pd- 3, MBLACK, False, "Skärtorsdagen")
+        self.add_info_jd(pd- 2, MRED,   False, "Långfredagen")
+        self.add_info_jd(pd- 1, MBLACK, False, "Påskafton")
         if self.year > 1938:
             self.add_info_jd(pd+ 0, MRED,   True,  "Påskdagen")
         else:
             self.add_info_jd(pd+ 0, MRED,  False,  "Påskdagen")
 
-	self.add_info_jd(pd+ 1, MRED,   False, "Annandag påsk")
-	if self.year < 2004:
+        self.add_info_jd(pd+ 1, MRED,   False, "Annandag påsk")
+        if self.year < 2004:
             # Kollar så inget av dessa slås ut av en böndag:
             for (jd, name) in [(pd+ 7, "1 e påsk"),
                                (pd+14, "2 e påsk"),
@@ -1691,81 +1691,81 @@ class YearCal:
                 if(jd not in sep_stoppers):
                     self.add_info_jd(jd, RED, False, name)
 
-	else:
-	    self.add_info_jd(pd+ 7, RED, False, "2 i påsktiden")
-	    self.add_info_jd(pd+14, RED, False, "3 i påsktiden")
-	    self.add_info_jd(pd+21, RED, False, "4 i påsktiden")
-	    self.add_info_jd(pd+28, RED, False, "5 i påsktiden")
-	self.add_info_jd(pd+35, RED, False, "Bönsöndagen")
-	self.add_info_jd(pd+39, MRED, False, "Kristi himmelsfärds dag")
-	if self.year < 2004:
+        else:
+            self.add_info_jd(pd+ 7, RED, False, "2 i påsktiden")
+            self.add_info_jd(pd+14, RED, False, "3 i påsktiden")
+            self.add_info_jd(pd+21, RED, False, "4 i påsktiden")
+            self.add_info_jd(pd+28, RED, False, "5 i påsktiden")
+        self.add_info_jd(pd+35, RED, False, "Bönsöndagen")
+        self.add_info_jd(pd+39, MRED, False, "Kristi himmelsfärds dag")
+        if self.year < 2004:
             if pd+42 not in sep_stoppers:
                 self.add_info_jd(pd+42, RED, False, "6 e påsk")
-	else:
-	    self.add_info_jd(pd+42, RED, False, "Söndagen f Pingst")
-	self.add_info_jd(pd+48, MBLACK, False, "Pingstafton")
+        else:
+            self.add_info_jd(pd+42, RED, False, "Söndagen f Pingst")
+        self.add_info_jd(pd+48, MBLACK, False, "Pingstafton")
         if self.year > 1938:
             self.add_info_jd(pd+49, MRED, True,  "Pingstdagen")
         else:
             self.add_info_jd(pd+49, MRED, False,  "Pingstdagen")
-	if self.year < 2005:
-	    self.add_info_jd(pd+50, MRED, False, "Annandag pingst")
-	else:
-	    self.add_info_jd(pd+50, BLACK,False, "Annandag pingst")
-	self.add_info_jd(pd+56, RED,False, "Heliga trefaldighets dag")
+        if self.year < 2005:
+            self.add_info_jd(pd+50, MRED, False, "Annandag pingst")
+        else:
+            self.add_info_jd(pd+50, BLACK,False, "Annandag pingst")
+        self.add_info_jd(pd+56, RED,False, "Heliga trefaldighets dag")
 
-	# Midsommardagen
-	if self.year < 1953:
-	    # Före 1953 inföll midsommardagen alltid på 24/6
-	    msd = JD(self.year, 6, 24)
-	else:
-	    # Från och med 1953 rörlig helgdag, lördag 20-26/6
-	    msd = first_saturday(self.year, 6, 20)
+        # Midsommardagen
+        if self.year < 1953:
+            # Före 1953 inföll midsommardagen alltid på 24/6
+            msd = JD(self.year, 6, 24)
+        else:
+            # Från och med 1953 rörlig helgdag, lördag 20-26/6
+            msd = first_saturday(self.year, 6, 20)
         if self.year <1923: # Någon gång mellan 1921 och 1925 ändrades detta.
-	    self.add_info_jd(msd+0, MRED,  False,  "Johannes Döparens dag") 
-	elif self.year <2004:
-  	    self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
-	    self.add_info_jd(msd+0, MRED,  True,  "Den helige Johannes Döparens dag eller Midsommardagen")
+            self.add_info_jd(msd+0, MRED,  False,  "Johannes Döparens dag") 
+        elif self.year <2004:
+            self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
+            self.add_info_jd(msd+0, MRED,  True,  "Den helige Johannes Döparens dag eller Midsommardagen")
         else:
             self.add_info_jd(msd-1, MBLACK, False, "Midsommarafton")
-	    self.add_info_jd(msd+0, MRED,  True,  "Midsommardagen")
-	    self.add_info_jd(msd+1, RED,  False,  "Den helige Johannes Döparens dag")
-	    se3_stoppers.append(msd+1)
+            self.add_info_jd(msd+0, MRED,  True,  "Midsommardagen")
+            self.add_info_jd(msd+1, RED,  False,  "Den helige Johannes Döparens dag")
+            se3_stoppers.append(msd+1)
 
-	# Alla Helgons dag
-	if self.year < 1953:
-	    # NE: "Genom helgdagsreformen 1772 förlades firandet till
-	    # första söndagen i november"
-	    ahd = first_sunday(self.year, 11, 1)
-	    # Vänta med att sätta ut namnet, som inte ska slå ut någon Söndag e Tref.
-	else:
-	    # NE: "År 1953 flyttades dagen i den svenska almanackan till
-	    # den lördag som infaller 31 oktober till 6 november.
-	    ahd = first_saturday(self.year, 10, 31)
-	    # Vänta med att sätta ut namnet (för fallet ovan, egentligen)
-	    if self.year > 1983:
-		self.add_info_jd(ahd+1, RED, False, "Söndagen e alla helgons dag")
-		se3_stoppers.append(ahd+1)
+        # Alla Helgons dag
+        if self.year < 1953:
+            # NE: "Genom helgdagsreformen 1772 förlades firandet till
+            # första söndagen i november"
+            ahd = first_sunday(self.year, 11, 1)
+            # Vänta med att sätta ut namnet, som inte ska slå ut någon Söndag e Tref.
+        else:
+            # NE: "År 1953 flyttades dagen i den svenska almanackan till
+            # den lördag som infaller 31 oktober till 6 november.
+            ahd = first_saturday(self.year, 10, 31)
+            # Vänta med att sätta ut namnet (för fallet ovan, egentligen)
+            if self.year > 1983:
+                self.add_info_jd(ahd+1, RED, False, "Söndagen e alla helgons dag")
+                se3_stoppers.append(ahd+1)
 
-	# Advent (samt Domssöndagen och Söndagen före domssöndagen)
-	adv1=first_sunday(self.year, 11, 27 )
+        # Advent (samt Domssöndagen och Söndagen före domssöndagen)
+        adv1=first_sunday(self.year, 11, 27 )
         if self.year >= 1921:
             # Googlar man på "domsöndagen" och 1921 finner man många källor.
             self.add_info_jd(adv1-14, RED,  False, "Söndagen f domssöndagen")
             self.add_info_jd(adv1- 7, RED,  False, "Domssöndagen")
-	self.add_info_jd(adv1+ 0, MRED, False, "1 i advent")
-	self.add_info_jd(adv1+ 7, MRED, False, "2 i advent")
-	self.add_info_jd(adv1+14, MRED, False, "3 i advent")
-	self.add_info_jd(adv1+21, MRED, False, "4 i advent")
+        self.add_info_jd(adv1+ 0, MRED, False, "1 i advent")
+        self.add_info_jd(adv1+ 7, MRED, False, "2 i advent")
+        self.add_info_jd(adv1+14, MRED, False, "3 i advent")
+        self.add_info_jd(adv1+21, MRED, False, "4 i advent")
 
 
-	# Söndagen e Jul
-	sej=first_sunday(self.year, 12, 27)
-	if sej <= self.jd_dec31:
-	    self.add_info_jd(sej, RED, False, "Söndagen e jul")
+        # Söndagen e Jul
+        sej=first_sunday(self.year, 12, 27)
+        if sej <= self.jd_dec31:
+            self.add_info_jd(sej, RED, False, "Söndagen e jul")
 
-	# Den helige Mikaels dag, söndag i tiden 29/9 till 5/10
-	hmd = first_sunday(self.year, 9, 29)
+        # Den helige Mikaels dag, söndag i tiden 29/9 till 5/10
+        hmd = first_sunday(self.year, 9, 29)
         if self.year < 1901: # Denna form fanns kvar 1900, men var borta 1905. Stora ändringar gjordes 1901.
             self.add_info_jd(hmd, RED, False, "Michaelsdagen")
         elif self.year < 1924: # Någon gång efter 1921 men senast 1925 ändrades namnet.
@@ -1780,128 +1780,128 @@ class YearCal:
             self.add_info_jd(tsd, RED, False, "Tacksägelsedagen")
             se3_stoppers.append(tsd)
 
-	# Söndagarna efter Trefaldighet
-	se3 = pd+63
-	for i in range(1,28):
-	    # Ska dagen vara en S e Tr?
-	    if self.year >= 1921 and se3 >= adv1 - 14:
-		# Inte lönt längre efter S f ds
-		break
-	    if self.year < 1921 and se3 >= adv1:
-		# Inte lönt längre efter 1 adv. Före 1921 fanns inga domsöndagar.
-		break
-	    # Har dagen redan ett annat namn som har prioritet?
-	    if se3 in se3_stoppers:
-		se3 += 7
-		continue
+        # Söndagarna efter Trefaldighet
+        se3 = pd+63
+        for i in range(1,28):
+            # Ska dagen vara en S e Tr?
+            if self.year >= 1921 and se3 >= adv1 - 14:
+                # Inte lönt längre efter S f ds
+                break
+            if self.year < 1921 and se3 >= adv1:
+                # Inte lönt längre efter 1 adv. Före 1921 fanns inga domsöndagar.
+                break
+            # Har dagen redan ett annat namn som har prioritet?
+            if se3 in se3_stoppers:
+                se3 += 7
+                continue
 
-	    # Särskilda namn för vissa av dagarna
-	    if self.year > 1983 and i == 5:
-		name = "Apostladagen"
-	    elif self.year >= 1923 and i == 7:  # Ändrades mellan 1921 och 1925.
-		name = "Kristi förklarings dag"
-	    else:
-		name = "%d e trefaldighet" % i
-	    
-	    self.add_info_jd(se3, RED, False, name)
-	    se3 += 7
+            # Särskilda namn för vissa av dagarna
+            if self.year > 1983 and i == 5:
+                name = "Apostladagen"
+            elif self.year >= 1923 and i == 7:  # Ändrades mellan 1921 och 1925.
+                name = "Kristi förklarings dag"
+            else:
+                name = "%d e trefaldighet" % i
+            
+            self.add_info_jd(se3, RED, False, name)
+            se3 += 7
 
-	# Sätt ut A H D
-	self.add_info_jd(ahd, MRED, False, "Alla helgons dag")
+        # Sätt ut A H D
+        self.add_info_jd(ahd, MRED, False, "Alla helgons dag")
 
     def place_name_day_names(self, filename, patches = None):
-	for line in open(filename):
-	    (ms, ds, ns) = line.strip().split(None,2)
-	    m = int(ms)
-	    d = int(ds)
-	    # Innan år 2000, då skottdagen var 24/2, så flyttades
-	    # namnen till senare dagar i februari
-	    if self.leap_year and self.year < 2000 and m == 2 and d >= 24: 
-		d = d + 1
-	    names = ns.split(",")
-	    dc = self.get_md(m, d)
-	    dc.set_names(names)
-	if patches is not None:
-	    for (from_year, m, d, names) in patches:
-		if self.year >= from_year:
-		    dc = self.get_md(m, d)
-		    dc.set_names(names)
-		    
+        for line in open(filename):
+            (ms, ds, ns) = line.strip().split(None,2)
+            m = int(ms)
+            d = int(ds)
+            # Innan år 2000, då skottdagen var 24/2, så flyttades
+            # namnen till senare dagar i februari
+            if self.leap_year and self.year < 2000 and m == 2 and d >= 24: 
+                d = d + 1
+            names = ns.split(",")
+            dc = self.get_md(m, d)
+            dc.set_names(names)
+        if patches is not None:
+            for (from_year, m, d, names) in patches:
+                if self.year >= from_year:
+                    dc = self.get_md(m, d)
+                    dc.set_names(names)
+                    
 
     # Placera ut månfaserna i almanackan.
     # Algoritm: Meeus, Jean, Astronomical Formulae for Calculators, 2 ed, s 159
     def place_moonphases(self):
-	# FIXME:
-	# int midcycle,cycle;
-	# moon_t phase;
-	# int h,m;
-	# day_cal *dcal;
-	# jd_t jd1jan,jd31dec,jd;
+        # FIXME:
+        # int midcycle,cycle;
+        # moon_t phase;
+        # int h,m;
+        # day_cal *dcal;
+        # jd_t jd1jan,jd31dec,jd;
 
-	# Ta reda på en måncykel i mitten av året (ungefär)
-	midcycle = int((self.year - 1900) * 12.3685) + 6
+        # Ta reda på en måncykel i mitten av året (ungefär)
+        midcycle = int((self.year - 1900) * 12.3685) + 6
 
-	# Arbeta bakåt mot början av året och placera ut månfaserna
+        # Arbeta bakåt mot början av året och placera ut månfaserna
 
-	cycle = midcycle
-	phase = 0 # Nymåne
+        cycle = midcycle
+        phase = 0 # Nymåne
 
-	while True:
-	    jd = moonphase(cycle, phase)
-	    if jd < self.jd_jan1: break
-	    
-	    dc = self.get_jd(jd)
-	    dc.set_moonphase(phase)
+        while True:
+            jd = moonphase(cycle, phase)
+            if jd < self.jd_jan1: break
+            
+            dc = self.get_jd(jd)
+            dc.set_moonphase(phase)
 
-	    if phase == 0:
-		phase = 3
-		cycle = cycle - 1
-	    else:
-		phase = phase -1 
+            if phase == 0:
+                phase = 3
+                cycle = cycle - 1
+            else:
+                phase = phase -1 
 
-	# Arbeta framåt mot slutet av året och placera ut månfaserna
+        # Arbeta framåt mot slutet av året och placera ut månfaserna
 
-	cycle = midcycle
-	phase = 0 # Nymåne
+        cycle = midcycle
+        phase = 0 # Nymåne
 
-	while True:
-	    jd = moonphase(cycle, phase)
-	    if  jd > self.jd_dec31: break
+        while True:
+            jd = moonphase(cycle, phase)
+            if  jd > self.jd_dec31: break
 
-	    dc = self.get_jd(jd)
-	    dc.set_moonphase(phase)
+            dc = self.get_jd(jd)
+            dc.set_moonphase(phase)
 
-	    if phase == 3:
-		phase = 0
-		cycle = cycle + 1
-	    else:
-		phase = phase + 1 
+            if phase == 3:
+                phase = 0
+                cycle = cycle + 1
+            else:
+                phase = phase + 1 
 
     def dump(self):
-	"""Show in text format for debugging."""
+        """Show in text format for debugging."""
 
-	for dc in self.generate():
-	    dc.dump()
+        for dc in self.generate():
+            dc.dump()
 
     def month_cal(self, month):
         return MonthCal(self, month)
-	
+        
 class MonthCal:
     """Class to represent a month of a year."""
 
     def __init__(self, yearcal, month):
-	self.yc = yearcal
-	assert 1<= month <= 12
-	self.month = month
+        self.yc = yearcal
+        assert 1<= month <= 12
+        self.month = month
         if self.yc.year < 1872:
             self.month_name = month_old_names[self.month]
         else:
             self.month_name = month_names[self.month]
 
-	self.num_days = [None, 31, 28, 31, 30, 31, 30,
-			 31, 31, 30, 31, 30, 31][self.month]
-	if self.yc.leap_year and self.month == 2:
-	     self.num_days = 29
+        self.num_days = [None, 31, 28, 31, 30, 31, 30,
+                         31, 31, 30, 31, 30, 31][self.month]
+        if self.yc.leap_year and self.month == 2:
+             self.num_days = 29
              
         if self.yc.year == 1753 and self.month == 2:
              self.num_days = 17
@@ -1912,76 +1912,76 @@ class MonthCal:
                  
 
     def generate(self):
-	for d in range(1,self.num_days+1):
-	    dc = self.yc.get_md(self.month, d)
-	    yield dc
+        for d in range(1,self.num_days+1):
+            dc = self.yc.get_md(self.month, d)
+            yield dc
 
     def title(self):
         return '%s %s' % (self.month_name, self.yc.year)
 
     def html_vertical(self, f, for_printing = False):
-	# Tabellen med dagarna
-	f.write('<TABLE CLASS="vtable">')
-	for dc in self.generate():
-	    dc.html_vertical(f, for_printing = for_printing)
-	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
-	f.write('</TABLE>')
+        # Tabellen med dagarna
+        f.write('<TABLE CLASS="vtable">')
+        for dc in self.generate():
+            dc.html_vertical(f, for_printing = for_printing)
+        f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="5">&nbsp;</TD></TR>')
+        f.write('</TABLE>')
 
     def html_tabular_high(self, f, for_printing = False):
         self.html_tabular(f, for_printing = for_printing, high = True)
 
     def html_tabular(self, f, for_printing = False, high = False):
-	# Tabellen
-	f.write('<TABLE CLASS="ttable">')
+        # Tabellen
+        f.write('<TABLE CLASS="ttable">')
 
-	# Rubrikrad med veckodagarna
-	f.write('<TR CLASS="twd">')
-	if self.yc.year >= 1973:
-	    days = wday_names[1:]
-	else:
-	    days = wday_names[7:] + wday_names[1:7]
-	f.write('<TD CLASS="twno_empty">&nbsp;</TD>')
-	for day in days:
-	    f.write('<TD CLASS="twday">%s</TD>' % day)
-	f.write('</TR>')
-	
-	for dc in self.generate():
-	    # Börja ny rad på första dagen i månaden eller veckan
-	    if dc.d == 1 or dc.wpos == 1:
-		f.write('<TR CLASS="tw">')
-		# Veckonummer relevant fr o m 1973
-		if dc.y >= 1973:
-		    wtext = '<A CLASS="hidelink" HREF="?year=%d&week=%d&type=week">%d</A>' % (dc.wyear,
+        # Rubrikrad med veckodagarna
+        f.write('<TR CLASS="twd">')
+        if self.yc.year >= 1973:
+            days = wday_names[1:]
+        else:
+            days = wday_names[7:] + wday_names[1:7]
+        f.write('<TD CLASS="twno_empty">&nbsp;</TD>')
+        for day in days:
+            f.write('<TD CLASS="twday">%s</TD>' % day)
+        f.write('</TR>')
+        
+        for dc in self.generate():
+            # Börja ny rad på första dagen i månaden eller veckan
+            if dc.d == 1 or dc.wpos == 1:
+                f.write('<TR CLASS="tw">')
+                # Veckonummer relevant fr o m 1973
+                if dc.y >= 1973:
+                    wtext = '<A CLASS="hidelink" HREF="?year=%d&week=%d&type=week">%d</A>' % (dc.wyear,
                                                                                               dc.week,
                                                                                               dc.week)
-		else:
-		    wtext = "&nbsp;"
-		f.write('<TD CLASS="twno">%s</TD>' %wtext)
+                else:
+                    wtext = "&nbsp;"
+                f.write('<TD CLASS="twno">%s</TD>' %wtext)
 
-	    # Fyll ut med tomdagar om det behövs i början
-	    if dc.d == 1:
-		for i in range(1, dc.wpos):
-		    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
+            # Fyll ut med tomdagar om det behövs i början
+            if dc.d == 1:
+                for i in range(1, dc.wpos):
+                    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
 
-	    # Själva dagen
-	    dc.html_tabular(f, for_printing = for_printing, high = high)
+            # Själva dagen
+            dc.html_tabular(f, for_printing = for_printing, high = high)
 
-	    # Fyll ut med tomdagar om det behövs på slutet
-	    if dc.d == self.num_days:
-		for i in range(dc.wpos, 7):
-		    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
+            # Fyll ut med tomdagar om det behövs på slutet
+            if dc.d == self.num_days:
+                for i in range(dc.wpos, 7):
+                    f.write('<TD CLASS="tday_empty">&nbsp;</TD>')
 
-	    # Avsluta sist i veckan och månaden
-	    if dc.d == self.num_days or dc.wpos == 7:
-		f.write('</TR>')
+            # Avsluta sist i veckan och månaden
+            if dc.d == self.num_days or dc.wpos == 7:
+                f.write('</TR>')
 
-	f.write('</TABLE>')
+        f.write('</TABLE>')
 
 class WeekCal:
     """Class to represent a week."""
 
     def __init__(self, week_year, week_no):
-	assert 1<= week_no <= 53
+        assert 1<= week_no <= 53
         self.week_year = week_year
         self.week_no = week_no
         self.year_cals = {} # We may need more than one year!
@@ -1998,12 +1998,12 @@ class WeekCal:
         return 'Vecka %d, %s' % (self.week_no, self.week_year)
 
     def html_vertical(self, f, for_printing = False):
-	# Tabellen med dagarna
-	f.write('<TABLE CLASS="vtable">')
-	for dc in self.days:
-	    dc.html_vertical(f, in_week_cal = True, for_printing = for_printing)
-	f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="6">&nbsp;</TD></TR>')
-	f.write('</TABLE>')
+        # Tabellen med dagarna
+        f.write('<TABLE CLASS="vtable">')
+        for dc in self.days:
+            dc.html_vertical(f, in_week_cal = True, for_printing = for_printing)
+        f.write('<TR CLASS="v"><TD CLASS="vlast" COLSPAN="6">&nbsp;</TD></TR>')
+        f.write('</TABLE>')
 
 
 
@@ -2015,10 +2015,10 @@ if __name__ == '__main__':
     import sys
 
     if len(sys.argv) > 1:
-	year = int(sys.argv[1])
-	yc = YearCal(year)
-	yc.dump()
+        year = int(sys.argv[1])
+        yc = YearCal(year)
+        yc.dump()
     else:
-	for year in range(1901,2006):
-	    yc = YearCal(year)
-	    yc.dump()
+        for year in range(1901,2006):
+            yc = YearCal(year)
+            yc.dump()
