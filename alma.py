@@ -5,7 +5,7 @@
 # Copyright 2004 Kent Engström. Released under GPL.
 
 import math
-from cStringIO import StringIO
+from io import StringIO
 
 import jddate; JD=jddate.FromYMD
 
