@@ -57,13 +57,13 @@ def jd_to_ymd_swedish(jd):
 #
 
 def jd_to_ymd_gregorian(jd):
-    alpha = int((100*jd - 186721625)/3652425)
-    a = jd + 1 + alpha - alpha/4
+    alpha = int((100*jd - 186721625)//3652425)
+    a = jd + 1 + alpha - alpha//4
     b = a + 1524
-    c = int(100*b - 12210)/36525
-    d = int((36525*c)/100)
-    e = int((10000*b-10000*d)/306001)
-    res_d = b - d - int((306001*e)/10000)
+    c = int(100*b - 12210)//36525
+    d = int((36525*c)//100)
+    e = int((10000*b-10000*d)//306001)
+    res_d = b - d - int((306001*e)//10000)
     if e<14:
         res_m=e-1
     else:
@@ -98,8 +98,8 @@ def ymd_to_jd_swedish(year,month,day):
 
 def ymd_to_jd_gregorian(y,m,d):
     if m<3: y=y-1; m=m+12
-    a = y/100;
-    return 1720995 + d + 2 - a + (a/4) + (36525*y)/100 + (306001*(m+1))/10000;
+    a = y//100;
+    return 1720995 + d + 2 - a + (a//4) + (36525*y)//100 + (306001*(m+1))//10000;
 
 # Get weekday from JD (Monday = 1, ..., Sunday = 7)
 
@@ -126,7 +126,7 @@ def ymd_to_ywd(y,m,d):
              res_w=52
      else:
          res_y=y
-         res_w=(jd-jd1mon)/7+1
+         res_w=(jd-jd1mon)//7+1
          if m==12 and d>=29:
              wd1jannext=jd_to_weekday(ymd_to_jd(y+1,1,1))
              if wd1jannext<=4 and wd1jannext+d>=33:
