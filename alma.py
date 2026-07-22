@@ -1026,7 +1026,7 @@ class YearCal:
             # född 1858-06-16, kung 1907-12-08, död 1950-10-29
             # FIXME: Första almanackan med flaggdagar utsatta 1939, sätter
             # det som start. Flaggdag som kronprins innan han blev kung?
-            (1939, 1950, 6, 16, BLACK, True, "Kronprinsens födelsedag"),  # födelsedag
+            (1939, 1950, 6, 16, BLACK, True, "Konungens födelsedag"),  # födelsedag
         ]:
             if from_year is not None and self.year < from_year:
                 continue
