@@ -3,6 +3,7 @@
 # Svenska almanackan
 # Copyright 2004 Kent Engström. Released under GPL.
 
+import os
 import time
 import cgi
 import cgitb
@@ -39,6 +40,10 @@ def selected(bool):
 
 def handle_cgi():
     form = cgi.FieldStorage()
+
+    # Se till att vi använder svensk tidszon för vår svenska almanacka
+    os.environ['TZ'] = "Europe/Stockholm"
+    time.tzset()
 
     # Är det här en begäran om vCalendar-data, som hanteras separat?
     if (
